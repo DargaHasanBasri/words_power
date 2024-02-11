@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:words_power/firebase_options.dart';
 import 'package:words_power/ui/pages/login/login_provider.dart';
+import 'package:words_power/ui/pages/onboarding/onboarding_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const LoginProvider(),
+      home: const OnboardingProvider(),
     );
   }
 }
