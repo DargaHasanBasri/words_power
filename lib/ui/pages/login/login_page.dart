@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:words_power/base/base_stateful_state.dart';
 import 'package:words_power/ui/pages/forgot_password/forgot_password_provider.dart';
+import 'package:words_power/ui/pages/home/home_provider.dart';
 import 'package:words_power/ui/pages/login/login_view_model.dart';
 import 'package:words_power/ui/pages/onboarding/onboarding_provider.dart';
 import 'package:words_power/ui/pages/register/register_provider.dart';
@@ -25,6 +26,7 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
     vm = Provider.of<LoginViewModel>(context, listen: false);
     listeners();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,23 +49,33 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
               ),
             ),
             const SizedBox(height: 30),
-            CustomTextFormField(
-              controller: vm.controllerMailAddress,
-              hintText: "E-mail adresi giriniz",
-              textFieldName: "E-mail Adresi",
-              isRequired: true,
-              onChanged: (value) {
-                vm.mailAddress.value = value.toString().trim();
+            ValueListenableBuilder(
+              valueListenable: vm.mailAddress,
+              builder: (_, __, ___) {
+                return CustomTextFormField(
+                  controller: vm.controllerMailAddress,
+                  hintText: "E-mail adresi giriniz",
+                  textFieldName: "E-mail Adresi",
+                  isRequired: true,
+                  onChanged: (value) {
+                    vm.mailAddress.value = value.toString().trim();
+                  },
+                );
               },
             ),
             const SizedBox(height: 10),
-            CustomTextFormField(
-              controller: vm.controllerPassword,
-              hintText: "Parola giriniz",
-              textFieldName: "Parola",
-              isRequired: true,
-              onChanged: (value) {
-                vm.password.value = value.toString().trim();
+            ValueListenableBuilder(
+              valueListenable: vm.password,
+              builder: (_, __, ___) {
+                return CustomTextFormField(
+                  controller: vm.controllerPassword,
+                  hintText: "Parola giriniz",
+                  textFieldName: "Parola",
+                  isRequired: true,
+                  onChanged: (value) {
+                    vm.password.value = value.toString().trim();
+                  },
+                );
               },
             ),
             const SizedBox(height: 10),
@@ -93,29 +105,24 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
             ),
             const SizedBox(height: 20),
             ValueListenableBuilder(
-              valueListenable: vm.password,
-              builder: (_,__,___) {
-                return ValueListenableBuilder(
-                  valueListenable: vm.mailAddress,
-                  builder: (_,__,___) {
-                    return CustomButton(
-                      title: "Giriş Yap",
-                      onClick: () {
-                        debugPrint("Kayıt Ol Tıklandı!!!!");
-                        vm.isEmpty()
-                            ? Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const OnboardingProvider(),
-                          ),
-                        )
-                            : showSnackBar(
-                            context, "Lütfen şifre ve e-mail alanlarını kontrol edin. Boş alan bırakmayın!");
-                      },
-                    );
-                  }
+              valueListenable: vm.isLogin,
+              builder: (_, __, ___) {
+                return CustomButton(
+                  title: "Giriş Yap",
+                  onClick: () async {
+                    debugPrint("Kayıt Ol Tıklandı!!!!");
+                    await vm.login();
+                    vm.isLogin.value
+                        ? Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomeProvider(),
+                      ),
+                    )
+                        : showSnackBar(context, "Lütfen şifre ve e-mail kontrol edin.");
+                  },
                 );
-              }
+              },
             ),
             const SizedBox(height: 16),
             const Center(
