@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:words_power/base/base_stateful_state.dart';
 import 'package:words_power/ui/pages/login/login_provider.dart';
 import 'package:words_power/ui/pages/onboarding/onboarding_provider.dart';
-import 'package:words_power/ui/pages/register/register_provider.dart';
 import 'package:words_power/ui/pages/register/register_view_model.dart';
 import 'package:words_power/ui/widgets/custom_button.dart';
 import 'package:words_power/ui/widgets/custom_textform_field.dart';
