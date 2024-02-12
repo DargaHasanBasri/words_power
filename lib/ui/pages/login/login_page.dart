@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:words_power/ui/pages/forgot_password/forgot_password_provider.dart';
 import 'package:words_power/ui/pages/onboarding/onboarding_provider.dart';
 import 'package:words_power/ui/pages/register/register_provider.dart';
 import 'package:words_power/ui/widgets/custom_button.dart';
@@ -49,7 +50,14 @@ class LoginPage extends StatelessWidget {
                 const SizedBox(),
                 const Spacer(),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ForgotPasswordProvider(),
+                      ),
+                    );
+                  },
                   child: const Text(
                     "Şifremi Unuttum",
                     style: TextStyle(
