@@ -1,11 +1,30 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:words_power/base/base_stateful_state.dart';
+import 'package:words_power/ui/pages/login/login_provider.dart';
 import 'package:words_power/ui/pages/onboarding/onboarding_provider.dart';
+import 'package:words_power/ui/pages/register/register_provider.dart';
+import 'package:words_power/ui/pages/register/register_view_model.dart';
 import 'package:words_power/ui/widgets/custom_button.dart';
 import 'package:words_power/ui/widgets/custom_textform_field.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends BaseStatefulState<RegisterPage> {
+  late final RegisterViewModel vm;
+
+  @override
+  void initState() {
+    super.initState();
+    vm = Provider.of<RegisterViewModel>(context, listen: false);
+    listeners();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +39,7 @@ class RegisterPage extends StatelessWidget {
             const SizedBox(height: 50),
             const Center(
               child: Text(
-                "Kayıt Ol",
+                "KAYIT OL",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 26,
@@ -30,33 +49,50 @@ class RegisterPage extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             CustomTextFormField(
-              controller: TextEditingController(),
+              controller: vm.controllerMailAddress,
               hintText: "E-mail adresi giriniz",
               textFieldName: "E-mail Adresi",
               isRequired: true,
+              onChanged: (value) {
+                vm.mailAddress.value = value.toString().trim();
+              },
             ),
             const SizedBox(height: 10),
             CustomTextFormField(
-              controller: TextEditingController(),
+              controller: vm.controllerPassword,
               hintText: "Parola giriniz",
               textFieldName: "Parola",
               isRequired: true,
+              onChanged: (value) {
+                vm.password.value = value;
+              },
             ),
             const SizedBox(height: 30),
             getTextPrivacyPolicy(),
             const SizedBox(height: 20),
-            CustomButton(
-              title: "Kayıt Ol",
-              onClick: () {
-                debugPrint("Kayıt Ol Tıklandı!!!!");
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const OnboardingProvider(),
-                  ),
-                );
-              },
-            ),
+            ValueListenableBuilder(
+                valueListenable: vm.password,
+                builder: (_, __, ___) {
+                  return ValueListenableBuilder(
+                      valueListenable: vm.mailAddress,
+                      builder: (_, __, ___) {
+                        return CustomButton(
+                          title: "Kayıt Ol",
+                          onClick: () {
+                            debugPrint("Kayıt Ol Tıklandı!!!!");
+                            vm.isEmpty()
+                                ? Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const LoginProvider(),
+                                    ),
+                                  )
+                                : showSnackBar(
+                                    context, "Lütfen şifre ve e-mail alanlarını kontrol edin. Boş alan bırakmayın!");
+                          },
+                        );
+                      });
+                }),
             const SizedBox(height: 16),
             const Center(
               child: Text(
@@ -105,6 +141,12 @@ class RegisterPage extends StatelessWidget {
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
                         debugPrint("Giriş Yap Tıklantı");
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const LoginProvider(),
+                          ),
+                        );
                       },
                   ),
                 ],
@@ -152,4 +194,6 @@ class RegisterPage extends StatelessWidget {
       ),
     );
   }
+
+  listeners() {}
 }
