@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:words_power/ui/pages/onboarding/onboarding_provider.dart';
+import 'package:words_power/ui/pages/register/register_provider.dart';
 import 'package:words_power/ui/widgets/custom_button.dart';
 import 'package:words_power/ui/widgets/custom_textform_field.dart';
 
@@ -42,8 +43,24 @@ class LoginPage extends StatelessWidget {
               textFieldName: "Parola",
               isRequired: true,
             ),
-            const SizedBox(height: 30),
-            getTextPrivacyPolicy(),
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                const SizedBox(),
+                const Spacer(),
+                GestureDetector(
+                  onTap: () {},
+                  child: const Text(
+                    "Şifremi Unuttum",
+                    style: TextStyle(
+                      color: Colors.yellow,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
             const SizedBox(height: 20),
             CustomButton(
               title: "Giriş Yap",
@@ -88,7 +105,7 @@ class LoginPage extends StatelessWidget {
             RichText(
               textAlign: TextAlign.center,
               text: TextSpan(
-                text: "Zaten hesabın var mı? ",
+                text: "Henüz kayıt olmadın mı? ",
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 14,
@@ -96,15 +113,21 @@ class LoginPage extends StatelessWidget {
                 ),
                 children: [
                   TextSpan(
-                    text: "Giriş Yap",
+                    text: "Kayıt Ol",
                     style: const TextStyle(
                       color: Colors.yellow,
-                      fontSize: 16,
+                      fontSize: 14,
                       fontWeight: FontWeight.w500,
                     ),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
                         debugPrint("Giriş Yap Tıklantı");
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const RegisterProvider(),
+                          ),
+                        );
                       },
                   ),
                 ],
@@ -112,43 +135,6 @@ class LoginPage extends StatelessWidget {
             )
           ],
         ),
-      ),
-    );
-  }
-
-  Widget getTextPrivacyPolicy() {
-    return RichText(
-      textAlign: TextAlign.center,
-      text: TextSpan(
-        text: "Devam ettiğinizde, ",
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 14,
-          fontWeight: FontWeight.w400,
-        ),
-        children: [
-          TextSpan(
-            text: "Gizlilik Sözleşmesi ve Kullanım Şartlarını",
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              decoration: TextDecoration.underline,
-            ),
-            recognizer: TapGestureRecognizer()
-              ..onTap = () {
-                debugPrint("Gizlilik Sözleşmesi ve Kullanım Şartları tıklandı");
-              },
-          ),
-          const TextSpan(
-            text: " kabul etmiş olacaksınız.",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 14,
-              fontWeight: FontWeight.w400,
-            ),
-          )
-        ],
       ),
     );
   }

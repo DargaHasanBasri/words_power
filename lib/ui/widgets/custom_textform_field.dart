@@ -129,6 +129,6 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   }
 
   void _onChanged(String value) {
-    //if (widget.onChanged != null) widget.onChanged!(value.trim());
+    if (widget.onChanged != null) widget.onChanged!(value.trim());
   }
 }
