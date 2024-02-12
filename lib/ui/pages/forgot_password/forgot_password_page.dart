@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:words_power/base/base_stateful_state.dart';
+import 'package:words_power/ui/pages/forgot_password/forgot_password_view_model.dart';
 
 import '../../widgets/custom_button.dart';
 import '../../widgets/custom_textform_field.dart';
@@ -13,6 +15,15 @@ class ForgotPasswordPage extends StatefulWidget {
 }
 
 class _ForgotPasswordPageState extends BaseStatefulState<ForgotPasswordPage> {
+  late final ForgotPasswordViewModel vm;
+
+  @override
+  void initState() {
+    super.initState();
+    vm = Provider.of<ForgotPasswordViewModel>(context, listen: false);
+    listeners();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,31 +56,42 @@ class _ForgotPasswordPageState extends BaseStatefulState<ForgotPasswordPage> {
             ),
             const SizedBox(height: 20),
             CustomTextFormField(
-              controller: TextEditingController(),
+              controller: vm.controllerMailAddress,
               hintText: "E-mail adresi giriniz",
               textFieldName: "E-mail Adresi",
               isRequired: true,
+              onChanged: (value) {
+                vm.mailAddress.value = value.toString().trim();
+              },
             ),
-
             const SizedBox(height: 40),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: CustomButton(
-                title: "Gönder",
-                onClick: () {
-                  debugPrint("Kayıt Ol Tıklandı!!!!");
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const OnboardingProvider(),
-                    ),
-                  );
-                },
-              ),
+              child: ValueListenableBuilder(
+                  valueListenable: vm.mailAddress,
+                  builder: (_, __, ___) {
+                    return CustomButton(
+                      title: "Gönder",
+                      onClick: () {
+                        debugPrint("Kayıt Ol Tıklandı!!!!");
+                        vm.mailAddress.value.isNotEmpty
+                            ? Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const OnboardingProvider(),
+                                ),
+                              )
+                            : showSnackBar(
+                                context, "Lütfen şifre ve e-mail alanlarını kontrol edin. Boş alan bırakmayın!");
+                      },
+                    );
+                  }),
             ),
           ],
         ),
       ),
     );
   }
+
+  listeners() {}
 }
