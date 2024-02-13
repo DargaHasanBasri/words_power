@@ -58,119 +58,122 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 30),
-                      const Text(
-                        "GİRİŞ YAP",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      const SizedBox(height: 24),
-                      ValueListenableBuilder(
-                        valueListenable: vm.mailAddress,
-                        builder: (_, __, ___) {
-                          return CustomTextFormField(
-                            controller: vm.controllerMailAddress,
-                            hintText: "E-mail adresi giriniz",
-                            onChanged: (value) {
-                              vm.mailAddress.value = value.toString().trim();
-                            },
-                          );
-                        },
-                      ),
-                      const SizedBox(height: 20),
-                      ValueListenableBuilder(
-                        valueListenable: vm.password,
-                        builder: (_, __, ___) {
-                          return CustomTextFormField(
-                            controller: vm.controllerPassword,
-                            hintText: "Parola giriniz",
-                            onChanged: (value) {
-                              vm.password.value = value.toString().trim();
-                            },
-                          );
-                        },
-                      ),
-                      const SizedBox(height: 20),
-                      ValueListenableBuilder(
-                        valueListenable: vm.isLogin,
-                        builder: (_, __, ___) {
-                          return CustomButton(
-                            title: "Giriş Yap",
-                            onClick: () async {
-                              debugPrint("Kayıt Ol Tıklandı!!!!");
-                              await vm.login();
-                              vm.isLogin.value
-                                  ? Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => const HomeProvider(),
-                                      ),
-                                    )
-                                  : showSnackBar(context, "Lütfen şifre ve e-mail kontrol edin.");
-                            },
-                          );
-                        },
-                      ),
-                      const SizedBox(height: 20),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const ForgotPasswordProvider(),
-                            ),
-                          );
-                        },
-                        child: Text(
-                          "Şifreni mi Unuttun?",
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 30),
+                        Text(
+                          "GİRİŞ YAP",
                           style: TextStyle(
-                            color: CustomColors.greyTextColor,
-                            fontSize: 12,
+                            color: CustomColors.white,
+                            fontSize: 24,
                             fontWeight: FontWeight.w400,
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 40),
-                      Center(
-                        child: RichText(
-                          textAlign: TextAlign.center,
-                          text: TextSpan(
-                            text: "Henüz kayıt olmadın mı? ",
+                        const SizedBox(height: 24),
+                        ValueListenableBuilder(
+                          valueListenable: vm.mailAddress,
+                          builder: (_, __, ___) {
+                            return CustomTextFormField(
+                              controller: vm.controllerMailAddress,
+                              hintText: "E-mail adresi giriniz",
+                              onChanged: (value) {
+                                vm.mailAddress.value = value.toString().trim();
+                              },
+                            );
+                          },
+                        ),
+                        const SizedBox(height: 20),
+                        ValueListenableBuilder(
+                          valueListenable: vm.password,
+                          builder: (_, __, ___) {
+                            return CustomTextFormField(
+                              controller: vm.controllerPassword,
+                              isHaveObscure: true,
+                              hintText: "Parola giriniz",
+                              onChanged: (value) {
+                                vm.password.value = value.toString().trim();
+                              },
+                            );
+                          },
+                        ),
+                        const SizedBox(height: 20),
+                        ValueListenableBuilder(
+                          valueListenable: vm.isLogin,
+                          builder: (_, __, ___) {
+                            return CustomButton(
+                              title: "Giriş Yap",
+                              onClick: () async {
+                                debugPrint("Kayıt Ol Tıklandı!!!!");
+                                await vm.login();
+                                vm.isLogin.value
+                                    ? Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => const HomeProvider(),
+                                        ),
+                                      )
+                                    : showSnackBar(context, "Lütfen şifre ve e-mail kontrol edin.");
+                              },
+                            );
+                          },
+                        ),
+                        const SizedBox(height: 20),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ForgotPasswordProvider(),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            "Şifreni mi Unuttun?",
                             style: TextStyle(
                               color: CustomColors.greyTextColor,
                               fontSize: 12,
                               fontWeight: FontWeight.w400,
                             ),
-                            children: [
-                              TextSpan(
-                                text: "Kayıt Ol",
-                                style: TextStyle(
-                                  color: CustomColors.buttonBackground,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    debugPrint("Giriş Yap Tıklantı");
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => const RegisterProvider(),
-                                      ),
-                                    );
-                                  },
-                              ),
-                            ],
                           ),
                         ),
-                      ),
-                    ],
+                        const SizedBox(height: 40),
+                        Center(
+                          child: RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              text: "Henüz kayıt olmadın mı? ",
+                              style: TextStyle(
+                                color: CustomColors.greyTextColor,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                              ),
+                              children: [
+                                TextSpan(
+                                  text: "Kayıt Ol",
+                                  style: TextStyle(
+                                    color: CustomColors.buttonBackground,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      debugPrint("Giriş Yap Tıklantı");
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => const RegisterProvider(),
+                                        ),
+                                      );
+                                    },
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -183,156 +186,3 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
 
   listeners() {}
 }
-
-/*
-SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const Center(
-                    child: Text(
-                      "GİRİŞ YAP",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 26,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                  ValueListenableBuilder(
-                    valueListenable: vm.mailAddress,
-                    builder: (_, __, ___) {
-                      return CustomTextFormField(
-                        controller: vm.controllerMailAddress,
-                        hintText: "E-mail adresi giriniz",
-                        textFieldName: "E-mail Adresi",
-                        isRequired: true,
-                        onChanged: (value) {
-                          vm.mailAddress.value = value.toString().trim();
-                        },
-                      );
-                    },
-                  ),
-                  ValueListenableBuilder(
-                    valueListenable: vm.password,
-                    builder: (_, __, ___) {
-                      return CustomTextFormField(
-                        controller: vm.controllerPassword,
-                        hintText: "Parola giriniz",
-                        textFieldName: "Parola",
-                        isRequired: true,
-                        onChanged: (value) {
-                          vm.password.value = value.toString().trim();
-                        },
-                      );
-                    },
-                  ),
-                  Row(
-                    children: [
-                      const SizedBox(),
-                      const Spacer(),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const ForgotPasswordProvider(),
-                            ),
-                          );
-                        },
-                        child: const Text(
-                          "Şifremi Unuttum",
-                          style: TextStyle(
-                            color: Colors.yellow,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  ValueListenableBuilder(
-                    valueListenable: vm.isLogin,
-                    builder: (_, __, ___) {
-                      return CustomButton(
-                        title: "Giriş Yap",
-                        onClick: () async {
-                          debugPrint("Kayıt Ol Tıklandı!!!!");
-                          await vm.login();
-                          vm.isLogin.value
-                              ? Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const HomeProvider(),
-                            ),
-                          )
-                              : showSnackBar(context, "Lütfen şifre ve e-mail kontrol edin.");
-                        },
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 16),
-                  const Center(
-                    child: Text(
-                      "veya",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: CustomButton(
-                      title: "Google ile Giriş Yap",
-                      onClick: () {
-                        debugPrint("Kayıt Ol Tıklandı!!!!");
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const OnboardingProvider(),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      text: "Henüz kayıt olmadın mı? ",
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      children: [
-                        TextSpan(
-                          text: "Kayıt Ol",
-                          style: const TextStyle(
-                            color: Colors.yellow,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                          ),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              debugPrint("Giriş Yap Tıklantı");
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const RegisterProvider(),
-                                ),
-                              );
-                            },
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
- */
