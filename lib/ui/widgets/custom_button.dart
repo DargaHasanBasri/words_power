@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:words_power/utils/custom_colors.dart';
 
 class CustomButton extends StatefulWidget {
   final Color? backgroundColor;
@@ -6,15 +7,10 @@ class CustomButton extends StatefulWidget {
   final Function? onClick;
   final double borderRadius;
 
-  CustomButton(
-      {super.key,
-      Color? backgroundColor,
-      String? title,
-      double? borderRadius,
-      Function? onClick})
+  CustomButton({super.key, Color? backgroundColor, String? title, double? borderRadius, Function? onClick})
       : title = title ?? "TEST",
-        backgroundColor = backgroundColor ?? Colors.black,
-        borderRadius = borderRadius ?? 24.0,
+        backgroundColor = backgroundColor ?? CustomColors.buttonBackground,
+        borderRadius = borderRadius ?? 4.0,
         onClick = onClick ?? (() {});
 
   @override
@@ -30,7 +26,7 @@ class _CustomButtonState extends State<CustomButton> {
         decoration: BoxDecoration(
           color: widget.backgroundColor,
           border: Border.all(
-            color: Colors.white,
+            color: Colors.transparent,
             width: 2,
           ),
           borderRadius: BorderRadius.circular(widget.borderRadius),
@@ -40,10 +36,10 @@ class _CustomButtonState extends State<CustomButton> {
             padding: const EdgeInsets.all(10.0),
             child: Text(
               widget.title,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
+              style: TextStyle(
+                color: CustomColors.white,
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ),
