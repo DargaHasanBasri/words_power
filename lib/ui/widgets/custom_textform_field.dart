@@ -56,6 +56,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         getTextFieldTitle(),
         TextFormField(
           controller: widget.controller,
+          obscureText: widget.isHaveObscure,
           autofocus: widget.isAutoTrue ?? false,
           keyboardType: widget.inputType,
           onChanged: _onChanged,
