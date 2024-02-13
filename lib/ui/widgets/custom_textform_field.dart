@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:words_power/utils/custom_colors.dart';
 
 class CustomTextFormField extends StatefulWidget {
   final TextEditingController controller;
@@ -37,7 +38,7 @@ class CustomTextFormField extends StatefulWidget {
         textFieldBgColor = textFieldBgColor ?? Colors.transparent,
         textFieldTitle = textFieldName ?? "",
         hintText = hintText ?? "",
-        borderRadius = borderRadius ?? 24.0,
+        borderRadius = borderRadius ?? 4,
         isAutoTrue = isAutoTrue ?? false,
         // ignore: unnecessary_null_in_if_null_operators
         inputFormatter = inputFormatter ?? null,
@@ -53,7 +54,6 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     return Column(
       children: [
         getTextFieldTitle(),
-        const SizedBox(height: 10),
         TextFormField(
           controller: widget.controller,
           autofocus: widget.isAutoTrue ?? false,
@@ -61,39 +61,32 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           onChanged: _onChanged,
           decoration: InputDecoration(
             hintText: widget.hintText,
-            hintStyle: const TextStyle(
+            hintStyle: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w400,
-              color: Colors.grey,
+              color: CustomColors.backgroundColor,
             ),
             filled: true,
             fillColor: Colors.white,
             contentPadding: const EdgeInsets.symmetric(horizontal: 20),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(widget.borderRadius),
-              borderSide: const BorderSide(
-                color: Colors.black,
-                width: 2,
-              ),
-            ),
-            disabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(widget.borderRadius),
-              borderSide: const BorderSide(
-                color: Colors.black,
+              borderSide: BorderSide(
+                color: CustomColors.textFormFieldBorderColor,
                 width: 2,
               ),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(widget.borderRadius),
-              borderSide: const BorderSide(
-                color: Colors.transparent,
+              borderSide: BorderSide(
+                color: CustomColors.textFormFieldBorderColor,
                 width: 2,
               ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(widget.borderRadius),
-              borderSide: const BorderSide(
-                color: Colors.white,
+              borderSide: BorderSide(
+                color: CustomColors.backgroundColor,
                 width: 2,
               ),
             ),
@@ -105,23 +98,26 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
 
   getTextFieldTitle() {
     if (widget.textFieldTitle.isNotEmpty) {
-      return Row(
-        children: [
-          Text(
-            widget.textFieldTitle,
-            style: const TextStyle(
-              fontSize: 16,
-              color: Colors.white,
-              fontWeight: FontWeight.w500,
+      return Padding(
+        padding: EdgeInsets.only(bottom: 10),
+        child: Row(
+          children: [
+            Text(
+              widget.textFieldTitle,
+              style: const TextStyle(
+                fontSize: 16,
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-          ),
-          const SizedBox(width: 6),
-          if (widget.isRequired)
-            const Text(
-              "*",
-              style: TextStyle(color: Colors.black),
-            ),
-        ],
+            const SizedBox(width: 6),
+            if (widget.isRequired)
+              const Text(
+                "*",
+                style: TextStyle(color: Colors.black),
+              ),
+          ],
+        ),
       );
     } else {
       return const SizedBox();
