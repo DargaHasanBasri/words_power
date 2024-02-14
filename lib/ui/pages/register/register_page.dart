@@ -49,7 +49,7 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
             ),
           ),
           AspectRatio(
-            aspectRatio: 0.8,
+            aspectRatio: 0.9,
             child: Container(
               decoration: BoxDecoration(
                 color: CustomColors.backgroundColor,
@@ -78,22 +78,9 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
                         builder: (_, __, ___) {
                           return CustomTextFormField(
                             controller: vm.controllerName,
-                            hintText: "Adınızı Giriniz",
+                            hintText: "Kullanıcı Adı Giriniz",
                             onChanged: (value) {
                               vm.name.value = value.toString().trim();
-                            },
-                          );
-                        },
-                      ),
-                      const SizedBox(height: 20),
-                      ValueListenableBuilder(
-                        valueListenable: vm.surname,
-                        builder: (_, __, ___) {
-                          return CustomTextFormField(
-                            controller: vm.controllerSurname,
-                            hintText: "Soyadınızı Giriniz",
-                            onChanged: (value) {
-                              vm.surname.value = value.toString().trim();
                             },
                           );
                         },
@@ -136,7 +123,6 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
                               email: vm.mailAddress.value,
                               name: vm.name.value,
                               password: vm.password.value,
-                              surname: vm.surname.value,
                             );
                             await vm.register(userModel);
                             vm.isRegister.value
