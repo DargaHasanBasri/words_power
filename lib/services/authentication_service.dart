@@ -42,7 +42,6 @@ class AuthenticationService {
       "email": userModel.email,
       "name": userModel.name,
       "password": userModel.password,
-      "surname": userModel.surname,
     });
   }
 }

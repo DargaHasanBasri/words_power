@@ -11,13 +11,12 @@ class RegisterViewModel extends BaseViewModel {
   TextEditingController controllerPassword = TextEditingController();
 
   ValueNotifier<String> name = ValueNotifier("");
-  ValueNotifier<String> surname = ValueNotifier("");
   ValueNotifier<String> mailAddress = ValueNotifier("");
   ValueNotifier<String> password = ValueNotifier("");
   ValueNotifier<bool> isRegister = ValueNotifier(false);
 
   bool isEmpty() =>
-      mailAddress.value.isNotEmpty && password.value.isNotEmpty && name.value.isNotEmpty && surname.value.isNotEmpty;
+      mailAddress.value.isNotEmpty && password.value.isNotEmpty && name.value.isNotEmpty;
 
   Future<void> register(UserModel userModel) async {
     if (isEmpty()) {
