@@ -138,7 +138,7 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
                           ),
                         ),
                       ),
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SocialMediaButton(),
