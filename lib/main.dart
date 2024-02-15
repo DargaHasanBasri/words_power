@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:words_power/firebase_options.dart';
 import 'package:words_power/ui/pages/category/category_provider.dart';
 import 'package:words_power/ui/pages/home/home_provider.dart';
+import 'package:words_power/ui/pages/main_tab/main_tab_provider.dart';
 import 'package:words_power/ui/pages/register/register_provider.dart';
 
 void main() async {
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const CategoryProvider(),
+      home: const MainTabProvider(),
     );
   }
 }
