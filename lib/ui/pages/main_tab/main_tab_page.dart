@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:provider/provider.dart';
 import 'package:words_power/ui/pages/main_tab/main_tab_view_model.dart';
 
@@ -30,10 +31,20 @@ class _MainTabPageState extends State<MainTabPage> {
           //resizeToAvoidBottomInset: false,
           extendBody: true,
           backgroundColor: CustomColors.backgroundColor,
-          floatingActionButton: FloatingActionButton(
-            shape: CircleBorder(side: BorderSide.none),
-            child: Icon(Icons.add),
-            onPressed: () {},
+          floatingActionButton: SpeedDial(
+            activeIcon: Icons.close,
+            icon: Icons.add,
+            overlayColor: Colors.grey,
+            overlayOpacity: 0.3,
+            children: [
+              SpeedDialChild(
+                child: Icon(Icons.share_arrival_time),
+              ),
+              SpeedDialChild(
+                child: Icon(Icons.add_a_photo),
+              ),
+            ],
+
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           bottomNavigationBar: BottomAppBar(
