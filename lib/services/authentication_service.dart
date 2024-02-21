@@ -6,13 +6,20 @@ import 'package:words_power/models/user_model.dart';
 class AuthenticationService {
   final userCollection = FirebaseFirestore.instance.collection("users");
   final firebaseAuth = FirebaseAuth.instance;
+  String profileNullPhoto =
+      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
 
-  Future<bool> signUp(UserModel userModel) async {
+  Future<bool> signUp(
+      {required String email,
+      required String password,
+      required String userName}) async {
     try {
       final UserCredential userCredential =
-          await firebaseAuth.createUserWithEmailAndPassword(email: userModel.email, password: userModel.password);
+          await firebaseAuth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
       if (userCredential.user != null) {
-        _registerUser(userModel, userCredential);
         return true;
       }
     } on FirebaseAuthException catch (e) {
@@ -23,8 +30,8 @@ class AuthenticationService {
 
   Future<bool> sigIn({required String email, required String password}) async {
     try {
-      final UserCredential userCredential =
-          await firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+      final UserCredential userCredential = await firebaseAuth
+          .signInWithEmailAndPassword(email: email, password: password);
       if (userCredential.user != null) {
         debugPrint('başarılı giriş');
         debugPrint(userCredential.user!.email);
@@ -37,11 +44,15 @@ class AuthenticationService {
     return false;
   }
 
-  Future<void> _registerUser(UserModel userModel, UserCredential userCredential) async {
-    await userCollection.doc(userCredential.user!.uid).set({
-      "email": userModel.email,
-      "name": userModel.name,
-      "password": userModel.password,
-    });
+  Future<void> saveUserInfoToFirebase(UserModel userModel) async {
+    userModel.profilePhoto ??= profileNullPhoto;
+    userModel.userID = firebaseAuth.currentUser!.uid;
+    await userCollection.doc(firebaseAuth.currentUser!.uid).set(userModel.toMap());
+
+    debugPrint("userID: ${userModel.userID}");
+  }
+
+  Future<void> signOut() async {
+    await firebaseAuth.signOut();
   }
 }

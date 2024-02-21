@@ -4,10 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:words_power/base/base_stateful_state.dart';
 import 'package:words_power/models/user_model.dart';
 import 'package:words_power/ui/pages/login/login_provider.dart';
-import 'package:words_power/ui/pages/onboarding/onboarding_provider.dart';
 import 'package:words_power/ui/pages/register/register_view_model.dart';
 import 'package:words_power/ui/widgets/custom_button.dart';
-import 'package:words_power/ui/widgets/custom_popup_dialog.dart';
 import 'package:words_power/ui/widgets/custom_textform_field.dart';
 
 import '../../../utils/custom_colors.dart';
@@ -124,7 +122,8 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
                               name: vm.name.value,
                               password: vm.password.value,
                             );
-                            await vm.register(userModel);
+                            await vm.register();
+                            userInfo.saveUserInfoToFirebase(userModel);
                             vm.isRegister.value
                                 ? Navigator.push(
                               context,

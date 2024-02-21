@@ -16,11 +16,17 @@ class RegisterViewModel extends BaseViewModel {
   ValueNotifier<bool> isRegister = ValueNotifier(false);
 
   bool isEmpty() =>
-      mailAddress.value.isNotEmpty && password.value.isNotEmpty && name.value.isNotEmpty;
+      mailAddress.value.isNotEmpty &&
+      password.value.isNotEmpty &&
+      name.value.isNotEmpty;
 
-  Future<void> register(UserModel userModel) async {
+  Future<void> register() async {
     if (isEmpty()) {
-      isRegister.value = await AuthenticationService().signUp(userModel);
+      isRegister.value = await AuthenticationService().signUp(
+        email: mailAddress.value,
+        password: password.value,
+        userName: name.value,
+      );
     }
   }
 }
