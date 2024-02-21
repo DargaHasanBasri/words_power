@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:provider/provider.dart';
+import 'package:words_power/base/base_stateful_state.dart';
+import 'package:words_power/models/user_model.dart';
 import 'package:words_power/ui/pages/main_tab/main_tab_view_model.dart';
 
 import '../../../utils/custom_colors.dart';
+import '../category/category_provider.dart';
+import '../home/home_provider.dart';
+import '../onboarding/onboarding_provider.dart';
 
 class MainTabPage extends StatefulWidget {
   const MainTabPage({Key? key}) : super(key: key);
@@ -12,50 +17,70 @@ class MainTabPage extends StatefulWidget {
   State<MainTabPage> createState() => _MainTabPageState();
 }
 
-class _MainTabPageState extends State<MainTabPage> {
+class _MainTabPageState extends BaseStatefulState<MainTabPage> {
   late final MainTabViewModel vm;
 
   @override
-  void initState() {
+  initState() {
     super.initState();
     vm = Provider.of<MainTabViewModel>(context, listen: false);
+    vm.getUser();
     listeners();
   }
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: vm.currentIndex,
-      builder: (_,__,___) {
-        return Scaffold(
-          //resizeToAvoidBottomInset: false,
-          extendBody: true,
-          backgroundColor: CustomColors.backgroundColor,
-          floatingActionButton: SpeedDial(
-            activeIcon: Icons.close,
-            icon: Icons.add,
-            overlayColor: Colors.grey,
-            overlayOpacity: 0.3,
-            children: [
-              SpeedDialChild(
-                child: Icon(Icons.share_arrival_time),
-              ),
-              SpeedDialChild(
-                child: Icon(Icons.add_a_photo),
-              ),
-            ],
-
-          ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-          bottomNavigationBar: BottomAppBar(
-            shape: CircularNotchedRectangle(),
-            notchMargin: 10,
-            child: _buildNavigationBar(),
-          ),
-          body: vm.pages[vm.currentIndex.value],
-        );
-      }
+    return FutureBuilder(
+      future: vm.getUser(),
+      builder: (BuildContext context, AsyncSnapshot<UserModel> snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          hideProgress();
+          return _buildBody();
+        } else if (snapshot.hasError) {
+          return Text('Hata oluştu: ${snapshot.error}');
+        } else {
+          return showProgress(context);
+        }
+      },
     );
+  }
+
+  Widget _buildBody() {
+    return ValueListenableBuilder(
+        valueListenable: vm.userModel,
+        builder: (_, __, ___) {
+          return ValueListenableBuilder(
+              valueListenable: vm.currentIndex,
+              builder: (_, __, ___) {
+                return Scaffold(
+                  //resizeToAvoidBottomInset: false,
+                  extendBody: true,
+                  backgroundColor: CustomColors.backgroundColor,
+                  floatingActionButton: SpeedDial(
+                    activeIcon: Icons.close,
+                    icon: Icons.add,
+                    overlayColor: Colors.grey,
+                    overlayOpacity: 0.3,
+                    children: [
+                      SpeedDialChild(
+                        child: const Icon(Icons.share_arrival_time),
+                      ),
+                      SpeedDialChild(
+                        child: const Icon(Icons.add_a_photo),
+                      ),
+                    ],
+                  ),
+                  floatingActionButtonLocation:
+                      FloatingActionButtonLocation.centerDocked,
+                  bottomNavigationBar: BottomAppBar(
+                    shape: const CircularNotchedRectangle(),
+                    notchMargin: 10,
+                    child: _buildNavigationBar(),
+                  ),
+                  body: _getBody(vm.currentIndex.value),
+                );
+              });
+        });
   }
 
   Widget _buildNavigationBar() {
@@ -90,6 +115,21 @@ class _MainTabPageState extends State<MainTabPage> {
         )
       ],
     );
+  }
+
+  Widget _getBody(int pageIndex) {
+    switch (pageIndex) {
+      case 0:
+        return HomeProvider(vm.userModel.value?.name);
+      case 1:
+        return const CategoryProvider();
+      case 2:
+        return const OnboardingProvider();
+      case 3:
+        return const CategoryProvider();
+      default:
+        return const OnboardingProvider();
+    }
   }
 
   listeners() {}
