@@ -5,6 +5,7 @@ import 'package:words_power/base/base_stateful_state.dart';
 import 'package:words_power/models/user_model.dart';
 import 'package:words_power/ui/pages/main_tab/main_tab_view_model.dart';
 import 'package:words_power/ui/pages/settings/settings_provider.dart';
+import 'package:words_power/ui/pages/word_sentence_list/word_sentence_list_provider.dart';
 
 import '../../../utils/custom_colors.dart';
 import '../category/category_provider.dart';
@@ -90,26 +91,38 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         IconButton(
-          icon: const Icon(Icons.home),
+          icon: Image.asset(
+            "images/ic_home.png",
+            width: 28,
+          ),
           onPressed: () {
             vm.currentIndex.value = 0;
           },
         ),
         IconButton(
-          icon: const Icon(Icons.search),
+          icon: Image.asset(
+            "images/ic_bookmark.png",
+            width: 28,
+          ),
           onPressed: () {
             vm.currentIndex.value = 1;
           },
         ),
         const SizedBox(width: 10),
         IconButton(
-          icon: const Icon(Icons.favorite_border_outlined),
+          icon: Image.asset(
+            "images/ic_favorite.png",
+            width: 28,
+          ),
           onPressed: () {
             vm.currentIndex.value = 2;
           },
         ),
         IconButton(
-          icon: const Icon(Icons.account_circle_outlined),
+          icon: Image.asset(
+            "images/ic_user_settings.png",
+            width: 28,
+          ),
           onPressed: () {
             vm.currentIndex.value = 3;
           },
@@ -123,7 +136,7 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
       case 0:
         return HomeProvider(vm.userModel.value?.name);
       case 1:
-        return const CategoryProvider();
+        return const WordSentenceListProvider();
       case 2:
         return const OnboardingProvider();
       case 3:
