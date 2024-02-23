@@ -3,14 +3,17 @@ import 'package:provider/provider.dart';
 import 'package:words_power/ui/pages/settings/setting_view_model.dart';
 import 'package:words_power/ui/pages/settings/settings_page.dart';
 
+import '../../../models/user_model.dart';
+
 class SettingsProvider extends StatelessWidget {
-  const SettingsProvider({super.key});
+  final UserModel? userModel;
+  const SettingsProvider(this.userModel, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) {
-        return SettingsViewModel();
+        return SettingsViewModel(userModel);
       },
       child: const SettingsPage(),
     );

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:words_power/base/base_stateful_state.dart';
 import 'package:words_power/models/user_model.dart';
 import 'package:words_power/ui/pages/main_tab/main_tab_view_model.dart';
+import 'package:words_power/ui/pages/settings/settings_provider.dart';
 
 import '../../../utils/custom_colors.dart';
 import '../category/category_provider.dart';
@@ -126,9 +127,9 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
       case 2:
         return const OnboardingProvider();
       case 3:
-        return const CategoryProvider();
+        return SettingsProvider(vm.userModel.value);
       default:
-        return const OnboardingProvider();
+        return SettingsProvider(vm.userModel.value);
     }
   }
 
