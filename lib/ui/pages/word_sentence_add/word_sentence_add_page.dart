@@ -30,84 +30,99 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CustomColors.backgroundColor,
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Image.asset("images/ic_log_out.png"),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: const Text("Word & Sentence Add"),
+        centerTitle: true,
+      ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Stack(
-                children: [
-                  GestureDetector(
-                    onTap: () => Navigator.of(context).pop(),
-                    child: Image.asset(
-                      "images/ic_about.png",
-                    ),
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 20),
+                Text(
+                  "Word",
+                  style: TextStyle(
+                    color: CustomColors.whiteSmoke,
+                    fontSize: 22,
                   ),
-                  Center(
-                    child: Text(
-                      "Word & Sentences Add",
-                      style: TextStyle(
-                        color: CustomColors.whiteSmoke,
-                        fontSize: 22,
+                ),
+                const SizedBox(height: 4),
+                WriteArea(
+                  englishTextController: vm.wordEnglishTextController,
+                  turkishTextController: vm.wordTurkishTextController,
+                  writeEnglish: vm.wordWriteEnglish,
+                  writeTurkish: vm.wordWriteTurkish,
+                  titleEnglish: "English Write Word",
+                  titleTurkish: "Türkçe Kelime Yaz",
+                ),
+                const SizedBox(height: 30),
+                Text(
+                  "Add a picture that reminds you",
+                  style: TextStyle(
+                    color: CustomColors.whiteSmoke,
+                    fontSize: 22,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                AspectRatio(
+                  aspectRatio: 16 / 9,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      image: const DecorationImage(
+                        image: AssetImage(
+                          "images/bookmark_test.png",
+                        ),
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Text(
-                "Word",
-                style: TextStyle(
-                  color: CustomColors.whiteSmoke,
-                  fontSize: 22,
                 ),
-              ),
-              const SizedBox(height: 4),
-              WriteArea(
-                englishTextController: vm.wordEnglishTextController,
-                turkishTextController: vm.wordTurkishTextController,
-                writeEnglish: vm.wordWriteEnglish,
-                writeTurkish: vm.wordWriteTurkish,
-                titleEnglish: "English Write Word",
-                titleTurkish: "Türkçe Kelime Yaz",
-              ),
-              const SizedBox(height: 30),
-              Text(
-                "Sentence",
-                style: TextStyle(
-                  color: CustomColors.whiteSmoke,
-                  fontSize: 22,
+                const SizedBox(height: 30),
+                Text(
+                  "Sentence",
+                  style: TextStyle(
+                    color: CustomColors.whiteSmoke,
+                    fontSize: 22,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 4),
-              WriteArea(
-                englishTextController: vm.sentenceEnglishTextController,
-                turkishTextController: vm.sentenceTurkishTextController,
-                writeEnglish: vm.sentenceWriteEnglish,
-                writeTurkish: vm.sentenceWriteTurkish,
-                titleEnglish: "English Write Sentence",
-                titleTurkish: "Türkçe Cümle Yaz",
-              ),
-              const SizedBox(height: 30),
-              Text(
-                "Gemini Generate Example Sentence",
-                style: TextStyle(
-                  color: CustomColors.whiteSmoke,
-                  fontSize: 16,
+                const SizedBox(height: 4),
+                WriteArea(
+                  englishTextController: vm.sentenceEnglishTextController,
+                  turkishTextController: vm.sentenceTurkishTextController,
+                  writeEnglish: vm.sentenceWriteEnglish,
+                  writeTurkish: vm.sentenceWriteTurkish,
+                  titleEnglish: "English Write Sentence",
+                  titleTurkish: "Türkçe Cümle Yaz",
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: _buildGenerateGemini(),
-              ),
-              const Spacer(),
-              CustomButton(
-                onClick: () {},
-                title: "Add",
-                borderRadius: 10,
-              ),
-            ],
+                const SizedBox(height: 30),
+                Text(
+                  "Gemini Generate Example Sentence",
+                  style: TextStyle(
+                    color: CustomColors.whiteSmoke,
+                    fontSize: 16,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: _buildGenerateGemini(),
+                ),
+                const SizedBox(height: 30),
+                CustomButton(
+                  onClick: () {},
+                  title: "Add",
+                  borderRadius: 10,
+                ),
+                const SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
       ),
