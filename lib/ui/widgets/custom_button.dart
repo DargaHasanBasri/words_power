@@ -38,7 +38,7 @@ class _CustomButtonState extends State<CustomButton> {
               widget.title,
               style: TextStyle(
                 color: CustomColors.white,
-                fontSize: 12,
+                fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),
             ),

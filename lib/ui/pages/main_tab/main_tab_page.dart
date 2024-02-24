@@ -5,10 +5,10 @@ import 'package:words_power/base/base_stateful_state.dart';
 import 'package:words_power/models/user_model.dart';
 import 'package:words_power/ui/pages/main_tab/main_tab_view_model.dart';
 import 'package:words_power/ui/pages/settings/settings_provider.dart';
+import 'package:words_power/ui/pages/word_sentence_add/word_sentence_add_provider.dart';
 import 'package:words_power/ui/pages/word_sentence_list/word_sentence_list_provider.dart';
 
 import '../../../utils/custom_colors.dart';
-import '../category/category_provider.dart';
 import '../home/home_provider.dart';
 import '../onboarding/onboarding_provider.dart';
 
@@ -55,7 +55,6 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
               valueListenable: vm.currentIndex,
               builder: (_, __, ___) {
                 return Scaffold(
-                  //resizeToAvoidBottomInset: false,
                   extendBody: true,
                   backgroundColor: CustomColors.backgroundColor,
                   floatingActionButton: SpeedDial(
@@ -63,12 +62,20 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
                     icon: Icons.add,
                     overlayColor: Colors.grey,
                     overlayOpacity: 0.3,
+                    childrenButtonSize: const Size(100, 60),
                     children: [
                       SpeedDialChild(
-                        child: const Icon(Icons.share_arrival_time),
+                        child: const Text("W&S"),
                       ),
                       SpeedDialChild(
-                        child: const Icon(Icons.add_a_photo),
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const WordSentenceAddProvider(),
+                            ),
+                          );
+                        },
+                        child: const Text("W&S ADD"),
                       ),
                     ],
                   ),
