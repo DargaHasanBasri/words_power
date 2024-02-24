@@ -26,11 +26,10 @@ class _WordSentenceListPageState
             children: [
               _buildSearch(),
               const SizedBox(height: 24),
-              // bottom: kBottomNavigationBarHeight + 16
               Expanded(
                 child: ListView.separated(
                   physics: const BouncingScrollPhysics(),
-                  padding: EdgeInsets.zero,
+                  padding: const EdgeInsets.only(bottom: 80),
                   itemCount: 14,
                   itemBuilder: (context, index) {
                     return const WordSentenceListItem(
