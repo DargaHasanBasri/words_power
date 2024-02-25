@@ -145,7 +145,7 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
       case 1:
         return const WordSentenceListProvider();
       case 2:
-        return const OnboardingProvider();
+        return const WordSentenceListProvider();
       case 3:
         return SettingsProvider(vm.userModel.value);
       default:

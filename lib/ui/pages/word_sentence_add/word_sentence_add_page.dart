@@ -32,10 +32,20 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
       backgroundColor: CustomColors.backgroundColor,
       appBar: AppBar(
         leading: IconButton(
-          icon: Image.asset("images/ic_log_out.png"),
+          icon: Image.asset(
+            "images/ic_back.png",
+            color: CustomColors.whitePorcelain,
+            height: 24,
+          ),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: const Text("Word & Sentence Add"),
+        backgroundColor: CustomColors.backgroundColor,
+        title: Text(
+          "Word & Sentence Add",
+          style: TextStyle(
+            color: CustomColors.white,
+          ),
+        ),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -43,7 +53,7 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const SizedBox(height: 20),
                 Text(
@@ -75,12 +85,12 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
                   aspectRatio: 16 / 9,
                   child: Container(
                     decoration: BoxDecoration(
+                      color: CustomColors.whitePorcelain,
                       borderRadius: BorderRadius.circular(8),
                       image: const DecorationImage(
                         image: AssetImage(
-                          "images/bookmark_test.png",
+                          "images/ic_add_image.png",
                         ),
-                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
@@ -114,7 +124,7 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: _buildGenerateGemini(),
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 20),
                 CustomButton(
                   onClick: () {},
                   title: "Add",
@@ -142,11 +152,13 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
             ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "Click me for example sentence",
-                style: TextStyle(
-                  color: CustomColors.blueCloudBurst,
-                  fontSize: 16,
+              child: Center(
+                child: Text(
+                  "Click me for example sentence",
+                  style: TextStyle(
+                    color: CustomColors.blueCloudBurst,
+                    fontSize: 16,
+                  ),
                 ),
               ),
             ),

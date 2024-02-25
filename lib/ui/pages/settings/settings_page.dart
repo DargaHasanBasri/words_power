@@ -33,7 +33,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
           AspectRatio(
             aspectRatio: 1.8,
             child: Container(
-              color: CustomColors.buttonBackground,
+              color: CustomColors.backgroundColor,
               child: Padding(
                 padding: const EdgeInsets.only(top: 20, left: 24),
                 child: _buildUserProfile(),
@@ -45,8 +45,10 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
               width: double.infinity,
               color: CustomColors.whitePorcelain,
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 30,
+                ),
                 child: _buildSettingsItems(),
               ),
             ),
@@ -122,8 +124,8 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
           radius: 56,
           child: CircleAvatar(
             radius: 54,
-            backgroundImage:
-                CachedNetworkImageProvider(vm.userModel?.profilePhoto ?? "Null"),
+            backgroundImage: CachedNetworkImageProvider(
+                vm.userModel?.profilePhoto ?? "Null"),
           ),
         ),
         const SizedBox(width: 10),

@@ -29,7 +29,16 @@ class _HomePageState extends BaseStatefulState<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CustomColors.backgroundColor,
-      appBar: AppBar(title: Text(vm.userName ?? "NULL")),
+      appBar: AppBar(
+        backgroundColor: CustomColors.backgroundColor,
+        title: Text(
+          vm.userName ?? "NULL",
+          style: TextStyle(
+            color: CustomColors.white,
+          ),
+        ),
+        centerTitle: true,
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
