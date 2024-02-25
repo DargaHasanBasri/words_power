@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:words_power/base/base_stateful_state.dart';
@@ -33,20 +33,18 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: CustomColors.backgroundColor,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                AspectRatio(
-                  aspectRatio: 1.5,
-                  child: Image.asset("images/img_login.png"),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              AspectRatio(
+                aspectRatio: 1.5,
+                child: Image.asset("images/img_login.png"),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
                   children: [
-                    const SizedBox(height: 24),
                     Text(
                       "GİRİŞ YAP",
                       style: TextStyle(
@@ -91,7 +89,7 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  const ForgotPasswordProvider(),
+                              const ForgotPasswordProvider(),
                             ),
                           );
                         },
@@ -105,69 +103,85 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
                         ),
                       ),
                     ),
+                    const SizedBox(height: 20),
+                    ValueListenableBuilder(
+                      valueListenable: vm.isLogin,
+                      builder: (_, __, ___) {
+                        return CustomButton(
+                          title: "Giriş Yap",
+                          onClick: () async {
+                            debugPrint("Kayıt Ol Tıklandı!!!!");
+                            await vm.login();
+                            vm.isLogin.value
+                                ? Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const MainTabProvider(),
+                              ),
+                            )
+                                : showSnackBar(context,
+                                "Lütfen şifre ve e-mail kontrol edin.");
+                          },
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    _buildOrText(),
+                    Padding(
+                      padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                      child: _platformButton(
+                            () {},
+                        "Sing in with Google",
+                        "images/ic_google.png",
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: _platformButton(
+                            () {},
+                        "Sing in with Apple",
+                        "images/ic_apple.png",
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Center(
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          text: "New member? ",
+                          style: TextStyle(
+                            color: CustomColors.whitePorcelain,
+                            fontSize: 18,
+                          ),
+                          children: [
+                            TextSpan(
+                              text: "Register Now",
+                              style: TextStyle(
+                                color: CustomColors.buttonBackground,
+                                fontSize: 20,
+                              ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  debugPrint("Kayıt Ol Tıklantı");
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                      const RegisterProvider(),
+                                    ),
+                                  );
+                                },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
                   ],
                 ),
-                const SizedBox(height: 20),
-                ValueListenableBuilder(
-                  valueListenable: vm.isLogin,
-                  builder: (_, __, ___) {
-                    return CustomButton(
-                      title: "Giriş Yap",
-                      onClick: () async {
-                        debugPrint("Kayıt Ol Tıklandı!!!!");
-                        await vm.login();
-                        vm.isLogin.value
-                            ? Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const MainTabProvider(),
-                                ),
-                              )
-                            : showSnackBar(context,
-                                "Lütfen şifre ve e-mail kontrol edin.");
-                      },
-                    );
-                  },
-                ),
-                const SizedBox(height: 20),
-                _buildOrText(),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  child: _platformButton(
-                    () {},
-                    "Sing in with Google",
-                    "images/ic_google.png",
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: _platformButton(
-                    () {},
-                    "Sing in with Apple",
-                    "images/ic_apple.png",
-                  ),
-                ),
-                const SizedBox(height: 20),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const RegisterProvider(),
-                      ),
-                    );
-                  },
-                  child: Text(
-                    "New Member? Register now",
-                    style: TextStyle(
-                      color: CustomColors.whitePorcelain,
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

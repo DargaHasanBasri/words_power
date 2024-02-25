@@ -32,34 +32,19 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       //resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.lightBlue,
-      body: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height,
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("images/background.png"),
-                fit: BoxFit.cover,
+      backgroundColor: CustomColors.backgroundColor,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              AspectRatio(
+                aspectRatio: 1.2,
+                child: Image.asset("images/img_register.png"),
               ),
-            ),
-          ),
-          AspectRatio(
-            aspectRatio: 0.9,
-            child: Container(
-              decoration: BoxDecoration(
-                color: CustomColors.backgroundColor,
-                borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(30),
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: SingleChildScrollView(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 30),
                       const Text(
@@ -126,11 +111,12 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
                             userInfo.saveUserInfoToFirebase(userModel);
                             vm.isRegister.value
                                 ? Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const LoginProvider(),
-                              ),
-                            )
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const LoginProvider(),
+                                    ),
+                                  )
                                 : showSnackBar(context, "Boş alan bırakmayın!");
                           }),
                       const SizedBox(height: 14),
@@ -140,17 +126,15 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
                           text: TextSpan(
                             text: "Zaten hesabın var mı? ",
                             style: TextStyle(
-                              color: CustomColors.greyTextColor,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
+                              color: CustomColors.whitePorcelain,
+                              fontSize: 18,
                             ),
                             children: [
                               TextSpan(
                                 text: "Giriş Yap",
                                 style: TextStyle(
                                   color: CustomColors.buttonBackground,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 20,
                                 ),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
@@ -158,7 +142,8 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => const LoginProvider(),
+                                        builder: (context) =>
+                                            const LoginProvider(),
                                       ),
                                     );
                                   },
@@ -172,9 +157,9 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
                   ),
                 ),
               ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
@@ -186,7 +171,7 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
         text: "Devam ettiğinizde, ",
         style: TextStyle(
           color: CustomColors.greyTextColor,
-          fontSize: 12,
+          fontSize: 14,
           fontWeight: FontWeight.w400,
         ),
         children: [
@@ -194,7 +179,7 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
             text: "Gizlilik Sözleşmesi ve Kullanım Şartlarını",
             style: TextStyle(
               color: CustomColors.buttonBackground,
-              fontSize: 14,
+              fontSize: 16,
               fontWeight: FontWeight.w400,
               decoration: TextDecoration.underline,
             ),
@@ -208,7 +193,7 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
             text: " kabul etmiş olacaksınız.",
             style: TextStyle(
               color: CustomColors.greyTextColor,
-              fontSize: 12,
+              fontSize: 14,
               fontWeight: FontWeight.w400,
             ),
           )
