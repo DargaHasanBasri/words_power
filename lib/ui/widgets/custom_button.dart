@@ -3,13 +3,21 @@ import 'package:words_power/utils/custom_colors.dart';
 
 class CustomButton extends StatefulWidget {
   final Color? backgroundColor;
+  final Color? titleColor;
   final String title;
   final Function? onClick;
   final double borderRadius;
 
-  CustomButton({super.key, Color? backgroundColor, String? title, double? borderRadius, Function? onClick})
+  CustomButton(
+      {super.key,
+      Color? backgroundColor,
+      Color? titleColor,
+      String? title,
+      double? borderRadius,
+      Function? onClick})
       : title = title ?? "TEST",
         backgroundColor = backgroundColor ?? CustomColors.buttonBackground,
+        titleColor = titleColor ?? CustomColors.white,
         borderRadius = borderRadius ?? 4.0,
         onClick = onClick ?? (() {});
 
@@ -37,7 +45,7 @@ class _CustomButtonState extends State<CustomButton> {
             child: Text(
               widget.title,
               style: TextStyle(
-                color: CustomColors.white,
+                color: widget.titleColor,
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),
