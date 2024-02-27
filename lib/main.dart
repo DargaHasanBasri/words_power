@@ -2,7 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:words_power/firebase_options.dart';
+import 'package:words_power/ui/pages/main_tab/main_tab_provider.dart';
 import 'package:words_power/ui/pages/welcome/welcome_provider.dart';
+import 'package:words_power/ui/pages/word_sentence_add/word_sentence_add_provider.dart';
+import 'package:words_power/ui/pages/word_sentence_add/word_sentence_add_view_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

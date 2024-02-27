@@ -3,6 +3,7 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:provider/provider.dart';
 import 'package:words_power/base/base_stateful_state.dart';
 import 'package:words_power/models/user_model.dart';
+import 'package:words_power/ui/pages/favorite/favorite_provider.dart';
 import 'package:words_power/ui/pages/main_tab/main_tab_view_model.dart';
 import 'package:words_power/ui/pages/settings/settings_provider.dart';
 import 'package:words_power/ui/pages/word_sentence_add/word_sentence_add_provider.dart';
@@ -71,7 +72,8 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
                         onTap: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => const WordSentenceAddProvider(),
+                              builder: (context) =>
+                                  const WordSentenceAddProvider(),
                             ),
                           );
                         },
@@ -145,7 +147,7 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
       case 1:
         return const WordSentenceListProvider();
       case 2:
-        return const WordSentenceListProvider();
+        return const FavoriteProvider();
       case 3:
         return SettingsProvider(vm.userModel.value);
       default:
