@@ -56,7 +56,7 @@ class _WelcomePageState extends BaseStatefulState<WelcomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const LoginProvider(),
+                    builder: (context) => const LoginProvider(true),
                   ),
                 );
               },

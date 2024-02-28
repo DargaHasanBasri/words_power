@@ -4,6 +4,9 @@ import 'package:words_power/base/base_view_model.dart';
 import '../../../services/authentication_service.dart';
 
 class LoginViewModel extends BaseViewModel {
+  final bool isCanPop;
+  LoginViewModel(this.isCanPop);
+
   TextEditingController controllerMailAddress = TextEditingController();
   TextEditingController controllerPassword = TextEditingController();
 
@@ -15,7 +18,8 @@ class LoginViewModel extends BaseViewModel {
 
   Future<void> login() async {
     if (isEmpty()) {
-      isLogin.value = await AuthenticationService().sigIn(email: mailAddress.value, password: password.value);
+      isLogin.value = await AuthenticationService()
+          .sigIn(email: mailAddress.value, password: password.value);
     }
   }
 }

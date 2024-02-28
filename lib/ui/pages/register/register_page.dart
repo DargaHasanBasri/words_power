@@ -114,7 +114,7 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          const LoginProvider(),
+                                          const LoginProvider(true),
                                     ),
                                   )
                                 : showSnackBar(context, "Boş alan bırakmayın!");
@@ -143,7 +143,7 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            const LoginProvider(),
+                                            const LoginProvider(true),
                                       ),
                                     );
                                   },
