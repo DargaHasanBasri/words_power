@@ -9,5 +9,6 @@ class CustomColors {
   static Color textFormFieldBorderColor = const Color(0xffEAEAEA);
   static Color greyTextColor = const Color(0xff989898);
   static Color blueCloudBurst = const Color(0xff242760);
+  static Color blueBall = const Color(0xff1eadbe);
 
 }
