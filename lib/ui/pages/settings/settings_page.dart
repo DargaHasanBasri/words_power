@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:words_power/base/base_stateful_state.dart';
+import 'package:words_power/ui/pages/login/login_provider.dart';
 import 'package:words_power/ui/pages/settings/setting_view_model.dart';
 import 'package:words_power/utils/custom_colors.dart';
 
@@ -104,7 +105,13 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
             const SizedBox(height: 30),
             SettingsItem(
               title: 'Log out',
-              onClick: () {
+              onClick: () async {
+                await vm.logOut();
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const LoginProvider(false),
+                  ),
+                );
                 const Text("Log out tıklandı!!!");
               },
               iconAddress: "images/ic_log_out.png",

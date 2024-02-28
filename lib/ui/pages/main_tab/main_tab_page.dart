@@ -73,7 +73,7 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) =>
-                                  const WordSentenceAddProvider(),
+                                  WordSentenceAddProvider(vm.userModel.value),
                             ),
                           );
                         },

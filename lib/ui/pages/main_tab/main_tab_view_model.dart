@@ -8,7 +8,8 @@ class MainTabViewModel extends BaseViewModel {
   ValueNotifier<UserModel?> userModel = ValueNotifier(null);
 
   Future<UserModel> getUser() async {
-    return await userCollection
+    return await fireBaseFirestore
+        .collection("users")
         .doc(firebaseAuth.currentUser!.uid)
         .get()
         .then((value) {

@@ -3,6 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 
 class BaseViewModel extends ChangeNotifier {
-  final userCollection = FirebaseFirestore.instance.collection("users");
+  final fireBaseFirestore = FirebaseFirestore.instance;
   final firebaseAuth = FirebaseAuth.instance;
 }
