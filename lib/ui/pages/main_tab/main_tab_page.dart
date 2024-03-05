@@ -11,7 +11,6 @@ import 'package:words_power/ui/pages/word_sentence_list/word_sentence_list_provi
 
 import '../../../utils/custom_colors.dart';
 import '../home/home_provider.dart';
-import '../onboarding/onboarding_provider.dart';
 
 class MainTabPage extends StatefulWidget {
   const MainTabPage({Key? key}) : super(key: key);
@@ -27,7 +26,6 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
   initState() {
     super.initState();
     vm = Provider.of<MainTabViewModel>(context, listen: false);
-    vm.getUser();
     listeners();
   }
 
@@ -36,6 +34,7 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
     return FutureBuilder(
       future: vm.getUser(),
       builder: (BuildContext context, AsyncSnapshot<UserModel> snapshot) {
+        debugPrint("future 2");
         if (snapshot.connectionState == ConnectionState.done) {
           hideProgress();
           return _buildBody();

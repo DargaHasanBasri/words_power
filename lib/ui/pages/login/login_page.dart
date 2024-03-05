@@ -114,6 +114,7 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
                             onClick: () async {
                               debugPrint("Kayıt Ol Tıklandı!!!!");
                               await vm.login();
+
                               vm.isLogin.value
                                   ? Navigator.push(
                                 context,

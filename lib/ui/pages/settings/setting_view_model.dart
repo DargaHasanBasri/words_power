@@ -11,5 +11,6 @@ class SettingsViewModel extends BaseViewModel {
   Future<void> logOut() async {
     AuthenticationService().signOut;
     debugPrint("çıkış yapıldı");
+    await localStorage.logout();
   }
 }

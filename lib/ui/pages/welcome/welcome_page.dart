@@ -16,6 +16,7 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends BaseStatefulState<WelcomePage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

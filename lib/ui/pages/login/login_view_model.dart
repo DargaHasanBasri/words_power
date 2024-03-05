@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:words_power/base/base_view_model.dart';
 
 import '../../../services/authentication_service.dart';
@@ -20,6 +21,8 @@ class LoginViewModel extends BaseViewModel {
     if (isEmpty()) {
       isLogin.value = await AuthenticationService()
           .sigIn(email: mailAddress.value, password: password.value);
+      await localStorage.setString("mail", mailAddress.value);
     }
   }
+
 }
