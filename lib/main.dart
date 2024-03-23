@@ -1,11 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:words_power/base/base_stateful_state.dart';
 import 'package:words_power/firebase_options.dart';
-import 'package:words_power/ui/pages/main_tab/main_tab_provider.dart';
-import 'package:words_power/ui/pages/splash/splash_provider.dart';
-import 'package:words_power/ui/pages/welcome/welcome_provider.dart';
+import 'package:words_power/route/app_routes.dart';
+import 'package:words_power/route/routes.dart';
+
+import 'services/service_locator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,20 +20,27 @@ void main() async {
       statusBarIconBrightness: Brightness.light,
     ),
   );
+  WidgetsFlutterBinding.ensureInitialized();
+  await setupLocator();
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Words Power',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        home: const SplashProvider());
+      title: 'Words Power',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      navigatorKey: locator<AppRoutes>().baseNavigatorKey,
+      onGenerateRoute: Routes.generateRoute,
+      initialRoute: Routes.splash,
+      builder: (context, widget) {
+        return widget!;
+      },
+    );
   }
 }

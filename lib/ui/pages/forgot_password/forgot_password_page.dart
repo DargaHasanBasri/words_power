@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:words_power/base/base_stateful_state.dart';
+import 'package:words_power/route/routes.dart';
 import 'package:words_power/ui/pages/forgot_password/forgot_password_view_model.dart';
 
 import '../../../utils/custom_colors.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/custom_textform_field.dart';
-import '../onboarding/onboarding_provider.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
@@ -28,7 +28,6 @@ class _ForgotPasswordPageState extends BaseStatefulState<ForgotPasswordPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
           "ŞİFREMİ UNUTTUM",
@@ -89,12 +88,7 @@ class _ForgotPasswordPageState extends BaseStatefulState<ForgotPasswordPage> {
                       onClick: () {
                         debugPrint("Kayıt Ol Tıklandı!!!!");
                         vm.mailAddress.value.isNotEmpty
-                            ? Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const OnboardingProvider(),
-                                ),
-                              )
+                            ? appRoutes.navigateTo(Routes.onboarding)
                             : showSnackBar(
                                 context, "Lütfen şifre ve e-mail alanlarını kontrol edin. Boş alan bırakmayın!");
                       },

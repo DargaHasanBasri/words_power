@@ -40,7 +40,7 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
             color: CustomColors.whitePorcelain,
             height: 24,
           ),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => appRoutes.popIfBackStackNotEmpty(),
         ),
         backgroundColor: CustomColors.backgroundColor,
         title: Text(
@@ -94,11 +94,11 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
                             context,
                             () {
                               vm.pickImage(ImageSource.camera);
-                              Navigator.of(context).pop();
+                              appRoutes.popIfBackStackNotEmpty();
                             },
                             () {
                               vm.pickImage(ImageSource.gallery);
-                              Navigator.of(context).pop();
+                              appRoutes.popIfBackStackNotEmpty();
                             },
                           );
                         },
@@ -163,27 +163,24 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
                           )
                               .then((value) {
                            */
-                            String uid = const Uuid().v4();
-                            WordAndSentenceModel wordAndSentenceModel =
-                                WordAndSentenceModel(
-                              userID: uid,
-                              wordTurkish: "${vm.wordWriteTurkish.value}",
-                              wordEnglish: "${vm.wordWriteEnglish.value}",
-                              sentenceTurkish:
-                                  "${vm.sentenceWriteTurkish.value}",
-                              sentenceEnglish:
-                                  "${vm.sentenceWriteEnglish.value}",
-                              authorID: "${vm.userModel!.userID}",
-                              authorName: vm.userModel!.name,
-                              authorImg: "${vm.userModel!.profilePhoto}",
-                              createdAt: DateTime.now(),
-                              updatedAt: DateTime.now(),
-                              likes: 0,
-                              views: 0,
-                              coverImg: "",
-                            );
-                            vm.addWordAndSentence(wordAndSentenceModel);
-
+                          String uid = const Uuid().v4();
+                          WordAndSentenceModel wordAndSentenceModel =
+                              WordAndSentenceModel(
+                            userID: uid,
+                            wordTurkish: "${vm.wordWriteTurkish.value}",
+                            wordEnglish: "${vm.wordWriteEnglish.value}",
+                            sentenceTurkish: "${vm.sentenceWriteTurkish.value}",
+                            sentenceEnglish: "${vm.sentenceWriteEnglish.value}",
+                            authorID: "${vm.userModel!.userID}",
+                            authorName: vm.userModel!.name,
+                            authorImg: "${vm.userModel!.profilePhoto}",
+                            createdAt: DateTime.now(),
+                            updatedAt: DateTime.now(),
+                            likes: 0,
+                            views: 0,
+                            coverImg: "",
+                          );
+                          vm.addWordAndSentence(wordAndSentenceModel);
                         },
                         title: "Add",
                         borderRadius: 10,

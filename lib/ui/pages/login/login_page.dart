@@ -2,13 +2,11 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:words_power/base/base_stateful_state.dart';
-import 'package:words_power/ui/pages/forgot_password/forgot_password_provider.dart';
 import 'package:words_power/ui/pages/login/login_view_model.dart';
-import 'package:words_power/ui/pages/main_tab/main_tab_provider.dart';
-import 'package:words_power/ui/pages/register/register_provider.dart';
 import 'package:words_power/ui/widgets/custom_button.dart';
 import 'package:words_power/ui/widgets/custom_textform_field.dart';
 
+import '../../../route/routes.dart';
 import '../../../utils/custom_colors.dart';
 
 class LoginPage extends StatefulWidget {
@@ -87,13 +85,7 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
                         alignment: Alignment.topRight,
                         child: GestureDetector(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                const ForgotPasswordProvider(),
-                              ),
-                            );
+                            appRoutes.navigateTo(Routes.forgotPassword);
                           },
                           child: Text(
                             "Şifreni mi Unuttun?",
@@ -116,14 +108,9 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
                               await vm.login();
 
                               vm.isLogin.value
-                                  ? Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const MainTabProvider(),
-                                ),
-                              )
+                                  ? appRoutes.navigateTo(Routes.mainTab)
                                   : showSnackBar(context,
-                                  "Lütfen şifre ve e-mail kontrol edin.");
+                                      "Lütfen şifre ve e-mail kontrol edin.");
                             },
                           );
                         },
@@ -131,10 +118,10 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
                       const SizedBox(height: 20),
                       _buildOrText(),
                       Padding(
-                        padding:
-                        const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 20),
                         child: _platformButton(
-                              () {},
+                          () {},
                           "Sing in with Google",
                           "images/ic_google.png",
                         ),
@@ -142,7 +129,7 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: _platformButton(
-                              () {},
+                          () {},
                           "Sing in with Apple",
                           "images/ic_apple.png",
                         ),
@@ -167,13 +154,7 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
                                     debugPrint("Kayıt Ol Tıklantı");
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                        const RegisterProvider(),
-                                      ),
-                                    );
+                                    appRoutes.navigateTo(Routes.register);
                                   },
                               ),
                             ],

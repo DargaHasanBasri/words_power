@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:words_power/base/base_stateful_state.dart';
 import 'package:words_power/ui/pages/home/components/recently_added_item.dart';

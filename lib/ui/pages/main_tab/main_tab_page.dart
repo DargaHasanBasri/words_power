@@ -6,9 +6,9 @@ import 'package:words_power/models/user_model.dart';
 import 'package:words_power/ui/pages/favorite/favorite_provider.dart';
 import 'package:words_power/ui/pages/main_tab/main_tab_view_model.dart';
 import 'package:words_power/ui/pages/settings/settings_provider.dart';
-import 'package:words_power/ui/pages/word_sentence_add/word_sentence_add_provider.dart';
 import 'package:words_power/ui/pages/word_sentence_list/word_sentence_list_provider.dart';
 
+import '../../../route/routes.dart';
 import '../../../utils/custom_colors.dart';
 import '../home/home_provider.dart';
 
@@ -34,7 +34,6 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
     return FutureBuilder(
       future: vm.getUser(),
       builder: (BuildContext context, AsyncSnapshot<UserModel> snapshot) {
-        debugPrint("future 2");
         if (snapshot.connectionState == ConnectionState.done) {
           hideProgress();
           return _buildBody();
@@ -69,11 +68,9 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
                       ),
                       SpeedDialChild(
                         onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  WordSentenceAddProvider(vm.userModel.value),
-                            ),
+                          appRoutes.navigateTo(
+                            Routes.wordSentenceList,
+                            arguments: vm.userModel.value,
                           );
                         },
                         child: const Text("W&S ADD"),

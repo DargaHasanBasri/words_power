@@ -2,10 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:words_power/base/base_stateful_state.dart';
-import 'package:words_power/ui/pages/login/login_provider.dart';
 import 'package:words_power/ui/pages/settings/setting_view_model.dart';
 import 'package:words_power/utils/custom_colors.dart';
 
+import '../../../route/routes.dart';
 import 'components/settings_item.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -107,10 +107,9 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
               title: 'Log out',
               onClick: () async {
                 await vm.logOut();
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const LoginProvider(false),
-                  ),
+                appRoutes.navigateTo(
+                  Routes.login,
+                  arguments: false,
                 );
                 const Text("Log out tıklandı!!!");
               },

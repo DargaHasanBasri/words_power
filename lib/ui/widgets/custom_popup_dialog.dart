@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:words_power/route/app_routes.dart';
 import 'package:words_power/ui/widgets/custom_button.dart';
 
 import '../../utils/custom_colors.dart';
@@ -226,11 +227,12 @@ class CustomPopupDialog extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                 child: CustomButton(
                   title: "Onaylıyorum",
                   backgroundColor: CustomColors.backgroundColor,
-                  onClick: () => Navigator.of(context).pop(),
+                  onClick: () => AppRoutes().popIfBackStackNotEmpty(),
                 ),
               ),
             ],

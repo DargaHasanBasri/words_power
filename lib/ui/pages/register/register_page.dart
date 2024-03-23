@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:words_power/base/base_stateful_state.dart';
 import 'package:words_power/models/user_model.dart';
-import 'package:words_power/ui/pages/login/login_provider.dart';
+import 'package:words_power/route/routes.dart';
 import 'package:words_power/ui/pages/register/register_view_model.dart';
 import 'package:words_power/ui/widgets/custom_button.dart';
 import 'package:words_power/ui/widgets/custom_textform_field.dart';
@@ -110,12 +110,9 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
                             await vm.register();
                             userInfo.saveUserInfoToFirebase(userModel);
                             vm.isRegister.value
-                                ? Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const LoginProvider(true),
-                                    ),
+                                ? appRoutes.navigateTo(
+                                    Routes.login,
+                                    arguments: true,
                                   )
                                 : showSnackBar(context, "Boş alan bırakmayın!");
                           }),
@@ -139,12 +136,9 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
                                     debugPrint("Giriş Yap Tıklantı");
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            const LoginProvider(true),
-                                      ),
+                                    appRoutes.navigateTo(
+                                      Routes.login,
+                                      arguments: true,
                                     );
                                   },
                               ),

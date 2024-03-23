@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:words_power/base/base_stateful_state.dart';
-import 'package:words_power/ui/pages/main_tab/main_tab_provider.dart';
 import 'package:words_power/ui/pages/splash/splash_view_model.dart';
-import 'package:words_power/ui/pages/welcome/welcome_page.dart';
 
+import '../../../route/routes.dart';
 import '../../../utils/custom_colors.dart';
 
 class SplashPage extends StatefulWidget {
@@ -53,17 +52,9 @@ class _SplashPageState extends BaseStatefulState<SplashPage> {
   Future<void> waitAndNavigate(BuildContext context) async {
     await Future.delayed(const Duration(seconds: 2));
     if (localStorage.getString("mail") != null) {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => const MainTabProvider(),
-        ),
-      );
+      appRoutes.navigateToReplacement(Routes.mainTab);
     } else {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => const WelcomePage(),
-        ),
-      );
+      appRoutes.navigateToReplacement(Routes.welcome);
     }
   }
 }

@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:words_power/base/base_stateful_state.dart';
-import 'package:words_power/ui/pages/login/login_provider.dart';
-import 'package:words_power/ui/pages/register/register_provider.dart';
 import 'package:words_power/ui/widgets/custom_button.dart';
 import 'package:words_power/utils/custom_colors.dart';
 
+import '../../../route/routes.dart';
 import '../../widgets/faded_widget.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -16,7 +14,6 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends BaseStatefulState<WelcomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +42,7 @@ class _WelcomePageState extends BaseStatefulState<WelcomePage> {
               style: TextStyle(
                 color: CustomColors.whiteSmoke,
                 fontSize: 22,
-                fontWeight: FontWeight.w600
+                fontWeight: FontWeight.w600,
               ),
             ),
           ),
@@ -54,12 +51,7 @@ class _WelcomePageState extends BaseStatefulState<WelcomePage> {
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: CustomButton(
               onClick: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LoginProvider(true),
-                  ),
-                );
+                appRoutes.navigateTo(Routes.login);
               },
               title: "Login",
               backgroundColor: CustomColors.buttonBackground,
@@ -69,12 +61,7 @@ class _WelcomePageState extends BaseStatefulState<WelcomePage> {
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
             child: CustomButton(
               onClick: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const RegisterProvider(),
-                  ),
-                );
+                appRoutes.navigateTo(Routes.register);
               },
               title: "Register",
               titleColor: CustomColors.blueCloudBurst,

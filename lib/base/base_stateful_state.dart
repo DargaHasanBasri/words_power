@@ -1,24 +1,21 @@
 import 'dart:async';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:words_power/ui/pages/main_tab/main_tab_provider.dart';
-import 'package:words_power/ui/pages/welcome/welcome_provider.dart';
-
+import 'package:words_power/route/app_routes.dart';
 import '../services/authentication_service.dart';
 import '../services/localstorage_service.dart';
+import '../services/service_locator.dart';
 import '../utils/custom_colors.dart';
 import '../utils/firebase_storage_repository.dart';
 import '../utils/utility.dart';
 
 abstract class BaseStatefulState<T extends StatefulWidget> extends State<T> {
   Utility utility = Utility();
+  LocalStorageService localStorage = LocalStorageService();
+  final AppRoutes appRoutes = locator<AppRoutes>();
   AuthenticationService userInfo = AuthenticationService();
   FirebaseStorageRepository firebaseStorageRepository =
       FirebaseStorageRepository();
-
-  LocalStorageService localStorage = LocalStorageService();
 
   late OverlayEntry? _progressOverlayEntry;
   BuildContext? progressContext;
