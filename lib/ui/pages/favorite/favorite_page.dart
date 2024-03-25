@@ -1,9 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:words_power/base/base_stateful_state.dart';
-import 'package:words_power/ui/pages/favorite/components/favorite_item.dart';
-import 'package:words_power/utils/custom_colors.dart';
-
+import '../../../export.dart';
+import 'components/favorite_item.dart';
 import 'favorite_view_model.dart';
 
 class FavoritePage extends StatefulWidget {
@@ -50,7 +46,8 @@ class _FavoritePageState extends BaseStatefulState<FavoritePage> {
                   itemBuilder: (context, index) {
                     return const FavoriteItem(
                       word: 'Word and Sentence SentenceSentenceSentence',
-                      sentence: 'Word and  Sentence Sentence Sentence Sentence Sentence',
+                      sentence:
+                          'Word and  Sentence Sentence Sentence Sentence Sentence',
                       imageAddress: "images/bookmark_test.png",
                       whoPersonWrote: 'testDeveloper',
                       numberViews: '2343',

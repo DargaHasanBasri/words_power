@@ -1,10 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:words_power/base/base_stateful_state.dart';
-import 'package:words_power/ui/pages/splash/splash_view_model.dart';
-
-import '../../../route/routes.dart';
-import '../../../utils/custom_colors.dart';
+import '../../../export.dart';
+import 'splash_view_model.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});

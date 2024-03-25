@@ -1,16 +1,6 @@
-import 'dart:io';
-
-import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
-import 'package:uuid/uuid.dart';
-import 'package:words_power/base/base_stateful_state.dart';
-import 'package:words_power/models/word_and_sentence_model.dart';
-import 'package:words_power/ui/pages/word_sentence_add/components/write_area.dart';
-import 'package:words_power/ui/pages/word_sentence_add/word_sentence_add_view_model.dart';
-import 'package:words_power/ui/widgets/custom_button.dart';
-import 'package:words_power/utils/custom_colors.dart';
-import 'package:words_power/utils/dialog_helper.dart';
+import '../../../export.dart';
+import 'components/write_area.dart';
+import 'word_sentence_add_view_model.dart';
 
 class WordSentenceAddPage extends StatefulWidget {
   const WordSentenceAddPage({super.key});

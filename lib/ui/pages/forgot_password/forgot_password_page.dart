@@ -1,12 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:words_power/base/base_stateful_state.dart';
-import 'package:words_power/route/routes.dart';
-import 'package:words_power/ui/pages/forgot_password/forgot_password_view_model.dart';
-
-import '../../../utils/custom_colors.dart';
-import '../../widgets/custom_button.dart';
-import '../../widgets/custom_textform_field.dart';
+import '../../../export.dart';
+import 'forgot_password_view_model.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});

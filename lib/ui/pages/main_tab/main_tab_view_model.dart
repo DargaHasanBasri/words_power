@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import '../../../export.dart';
 import 'package:words_power/base/base_view_model.dart';
-
-import '../../../models/user_model.dart';
 
 class MainTabViewModel extends BaseViewModel {
   ValueNotifier<int> currentIndex = ValueNotifier(0);

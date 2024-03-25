@@ -1,11 +1,5 @@
-import 'package:flutter/cupertino.dart';
-import 'package:image_picker/image_picker.dart';
+import '../../../export.dart';
 import 'package:words_power/base/base_view_model.dart';
-import 'package:words_power/utils/utility.dart';
-
-import '../../../models/user_model.dart';
-import '../../../models/word_and_sentence_model.dart';
-import '../../../repository/word_sentence_add_repository.dart';
 
 class WordSentenceAddViewModel extends BaseViewModel {
   final UserModel? userModel;
@@ -27,6 +21,7 @@ class WordSentenceAddViewModel extends BaseViewModel {
   }
 
   void addWordAndSentence(WordAndSentenceModel wordAndSentenceModel) {
-    WordAndSentenceAddRepository(fireBaseFirestore).addWordAndSentence(wordAndSentenceModel);
+    WordAndSentenceAddRepository(fireBaseFirestore)
+        .addWordAndSentence(wordAndSentenceModel);
   }
 }

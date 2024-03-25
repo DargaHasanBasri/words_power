@@ -1,8 +1,5 @@
-import 'package:flutter/material.dart';
+import '../../../export.dart';
 import 'package:words_power/base/base_view_model.dart';
-
-import '../../../models/user_model.dart';
-import '../../../services/authentication_service.dart';
 
 class SettingsViewModel extends BaseViewModel {
   final UserModel? userModel;

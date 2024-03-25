@@ -1,18 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:words_power/ui/pages/favorite/favorite_provider.dart';
-import 'package:words_power/ui/pages/forgot_password/forgot_password_provider.dart';
-import 'package:words_power/ui/pages/home/home_provider.dart';
-import 'package:words_power/ui/pages/login/login_provider.dart';
-import 'package:words_power/ui/pages/main_tab/main_tab_provider.dart';
-import 'package:words_power/ui/pages/onboarding/onboarding_provider.dart';
-import 'package:words_power/ui/pages/register/register_provider.dart';
-import 'package:words_power/ui/pages/settings/settings_provider.dart';
-import 'package:words_power/ui/pages/welcome/welcome_provider.dart';
-import 'package:words_power/ui/pages/word_sentence_add/word_sentence_add_provider.dart';
-import 'package:words_power/ui/pages/word_sentence_list/word_sentence_list_provider.dart';
-
-import '../models/user_model.dart';
-import '../ui/pages/splash/splash_provider.dart';
+import '../export.dart';
 
 class Routes {
   const Routes._();
@@ -28,16 +14,22 @@ class Routes {
   static const String favorite = 'favoriteProvider';
   static const String wordSentenceAdd = 'wordSentenceAddProvider';
   static const String wordSentenceList = 'wordSentenceListProvider';
+  static const String personalInformations = 'personalInformationsProvider';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.splash:
-        return MaterialPageRoute(builder: (context) => const SplashProvider());
+        return MaterialPageRoute(
+          builder: (context) => const SplashProvider(),
+        );
       case Routes.welcome:
-        return MaterialPageRoute(builder: (context) => const WelcomeProvider());
+        return MaterialPageRoute(
+          builder: (context) => const WelcomeProvider(),
+        );
       case Routes.register:
         return MaterialPageRoute(
-            builder: (context) => const RegisterProvider());
+          builder: (context) => const RegisterProvider(),
+        );
       case Routes.login:
         bool? isCanPop = settings.arguments as bool?;
         return MaterialPageRoute(
@@ -49,7 +41,8 @@ class Routes {
         );
       case Routes.onboarding:
         return MaterialPageRoute(
-            builder: (context) => const OnboardingProvider());
+          builder: (context) => const OnboardingProvider(),
+        );
       case Routes.mainTab:
         return MaterialPageRoute(
           builder: (context) => const MainTabProvider(),
@@ -76,6 +69,10 @@ class Routes {
       case Routes.wordSentenceList:
         return MaterialPageRoute(
           builder: (context) => const WordSentenceListProvider(),
+        );
+      case Routes.personalInformations:
+        return MaterialPageRoute(
+          builder: (context) => const PersonalInformationsProvider(),
         );
       default:
         return MaterialPageRoute(

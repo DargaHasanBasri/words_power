@@ -1,12 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import '../../../export.dart';
 import 'package:words_power/base/base_stateful_state.dart';
-import 'package:words_power/ui/pages/settings/setting_view_model.dart';
-import 'package:words_power/utils/custom_colors.dart';
-
-import '../../../route/routes.dart';
 import 'components/settings_item.dart';
+import 'setting_view_model.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -131,7 +126,8 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
           child: CircleAvatar(
             radius: 54,
             backgroundImage: CachedNetworkImageProvider(
-                vm.userModel?.profilePhoto ?? "Null"),
+              vm.userModel?.profilePhoto ?? "Null",
+            ),
           ),
         ),
         const SizedBox(width: 10),

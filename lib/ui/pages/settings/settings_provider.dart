@@ -1,9 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:words_power/ui/pages/settings/setting_view_model.dart';
-import 'package:words_power/ui/pages/settings/settings_page.dart';
-
-import '../../../models/user_model.dart';
+import '../../../export.dart';
+import 'setting_view_model.dart';
+import 'settings_page.dart';
 
 class SettingsProvider extends StatelessWidget {
   final UserModel? userModel;

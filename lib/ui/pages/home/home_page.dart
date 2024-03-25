@@ -1,9 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:words_power/base/base_stateful_state.dart';
-import 'package:words_power/ui/pages/home/components/recently_added_item.dart';
-import 'package:words_power/ui/pages/home/home_view_model.dart';
-import '../../../utils/custom_colors.dart';
+import '../../../export.dart';
+import 'home_view_model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

@@ -1,16 +1,6 @@
-import 'package:flutter/material.dart';
+import '../../../export.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:provider/provider.dart';
-import 'package:words_power/base/base_stateful_state.dart';
-import 'package:words_power/models/user_model.dart';
-import 'package:words_power/ui/pages/favorite/favorite_provider.dart';
-import 'package:words_power/ui/pages/main_tab/main_tab_view_model.dart';
-import 'package:words_power/ui/pages/settings/settings_provider.dart';
-import 'package:words_power/ui/pages/word_sentence_list/word_sentence_list_provider.dart';
-
-import '../../../route/routes.dart';
-import '../../../utils/custom_colors.dart';
-import '../home/home_provider.dart';
+import 'main_tab_view_model.dart';
 
 class MainTabPage extends StatefulWidget {
   const MainTabPage({Key? key}) : super(key: key);
@@ -59,8 +49,8 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
                   floatingActionButton: SpeedDial(
                     activeIcon: Icons.close,
                     icon: Icons.add,
-                    overlayColor: Colors.grey,
-                    overlayOpacity: 0.3,
+                    overlayColor: Colors.black,
+                    overlayOpacity: 0.5,
                     childrenButtonSize: const Size(100, 60),
                     children: [
                       SpeedDialChild(
@@ -69,7 +59,7 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
                       SpeedDialChild(
                         onTap: () {
                           appRoutes.navigateTo(
-                            Routes.wordSentenceList,
+                            Routes.wordSentenceAdd,
                             arguments: vm.userModel.value,
                           );
                         },

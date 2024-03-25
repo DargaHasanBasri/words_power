@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:words_power/ui/pages/welcome/welcome_page.dart';
-import 'package:words_power/ui/pages/welcome/welcome_view_model.dart';
+import '../../../export.dart';
+import 'welcome_page.dart';
+import 'welcome_view_model.dart';
 
 class WelcomeProvider extends StatelessWidget {
   const WelcomeProvider({super.key});

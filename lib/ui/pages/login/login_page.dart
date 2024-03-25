@@ -1,13 +1,5 @@
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:words_power/base/base_stateful_state.dart';
-import 'package:words_power/ui/pages/login/login_view_model.dart';
-import 'package:words_power/ui/widgets/custom_button.dart';
-import 'package:words_power/ui/widgets/custom_textform_field.dart';
-
-import '../../../route/routes.dart';
-import '../../../utils/custom_colors.dart';
+import '../../../export.dart';
+import 'login_view_model.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -106,7 +98,6 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
                             onClick: () async {
                               debugPrint("Kayıt Ol Tıklandı!!!!");
                               await vm.login();
-
                               vm.isLogin.value
                                   ? appRoutes.navigateTo(Routes.mainTab)
                                   : showSnackBar(context,

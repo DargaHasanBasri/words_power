@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import '../../../../export.dart';
 
 class MostViewedItem extends StatelessWidget {
   const MostViewedItem({super.key});

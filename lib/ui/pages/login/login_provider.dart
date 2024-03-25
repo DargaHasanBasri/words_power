@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:words_power/ui/pages/login/login_page.dart';
-import 'package:words_power/ui/pages/login/login_view_model.dart';
+import '../../../export.dart';
+import 'login_page.dart';
+import 'login_view_model.dart';
 
 class LoginProvider extends StatelessWidget {
   final bool isCanPop;

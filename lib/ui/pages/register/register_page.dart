@@ -1,15 +1,5 @@
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:words_power/base/base_stateful_state.dart';
-import 'package:words_power/models/user_model.dart';
-import 'package:words_power/route/routes.dart';
-import 'package:words_power/ui/pages/register/register_view_model.dart';
-import 'package:words_power/ui/widgets/custom_button.dart';
-import 'package:words_power/ui/widgets/custom_textform_field.dart';
-
-import '../../../utils/custom_colors.dart';
-import '../../../utils/dialog_helper.dart';
+import '../../../export.dart';
+import 'register_view_model.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -31,7 +21,6 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //resizeToAvoidBottomInset: false,
       backgroundColor: CustomColors.backgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(

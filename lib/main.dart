@@ -20,7 +20,6 @@ void main() async {
       statusBarIconBrightness: Brightness.light,
     ),
   );
-  WidgetsFlutterBinding.ensureInitialized();
   await setupLocator();
 }
 

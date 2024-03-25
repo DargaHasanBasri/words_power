@@ -1,10 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:words_power/base/base_stateful_state.dart';
-import 'package:words_power/ui/widgets/custom_button.dart';
-import 'package:words_power/utils/custom_colors.dart';
-
-import '../../../route/routes.dart';
-import '../../widgets/faded_widget.dart';
+import '../../../export.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});

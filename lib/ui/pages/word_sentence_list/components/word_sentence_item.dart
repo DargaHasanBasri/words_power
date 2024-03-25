@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-import '../../../../utils/custom_colors.dart';
+import '../../../../export.dart';
 
 class WordSentenceListItem extends StatelessWidget {
   final String word;

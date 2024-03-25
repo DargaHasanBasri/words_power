@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-
-import '../../../../utils/custom_colors.dart';
-import '../../../widgets/custom_textform_field.dart';
+import '../../../../export.dart';
 
 class WriteArea extends StatelessWidget {
   final TextEditingController englishTextController;

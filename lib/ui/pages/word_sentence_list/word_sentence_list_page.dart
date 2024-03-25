@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:words_power/base/base_stateful_state.dart';
-import 'package:words_power/utils/custom_colors.dart';
-
+import '../../../export.dart';
 import 'components/word_sentence_item.dart';
 
 class WordSentenceListPage extends StatefulWidget {

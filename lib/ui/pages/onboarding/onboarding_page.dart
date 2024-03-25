@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:words_power/ui/pages/login/login_provider.dart';
-import 'package:words_power/ui/pages/register/register_provider.dart';
-import 'package:words_power/ui/widgets/custom_button.dart';
+import '../../../export.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});

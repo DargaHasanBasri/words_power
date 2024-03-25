@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:words_power/ui/pages/home/home_page.dart';
-import 'package:words_power/ui/pages/home/home_view_model.dart';
+import '../../../export.dart';
+import 'home_page.dart';
+import 'home_view_model.dart';
 
 class HomeProvider extends StatelessWidget {
   final String? userName;

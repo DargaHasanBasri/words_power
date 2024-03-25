@@ -1,8 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:words_power/ui/pages/category/category_view_model.dart';
-
-import '../../../utils/custom_colors.dart';
+import '../../../export.dart';
+import 'category_view_model.dart';
 
 class CategoryPage extends StatefulWidget {
   const CategoryPage({Key? key}) : super(key: key);
@@ -25,8 +22,6 @@ class _CategoryPageState extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //resizeToAvoidBottomInset: false,
-      //extendBodyBehindAppBar: true,
       backgroundColor: CustomColors.backgroundColor,
       body: Center(
         child: Padding(
@@ -37,7 +32,10 @@ class _CategoryPageState extends State<CategoryPage> {
             decoration: BoxDecoration(
               color: CustomColors.white,
               borderRadius: BorderRadius.circular(25),
-              border: Border.all(width: 4, color: CustomColors.textFormFieldBorderColor),
+              border: Border.all(
+                width: 4,
+                color: CustomColors.textFormFieldBorderColor,
+              ),
             ),
             child: const Text("Kategoriler"),
           ),
