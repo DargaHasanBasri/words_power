@@ -1,7 +1,6 @@
 import '../../../export.dart';
-import 'package:words_power/base/base_stateful_state.dart';
 import 'components/settings_item.dart';
-import 'setting_view_model.dart';
+import 'settings_view_model.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -70,6 +69,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
               title: 'Kişisel Bilgilerim',
               onClick: () {
                 const Text("Kişisel Bilgilerim tıklandı!!!");
+                appRoutes.navigateTo(Routes.personalInformations);
               },
               iconAddress: "images/ic_person_info.png",
             ),

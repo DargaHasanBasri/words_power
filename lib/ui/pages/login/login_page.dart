@@ -96,7 +96,7 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
                           return CustomButton(
                             title: "Giriş Yap",
                             onClick: () async {
-                              debugPrint("Kayıt Ol Tıklandı!!!!");
+                              debugPrint("Giriş Yap Tıklandı!!!!");
                               await vm.login();
                               vm.isLogin.value
                                   ? appRoutes.navigateTo(Routes.mainTab)

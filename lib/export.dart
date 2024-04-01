@@ -18,6 +18,7 @@ export 'package:flutter/gestures.dart';
 export 'package:words_power/services/authentication_service.dart';
 export 'package:words_power/repository/word_sentence_add_repository.dart';
 export 'package:words_power/utils/utility.dart';
+export 'package:words_power/utils/project_padding.dart';
 export '../ui/pages/splash/splash_provider.dart';
 export '../ui/pages/welcome/welcome_provider.dart';
 export '../ui/pages/register/register_provider.dart';

@@ -1,5 +1,5 @@
 import '../../../export.dart';
-import 'setting_view_model.dart';
+import 'settings_view_model.dart';
 import 'settings_page.dart';
 
 class SettingsProvider extends StatelessWidget {
