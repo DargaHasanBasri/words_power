@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:words_power/route/app_routes.dart';
 import 'package:words_power/ui/widgets/custom_button.dart';
 
+import '../../services/service_locator.dart';
 import '../../utils/custom_colors.dart';
 
 class CustomPopupDialog extends StatelessWidget {
@@ -20,6 +21,7 @@ class CustomPopupDialog extends StatelessWidget {
   }
 
   Widget _buildContent(BuildContext context) {
+    final AppRoutes appRoutes = locator<AppRoutes>();
     return AspectRatio(
       aspectRatio: 0.6,
       child: Padding(
@@ -232,7 +234,7 @@ class CustomPopupDialog extends StatelessWidget {
                 child: CustomButton(
                   title: "Onaylıyorum",
                   backgroundColor: CustomColors.backgroundColor,
-                  onClick: () => AppRoutes().popIfBackStackNotEmpty(),
+                  onClick: () => appRoutes.popIfBackStackNotEmpty(),
                 ),
               ),
             ],
