@@ -69,7 +69,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
               title: 'Kişisel Bilgilerim',
               onClick: () {
                 const Text("Kişisel Bilgilerim tıklandı!!!");
-                appRoutes.navigateTo(Routes.personalInformations);
+                appRoutes.navigateTo(Routes.personalInformations, arguments: vm.userModel);
               },
               iconAddress: "images/ic_person_info.png",
             ),

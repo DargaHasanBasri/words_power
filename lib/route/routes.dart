@@ -71,8 +71,9 @@ class Routes {
           builder: (context) => const WordSentenceListProvider(),
         );
       case Routes.personalInformations:
+        UserModel? userModel = settings.arguments as UserModel?;
         return MaterialPageRoute(
-          builder: (context) => const PersonalInformationsProvider(),
+          builder: (context) => PersonalInformationsProvider(userModel),
         );
       default:
         return MaterialPageRoute(
