@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
 import '../../../export.dart';
 import 'personal_informations_view_model.dart';
 
@@ -23,24 +26,7 @@ class _PersonalInformationsPageState
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CustomColors.backgroundColor,
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Image.asset(
-            "images/ic_back.png",
-            color: CustomColors.whitePorcelain,
-            height: 24,
-          ),
-          onPressed: () => appRoutes.popIfBackStackNotEmpty(),
-        ),
-        backgroundColor: CustomColors.backgroundColor,
-        title: Text(
-          "Kişisel Bilgilerim",
-          style: TextStyle(
-            color: CustomColors.white,
-          ),
-        ),
-        centerTitle: true,
-      ),
+      appBar: _buildAppBar(),
       body: SafeArea(
         child: Column(
           children: [
@@ -50,7 +36,10 @@ class _PersonalInformationsPageState
               children: [
                 Padding(
                   padding: ProjectPadding.pagePaddingVerticalLarge,
-                  child: _userInfoContainer("ANNETTE BLACK", "UI/UX Designer"),
+                  child: _userInfoContainer(
+                    vm.userModel?.name ?? "NULL",
+                    "UI/UX Designer",
+                  ),
                 ),
                 Positioned(
                   top: 20,
@@ -62,8 +51,38 @@ class _PersonalInformationsPageState
             Padding(
               padding: ProjectPadding.pagePaddingSymmetricXLarge,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [],
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  CustomTextFormField(
+                    controller: TextEditingController(),
+                    textFieldName: "Email",
+                  ),
+                  const SizedBox(height: 20),
+                  CustomTextFormField(
+                    controller: TextEditingController(),
+                    textFieldName: "Full Name",
+                  ),
+                  const SizedBox(height: 20),
+                  CustomTextFormField(
+                    controller: TextEditingController(),
+                    textFieldName: "User Name",
+                  ),
+                  const SizedBox(height: 20),
+                  CustomTextFormField(
+                    controller: TextEditingController(),
+                    textFieldName: "Password",
+                  ),
+                ],
+              ),
+            ),
+            const Spacer(),
+            Padding(
+              padding: ProjectPadding.pagePaddingSymmetricXLarge,
+              child: CustomButton(
+                onClick: () {
+                  debugPrint("Update tıklantı");
+                },
+                title: "Update",
               ),
             ),
           ],
@@ -73,43 +92,68 @@ class _PersonalInformationsPageState
   }
 
   Widget _userProfile() {
-    return Stack(
-      alignment: Alignment.bottomRight,
-      clipBehavior: Clip.none,
-      children: [
-        Container(
-          height: 120,
-          width: 106,
-          decoration: BoxDecoration(
-            color: CustomColors.white,
-            borderRadius: BorderRadius.circular(2),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.black,
-                offset: Offset(5, 5),
-                blurRadius: 3,
+    return ValueListenableBuilder(
+        valueListenable: vm.image,
+        builder: (_, __, ___) {
+          return Stack(
+            alignment: Alignment.bottomRight,
+            clipBehavior: Clip.none,
+            children: [
+              Container(
+                height: 120,
+                width: 110,
+                decoration: BoxDecoration(
+                  color: CustomColors.white,
+                  borderRadius: BorderRadius.circular(2),
+                  image: vm.image.value != null
+                      ? DecorationImage(
+                          image: FileImage(File(vm.image.value!.path)),
+                          fit: BoxFit.cover,
+                        )
+                      : DecorationImage(
+                          image: CachedNetworkImageProvider(
+                            vm.userModel?.profilePhoto ?? "Null",
+                          ),
+                          fit: BoxFit.cover,
+                        ),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black,
+                      offset: Offset(5, 5),
+                      blurRadius: 3,
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                bottom: 10,
+                right: -20,
+                child: CircleAvatar(
+                  child: IconButton(
+                    onPressed: () {
+                      debugPrint("edit tıklandı");
+                      DialogHelper.isImageSource(
+                        context,
+                        () {
+                          vm.pickImage(ImageSource.camera);
+                          appRoutes.popIfBackStackNotEmpty();
+                        },
+                        () {
+                          vm.pickImage(ImageSource.gallery);
+                          appRoutes.popIfBackStackNotEmpty();
+                        },
+                      );
+                    },
+                    icon: Image.asset(
+                      "images/ic_edit.png",
+                      height: 30,
+                    ),
+                  ),
+                ),
               ),
             ],
-          ),
-          child: Padding(
-            padding: ProjectPadding.pagePaddingAllXLarge,
-            child: Text(
-              "A",
-              style: TextStyle(
-                color: CustomColors.backgroundColor,
-                fontSize: 20,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-          ),
-        ),
-        Positioned(
-          bottom: 10,
-          right: -20,
-          child: CircleAvatar(),
-        ),
-      ],
-    );
+          );
+        });
   }
 
   Widget _userInfoContainer(String? name, String? job) {
@@ -152,6 +196,27 @@ class _PersonalInformationsPageState
           ],
         ),
       ),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      leading: IconButton(
+        icon: Image.asset(
+          "images/ic_back.png",
+          color: CustomColors.whitePorcelain,
+          height: 24,
+        ),
+        onPressed: () => appRoutes.popIfBackStackNotEmpty(),
+      ),
+      backgroundColor: CustomColors.backgroundColor,
+      title: Text(
+        "Kişisel Bilgilerim",
+        style: TextStyle(
+          color: CustomColors.white,
+        ),
+      ),
+      centerTitle: true,
     );
   }
 }
