@@ -1,4 +1,5 @@
 import '../../../export.dart';
+import 'components/activitiesItem.dart';
 import 'home_view_model.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,19 +23,10 @@ class _HomePageState extends BaseStatefulState<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CustomColors.backgroundColor,
-      appBar: AppBar(
-        backgroundColor: CustomColors.backgroundColor,
-        title: Text(
-          vm.userName ?? "NULL",
-          style: TextStyle(
-            color: CustomColors.white,
-          ),
-        ),
-        centerTitle: true,
-      ),
+      appBar: _buildAppBar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: <Widget>[
           Expanded(
             flex: 1,
             child: _userProfiles(),
@@ -50,7 +42,7 @@ class _HomePageState extends BaseStatefulState<HomePage> {
             ),
           ),
           Expanded(
-            flex: 2,
+            flex: 3,
             child: ListView.separated(
               physics: const BouncingScrollPhysics(),
               padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -71,29 +63,46 @@ class _HomePageState extends BaseStatefulState<HomePage> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
             child: Text(
-              "Most Viewed",
+              "Activities",
               style: TextStyle(
                 color: CustomColors.white,
                 fontSize: 22,
               ),
             ),
           ),
-          Expanded(
+          const Expanded(
             flex: 2,
-            child: ListView.separated(
-              physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              scrollDirection: Axis.horizontal,
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return const AspectRatio(
-                  aspectRatio: 1.6,
-                  child: Card(
-                    color: Colors.red,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: ActivitiesItem(),
                   ),
-                );
-              },
-              separatorBuilder: (context, index) => const SizedBox(width: 20),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: ActivitiesItem(),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 4),
+          const Expanded(
+            flex: 2,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: ActivitiesItem(),
+                  ),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: ActivitiesItem(),
+                  ),
+                ],
+              ),
             ),
           ),
           const SizedBox(height: kBottomNavigationBarHeight + 60),
@@ -114,6 +123,19 @@ class _HomePageState extends BaseStatefulState<HomePage> {
         );
       },
       separatorBuilder: (context, index) => const SizedBox(width: 10),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      backgroundColor: CustomColors.backgroundColor,
+      title: Text(
+        vm.userName ?? "NULL",
+        style: TextStyle(
+          color: CustomColors.white,
+        ),
+      ),
+      centerTitle: true,
     );
   }
 
