@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
 import '../../../export.dart';
+import 'personal_informations_page_mixin.dart';
 import 'personal_informations_view_model.dart';
 
 class PersonalInformationsPage extends StatefulWidget {
@@ -13,13 +11,18 @@ class PersonalInformationsPage extends StatefulWidget {
 }
 
 class _PersonalInformationsPageState
-    extends BaseStatefulState<PersonalInformationsPage> {
+    extends BaseStatefulState<PersonalInformationsPage>
+    with PersonalInformationsPageMixin {
   late PersonalInformationsViewModel vm;
 
   @override
   void initState() {
     super.initState();
     vm = Provider.of<PersonalInformationsViewModel>(context, listen: false);
+    emailController.text = vm.userModel?.email ?? "null";
+    fullNameController.text = vm.userModel?.name ?? "null";
+    userNameController.text = vm.userModel?.name ?? "null";
+    passwordController.text = vm.userModel?.password ?? "null";
   }
 
   @override
@@ -27,65 +30,67 @@ class _PersonalInformationsPageState
     return Scaffold(
       backgroundColor: CustomColors.backgroundColor,
       appBar: _buildAppBar(),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Stack(
-              alignment: Alignment.centerRight,
-              clipBehavior: Clip.none,
-              children: [
-                Padding(
-                  padding: ProjectPadding.pagePaddingVerticalLarge,
-                  child: _userInfoContainer(
-                    vm.userModel?.name ?? "NULL",
-                    "UI/UX Designer",
-                  ),
-                ),
-                Positioned(
-                  top: 20,
-                  right: 50,
-                  child: _userProfile(),
-                ),
-              ],
-            ),
-            Padding(
-              padding: ProjectPadding.pagePaddingSymmetricXLarge,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
+            children: [
+              Stack(
+                alignment: Alignment.centerRight,
+                clipBehavior: Clip.none,
                 children: [
-                  CustomTextFormField(
-                    controller: TextEditingController(),
-                    textFieldName: "Email",
+                  Padding(
+                    padding: ProjectPadding.pagePaddingVerticalLarge,
+                    child: _userInfoContainer(
+                      vm.userModel?.name ?? "NULL",
+                      "UI/UX Designer",
+                    ),
                   ),
-                  const SizedBox(height: 20),
-                  CustomTextFormField(
-                    controller: TextEditingController(),
-                    textFieldName: "Full Name",
-                  ),
-                  const SizedBox(height: 20),
-                  CustomTextFormField(
-                    controller: TextEditingController(),
-                    textFieldName: "User Name",
-                  ),
-                  const SizedBox(height: 20),
-                  CustomTextFormField(
-                    controller: TextEditingController(),
-                    textFieldName: "Password",
+                  Positioned(
+                    top: 20,
+                    right: 50,
+                    child: _userProfile(),
                   ),
                 ],
               ),
-            ),
-            const Spacer(),
-            Padding(
-              padding: ProjectPadding.pagePaddingSymmetricXLarge,
-              child: CustomButton(
-                onClick: () {
-                  debugPrint("Update tıklantı");
-                },
-                title: "Update",
+              Padding(
+                padding: ProjectPadding.pagePaddingSymmetricXLarge,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    CustomTextFormField(
+                      controller: emailController,
+                      textFieldName: "Email",
+                    ),
+                    const SizedBox(height: 20),
+                    CustomTextFormField(
+                      controller: fullNameController,
+                      textFieldName: "Full Name",
+                    ),
+                    const SizedBox(height: 20),
+                    CustomTextFormField(
+                      controller: userNameController,
+                      textFieldName: "User Name",
+                    ),
+                    const SizedBox(height: 20),
+                    CustomTextFormField(
+                      controller: passwordController,
+                      textFieldName: "Password",
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+              const SizedBox(height: 50),
+              Padding(
+                padding: ProjectPadding.pagePaddingSymmetricXLarge,
+                child: CustomButton(
+                  onClick: () {
+                    debugPrint("Update tıklantı");
+                  },
+                  title: "Update",
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
