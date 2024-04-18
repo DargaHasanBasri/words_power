@@ -1,5 +1,5 @@
-import '../../../export.dart';
-import 'login_view_model.dart';
+import 'package:words_power/export.dart';
+import 'package:words_power/ui/pages/login/login_view_model.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -24,21 +24,21 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
       resizeToAvoidBottomInset: false,
       backgroundColor: CustomColors.backgroundColor,
       body: PopScope(
-        canPop: vm.isCanPop,
+        canPop: vm.isCanPop ?? false,
         child: SafeArea(
           child: SingleChildScrollView(
             child: Column(
               children: [
                 AspectRatio(
                   aspectRatio: 1.5,
-                  child: Image.asset("images/img_login.png"),
+                  child: Image.asset('images/img_login.png'),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Column(
                     children: [
                       Text(
-                        "GİRİŞ YAP",
+                        'GİRİŞ YAP',
                         style: TextStyle(
                           color: CustomColors.white,
                           fontSize: 24,
@@ -51,9 +51,9 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
                         builder: (_, __, ___) {
                           return CustomTextFormField(
                             controller: vm.controllerMailAddress,
-                            hintText: "E-mail adresi giriniz",
-                            onChanged: (value) {
-                              vm.mailAddress.value = value.toString().trim();
+                            hintText: 'E-mail adresi giriniz',
+                            onChanged: (String value) {
+                              vm.mailAddress.value = value.trim();
                             },
                           );
                         },
@@ -65,9 +65,9 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
                           return CustomTextFormField(
                             controller: vm.controllerPassword,
                             isHaveObscure: true,
-                            hintText: "Parola giriniz",
-                            onChanged: (value) {
-                              vm.password.value = value.toString().trim();
+                            hintText: 'Parola giriniz',
+                            onChanged: (String value) {
+                              vm.password.value = value.trim();
                             },
                           );
                         },
@@ -80,7 +80,7 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
                             appRoutes.navigateTo(Routes.forgotPassword);
                           },
                           child: Text(
-                            "Şifreni mi Unuttun?",
+                            'Şifreni mi Unuttun?',
                             style: TextStyle(
                               color: CustomColors.greyTextColor,
                               fontSize: 14,
@@ -94,14 +94,16 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
                         valueListenable: vm.isLogin,
                         builder: (_, __, ___) {
                           return CustomButton(
-                            title: "Giriş Yap",
+                            title: 'Giriş Yap',
                             onClick: () async {
-                              debugPrint("Giriş Yap Tıklandı!!!!");
+                              debugPrint('Giriş Yap Tıklandı!!!!');
                               await vm.login();
                               vm.isLogin.value
                                   ? appRoutes.navigateTo(Routes.mainTab)
-                                  : showSnackBar(context,
-                                      "Lütfen şifre ve e-mail kontrol edin.");
+                                  : showSnackBar(
+                                      context,
+                                      'Lütfen şifre ve e-mail kontrol edin.',
+                                    );
                             },
                           );
                         },
@@ -110,19 +112,21 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
                       _buildOrText(),
                       Padding(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 20),
+                          horizontal: 20,
+                          vertical: 20,
+                        ),
                         child: _platformButton(
                           () {},
-                          "Sing in with Google",
-                          "images/ic_google.png",
+                          'Sing in with Google',
+                          'images/ic_google.png',
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: _platformButton(
                           () {},
-                          "Sing in with Apple",
-                          "images/ic_apple.png",
+                          'Sing in with Apple',
+                          'images/ic_apple.png',
                         ),
                       ),
                       const SizedBox(height: 20),
@@ -130,21 +134,21 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
                         child: RichText(
                           textAlign: TextAlign.center,
                           text: TextSpan(
-                            text: "New member? ",
+                            text: 'New member? ',
                             style: TextStyle(
                               color: CustomColors.whitePorcelain,
                               fontSize: 18,
                             ),
                             children: [
                               TextSpan(
-                                text: "Register Now",
+                                text: 'Register Now',
                                 style: TextStyle(
                                   color: CustomColors.buttonBackground,
                                   fontSize: 20,
                                 ),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
-                                    debugPrint("Kayıt Ol Tıklantı");
+                                    debugPrint('Kayıt Ol Tıklantı');
                                     appRoutes.navigateTo(Routes.register);
                                   },
                               ),
@@ -164,7 +168,11 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
     );
   }
 
-  Widget _platformButton(Function onClick, String title, String iconAddress) {
+  Widget _platformButton(
+    VoidCallback onClick,
+    String title,
+    String iconAddress,
+  ) {
     return GestureDetector(
       onTap: () => onClick.call(),
       child: Container(
@@ -177,7 +185,7 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
           borderRadius: BorderRadius.circular(4),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -212,7 +220,7 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Text(
-            "or",
+            'or',
             style: TextStyle(
               color: CustomColors.white,
               fontSize: 16,
@@ -226,5 +234,5 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
     );
   }
 
-  listeners() {}
+  void listeners() {}
 }

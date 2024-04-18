@@ -16,10 +16,10 @@ class LocalStorageService {
   }
 
   Future<void> logout() async {
-    await _preferences?.remove("mail");
+    await _preferences?.remove('mail');
   }
 
   bool isLoggedIn() {
-    return _preferences?.getString("mail") != null;
+    return _preferences?.getString('mail') != null;
   }
 }

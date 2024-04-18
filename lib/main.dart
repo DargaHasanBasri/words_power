@@ -4,8 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:words_power/firebase_options.dart';
 import 'package:words_power/route/app_routes.dart';
 import 'package:words_power/route/routes.dart';
-
-import 'services/service_locator.dart';
+import 'package:words_power/services/service_locator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

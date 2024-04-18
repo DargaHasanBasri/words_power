@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/custom_colors.dart';
+import 'package:words_power/utils/custom_colors.dart';
 
 class SocialMediaButton extends StatelessWidget {
-  const SocialMediaButton({Key? key}) : super(key: key);
+  const SocialMediaButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +13,9 @@ class SocialMediaButton extends StatelessWidget {
         color: CustomColors.white,
       ),
       child: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Text(
-          "G",
+          'G',
           style: TextStyle(
             color: CustomColors.buttonBackground,
             fontSize: 20,

@@ -1,6 +1,6 @@
-import '../../../export.dart';
-import 'onboarding_page.dart';
-import 'onboarding_view_model.dart';
+import 'package:words_power/export.dart';
+import 'package:words_power/ui/pages/onboarding/onboarding_page.dart';
+import 'package:words_power/ui/pages/onboarding/onboarding_view_model.dart';
 
 class OnboardingProvider extends StatelessWidget {
   const OnboardingProvider({super.key});

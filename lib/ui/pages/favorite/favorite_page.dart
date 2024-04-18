@@ -1,6 +1,6 @@
-import '../../../export.dart';
-import 'components/favorite_item.dart';
-import 'favorite_view_model.dart';
+import 'package:words_power/export.dart';
+import 'package:words_power/ui/pages/favorite/components/favorite_item.dart';
+import 'package:words_power/ui/pages/favorite/favorite_view_model.dart';
 
 class FavoritePage extends StatefulWidget {
   const FavoritePage({super.key});
@@ -31,7 +31,7 @@ class _FavoritePageState extends BaseStatefulState<FavoritePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Words And Sentences Favorite",
+                'Words And Sentences Favorite',
                 style: TextStyle(
                   fontSize: 22,
                   color: CustomColors.white,
@@ -46,9 +46,9 @@ class _FavoritePageState extends BaseStatefulState<FavoritePage> {
                   itemBuilder: (context, index) {
                     return const FavoriteItem(
                       word: 'Word and Sentence SentenceSentenceSentence',
-                      sentence:
-                          'Word and  Sentence Sentence Sentence Sentence Sentence',
-                      imageAddress: "images/bookmark_test.png",
+                      sentence: 'Word and  Sentence Sentence Sentence '
+                          'Sentence Sentence',
+                      imageAddress: 'images/bookmark_test.png',
                       whoPersonWrote: 'testDeveloper',
                       numberViews: '2343',
                       dateAdded: '2 days ago',
@@ -65,5 +65,5 @@ class _FavoritePageState extends BaseStatefulState<FavoritePage> {
     );
   }
 
-  listeners() {}
+  void listeners() {}
 }

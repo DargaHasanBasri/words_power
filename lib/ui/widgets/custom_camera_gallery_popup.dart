@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/custom_colors.dart';
+import 'package:words_power/utils/custom_colors.dart';
 
 class CustomCameraGalleryPopup extends StatelessWidget {
-  final Function onClickCamera;
-  final Function onClickGallery;
-
-  const CustomCameraGalleryPopup(this.onClickCamera, this.onClickGallery,
-      {super.key});
+  const CustomCameraGalleryPopup(
+    this.onClickCamera,
+    this.onClickGallery, {
+    super.key,
+  });
+  final VoidCallback onClickCamera;
+  final VoidCallback onClickGallery;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-          vertical: MediaQuery.of(context).size.height / 4),
+        vertical: MediaQuery.of(context).size.height / 4,
+      ),
       child: Dialog(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
@@ -26,7 +29,10 @@ class CustomCameraGalleryPopup extends StatelessWidget {
   }
 
   Widget _buildContent(
-      BuildContext context, Function onClickCamera, Function onClickGallery) {
+    BuildContext context,
+    VoidCallback onClickCamera,
+    VoidCallback onClickGallery,
+  ) {
     return Column(
       children: [
         Align(

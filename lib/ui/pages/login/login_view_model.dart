@@ -1,15 +1,15 @@
-import '../../../export.dart';
 import 'package:words_power/base/base_view_model.dart';
+import 'package:words_power/export.dart';
 
 class LoginViewModel extends BaseViewModel {
-  final bool isCanPop;
-  LoginViewModel(this.isCanPop);
+  LoginViewModel({required this.isCanPop});
+  final bool? isCanPop;
 
   TextEditingController controllerMailAddress = TextEditingController();
   TextEditingController controllerPassword = TextEditingController();
 
-  ValueNotifier<String> mailAddress = ValueNotifier("");
-  ValueNotifier<String> password = ValueNotifier("");
+  ValueNotifier<String> mailAddress = ValueNotifier('');
+  ValueNotifier<String> password = ValueNotifier('');
   ValueNotifier<bool> isLogin = ValueNotifier(false);
 
   bool isEmpty() => mailAddress.value.isNotEmpty && password.value.isNotEmpty;
@@ -18,8 +18,7 @@ class LoginViewModel extends BaseViewModel {
     if (isEmpty()) {
       isLogin.value = await AuthenticationService()
           .sigIn(email: mailAddress.value, password: password.value);
-      await localStorage.setString("mail", mailAddress.value);
+      await localStorage.setString('mail', mailAddress.value);
     }
   }
-
 }

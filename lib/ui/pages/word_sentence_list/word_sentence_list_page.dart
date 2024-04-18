@@ -1,5 +1,5 @@
-import '../../../export.dart';
-import 'components/word_sentence_item.dart';
+import 'package:words_power/export.dart';
+import 'package:words_power/ui/pages/word_sentence_list/components/word_sentence_item.dart';
 
 class WordSentenceListPage extends StatefulWidget {
   const WordSentenceListPage({super.key});
@@ -32,7 +32,7 @@ class _WordSentenceListPageState
                     return const WordSentenceListItem(
                       word: 'Word and Sentence',
                       sentence: 'Word and Sentence',
-                      imageAddress: "images/bookmark_test.png",
+                      imageAddress: 'images/bookmark_test.png',
                       whoPersonWrote: 'testDeveloper',
                       numberViews: '2343',
                       dateAdded: '2 days ago',
@@ -54,7 +54,7 @@ class _WordSentenceListPageState
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          "Words And Sentences",
+          'Words And Sentences',
           style: TextStyle(
             fontSize: 22,
             color: CustomColors.white,
@@ -63,7 +63,7 @@ class _WordSentenceListPageState
         IconButton(
           onPressed: () {},
           icon: Image.asset(
-            "images/ic_favorite.png",
+            'images/ic_favorite.png',
             width: 40,
           ),
         ),

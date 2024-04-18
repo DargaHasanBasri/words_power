@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 
-import '../../../../utils/custom_colors.dart';
+import 'package:words_power/utils/custom_colors.dart';
 
 class FavoriteItem extends StatelessWidget {
-  final String word;
-  final String sentence;
-  final String imageAddress;
-  final String whoPersonWrote;
-  final String dateAdded;
-  final String numberViews;
   const FavoriteItem({
-    super.key,
     required this.word,
     required this.sentence,
     required this.imageAddress,
     required this.dateAdded,
     required this.whoPersonWrote,
     required this.numberViews,
+    super.key,
   });
+  final String word;
+  final String sentence;
+  final String imageAddress;
+  final String whoPersonWrote;
+  final String dateAdded;
+  final String numberViews;
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +85,7 @@ class FavoriteItem extends StatelessWidget {
                     IconButton(
                       onPressed: () {},
                       icon: Image.asset(
-                        "images/ic_favorite.png",
+                        'images/ic_favorite.png',
                         width: 20,
                         color: CustomColors.white,
                       ),
@@ -93,11 +93,10 @@ class FavoriteItem extends StatelessWidget {
                   ],
                 ),
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "$numberViews views",
+                      '$numberViews views',
                       style: TextStyle(
                         fontSize: 14,
                         color: CustomColors.white,

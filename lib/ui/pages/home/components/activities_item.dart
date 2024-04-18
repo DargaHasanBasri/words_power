@@ -1,4 +1,4 @@
-import '../../../../export.dart';
+import 'package:words_power/export.dart';
 
 class ActivitiesItem extends StatelessWidget {
   const ActivitiesItem({super.key});
@@ -9,7 +9,7 @@ class ActivitiesItem extends StatelessWidget {
       color: CustomColors.blueBall,
       child: Container(
         alignment: Alignment.center,
-        child: Text("A"),
+        child: const Text('A'),
       ),
     );
   }

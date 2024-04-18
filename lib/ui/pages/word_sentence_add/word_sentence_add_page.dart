@@ -1,6 +1,6 @@
-import '../../../export.dart';
-import 'components/write_area.dart';
-import 'word_sentence_add_view_model.dart';
+import 'package:words_power/export.dart';
+import 'package:words_power/ui/pages/word_sentence_add/components/write_area.dart';
+import 'package:words_power/ui/pages/word_sentence_add/word_sentence_add_view_model.dart';
 
 class WordSentenceAddPage extends StatefulWidget {
   const WordSentenceAddPage({super.key});
@@ -13,7 +13,7 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
   late final WordSentenceAddViewModel vm;
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     vm = Provider.of<WordSentenceAddViewModel>(context, listen: false);
     listeners();
@@ -26,15 +26,15 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
       appBar: AppBar(
         leading: IconButton(
           icon: Image.asset(
-            "images/ic_back.png",
+            'images/ic_back.png',
             color: CustomColors.whitePorcelain,
             height: 24,
           ),
-          onPressed: () => appRoutes.popIfBackStackNotEmpty(),
+          onPressed: appRoutes.popIfBackStackNotEmpty,
         ),
         backgroundColor: CustomColors.backgroundColor,
         title: Text(
-          "Word & Sentence Add",
+          'Word & Sentence Add',
           style: TextStyle(
             color: CustomColors.white,
           ),
@@ -46,106 +46,106 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: SingleChildScrollView(
             child: ValueListenableBuilder(
-                valueListenable: vm.image,
-                builder: (_, __, ___) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const SizedBox(height: 20),
-                      Text(
-                        "Word",
-                        style: TextStyle(
-                          color: CustomColors.whiteSmoke,
-                          fontSize: 22,
-                        ),
+              valueListenable: vm.image,
+              builder: (_, __, ___) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const SizedBox(height: 20),
+                    Text(
+                      'Word',
+                      style: TextStyle(
+                        color: CustomColors.whiteSmoke,
+                        fontSize: 22,
                       ),
-                      const SizedBox(height: 4),
-                      WriteArea(
-                        englishTextController: vm.wordEnglishTextController,
-                        turkishTextController: vm.wordTurkishTextController,
-                        writeEnglish: vm.wordWriteEnglish,
-                        writeTurkish: vm.wordWriteTurkish,
-                        titleEnglish: "English Write Word",
-                        titleTurkish: "Türkçe Kelime Yaz",
+                    ),
+                    const SizedBox(height: 4),
+                    WriteArea(
+                      englishTextController: vm.wordEnglishTextController,
+                      turkishTextController: vm.wordTurkishTextController,
+                      writeEnglish: vm.wordWriteEnglish,
+                      writeTurkish: vm.wordWriteTurkish,
+                      titleEnglish: 'English Write Word',
+                      titleTurkish: 'Türkçe Kelime Yaz',
+                    ),
+                    const SizedBox(height: 30),
+                    Text(
+                      'Add a picture that reminds you',
+                      style: TextStyle(
+                        color: CustomColors.whiteSmoke,
+                        fontSize: 22,
                       ),
-                      const SizedBox(height: 30),
-                      Text(
-                        "Add a picture that reminds you",
-                        style: TextStyle(
-                          color: CustomColors.whiteSmoke,
-                          fontSize: 22,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      GestureDetector(
-                        onTap: () {
-                          debugPrint("tıklandı!!!");
-                          DialogHelper.isImageSource(
-                            context,
-                            () {
-                              vm.pickImage(ImageSource.camera);
-                              appRoutes.popIfBackStackNotEmpty();
-                            },
-                            () {
-                              vm.pickImage(ImageSource.gallery);
-                              appRoutes.popIfBackStackNotEmpty();
-                            },
-                          );
-                        },
-                        child: AspectRatio(
-                          aspectRatio: 16 / 9,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: CustomColors.whitePorcelain,
-                              borderRadius: BorderRadius.circular(8),
-                              image: vm.image.value != null
-                                  ? DecorationImage(
-                                      image:
-                                          FileImage(File(vm.image.value!.path)),
-                                      fit: BoxFit.cover,
-                                    )
-                                  : const DecorationImage(
-                                      image: AssetImage(
-                                        "images/ic_add_image.png",
-                                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    GestureDetector(
+                      onTap: () {
+                        debugPrint('tıklandı!!!');
+                        DialogHelper.isImageSource(
+                          context,
+                          () {
+                            vm.pickImage(ImageSource.camera);
+                            appRoutes.popIfBackStackNotEmpty();
+                          },
+                          () {
+                            vm.pickImage(ImageSource.gallery);
+                            appRoutes.popIfBackStackNotEmpty();
+                          },
+                        );
+                      },
+                      child: AspectRatio(
+                        aspectRatio: 16 / 9,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: CustomColors.whitePorcelain,
+                            borderRadius: BorderRadius.circular(8),
+                            image: vm.image.value != null
+                                ? DecorationImage(
+                                    image:
+                                        FileImage(File(vm.image.value!.path)),
+                                    fit: BoxFit.cover,
+                                  )
+                                : const DecorationImage(
+                                    image: AssetImage(
+                                      'images/ic_add_image.png',
                                     ),
-                            ),
+                                  ),
                           ),
                         ),
                       ),
-                      const SizedBox(height: 30),
-                      Text(
-                        "Sentence",
-                        style: TextStyle(
-                          color: CustomColors.whiteSmoke,
-                          fontSize: 22,
-                        ),
+                    ),
+                    const SizedBox(height: 30),
+                    Text(
+                      'Sentence',
+                      style: TextStyle(
+                        color: CustomColors.whiteSmoke,
+                        fontSize: 22,
                       ),
-                      const SizedBox(height: 4),
-                      WriteArea(
-                        englishTextController: vm.sentenceEnglishTextController,
-                        turkishTextController: vm.sentenceTurkishTextController,
-                        writeEnglish: vm.sentenceWriteEnglish,
-                        writeTurkish: vm.sentenceWriteTurkish,
-                        titleEnglish: "English Write Sentence",
-                        titleTurkish: "Türkçe Cümle Yaz",
+                    ),
+                    const SizedBox(height: 4),
+                    WriteArea(
+                      englishTextController: vm.sentenceEnglishTextController,
+                      turkishTextController: vm.sentenceTurkishTextController,
+                      writeEnglish: vm.sentenceWriteEnglish,
+                      writeTurkish: vm.sentenceWriteTurkish,
+                      titleEnglish: 'English Write Sentence',
+                      titleTurkish: 'Türkçe Cümle Yaz',
+                    ),
+                    const SizedBox(height: 30),
+                    Text(
+                      'Gemini Generate Example Sentence',
+                      style: TextStyle(
+                        color: CustomColors.whiteSmoke,
+                        fontSize: 16,
                       ),
-                      const SizedBox(height: 30),
-                      Text(
-                        "Gemini Generate Example Sentence",
-                        style: TextStyle(
-                          color: CustomColors.whiteSmoke,
-                          fontSize: 16,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: _buildGenerateGemini(),
-                      ),
-                      const SizedBox(height: 20),
-                      CustomButton(
-                        onClick: () {
-                          /*
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: _buildGenerateGemini(),
+                    ),
+                    const SizedBox(height: 20),
+                    CustomButton(
+                      onClick: () {
+                        /*
                           firebaseStorageRepository
                               .storeFileToFirebase(
                             "wordAndSentence/${vm.userModel!.userID}/${DateTime.now().millisecondsSinceEpoch}",
@@ -153,32 +153,32 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
                           )
                               .then((value) {
                            */
-                          String uid = const Uuid().v4();
-                          WordAndSentenceModel wordAndSentenceModel =
-                              WordAndSentenceModel(
-                            userID: uid,
-                            wordTurkish: "${vm.wordWriteTurkish.value}",
-                            wordEnglish: "${vm.wordWriteEnglish.value}",
-                            sentenceTurkish: "${vm.sentenceWriteTurkish.value}",
-                            sentenceEnglish: "${vm.sentenceWriteEnglish.value}",
-                            authorID: "${vm.userModel!.userID}",
-                            authorName: vm.userModel!.name,
-                            authorImg: "${vm.userModel!.profilePhoto}",
-                            createdAt: DateTime.now(),
-                            updatedAt: DateTime.now(),
-                            likes: 0,
-                            views: 0,
-                            coverImg: "",
-                          );
-                          vm.addWordAndSentence(wordAndSentenceModel);
-                        },
-                        title: "Add",
-                        borderRadius: 10,
-                      ),
-                      const SizedBox(height: 20),
-                    ],
-                  );
-                }),
+                        final uid = const Uuid().v4();
+                        final wordAndSentenceModel = WordAndSentenceModel(
+                          userID: uid,
+                          wordTurkish: '${vm.wordWriteTurkish.value}',
+                          wordEnglish: '${vm.wordWriteEnglish.value}',
+                          sentenceTurkish: '${vm.sentenceWriteTurkish.value}',
+                          sentenceEnglish: '${vm.sentenceWriteEnglish.value}',
+                          authorID: '${vm.userModel!.userID}',
+                          authorName: vm.userModel!.name,
+                          authorImg: '${vm.userModel!.profilePhoto}',
+                          createdAt: DateTime.now(),
+                          updatedAt: DateTime.now(),
+                          likes: 0,
+                          views: 0,
+                          coverImg: '',
+                        );
+                        vm.addWordAndSentence(wordAndSentenceModel);
+                      },
+                      title: 'Add',
+                      borderRadius: 10,
+                    ),
+                    const SizedBox(height: 20),
+                  ],
+                );
+              },
+            ),
           ),
         ),
       ),
@@ -197,10 +197,10 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
               borderRadius: BorderRadius.circular(8),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8),
               child: Center(
                 child: Text(
-                  "Click me for example sentence",
+                  'Click me for example sentence',
                   style: TextStyle(
                     color: CustomColors.blueCloudBurst,
                     fontSize: 16,
@@ -214,5 +214,5 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
     );
   }
 
-  listeners() {}
+  void listeners() {}
 }

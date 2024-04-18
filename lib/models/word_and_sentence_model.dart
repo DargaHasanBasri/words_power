@@ -1,9 +1,42 @@
 class WordAndSentenceModel {
+  const WordAndSentenceModel({
+    required this.userID,
+    required this.wordTurkish,
+    required this.wordEnglish,
+    required this.sentenceTurkish,
+    required this.sentenceEnglish,
+    required this.authorName,
+    required this.authorID,
+    required this.createdAt,
+    required this.likes,
+    required this.views,
+    this.coverImg,
+    this.authorImg,
+    this.updatedAt,
+  });
+
+  factory WordAndSentenceModel.fromMap(Map<String, dynamic> map) {
+    return WordAndSentenceModel(
+      userID: map['userID'] as String,
+      wordTurkish: map['wordTurkish'] as String,
+      wordEnglish: map['wordEnglish'] as String,
+      sentenceTurkish: map['sentenceTurkish'] as String,
+      sentenceEnglish: map['sentenceEnglish'] as String,
+      coverImg: map['coverImg'] as String,
+      authorName: map['authorName'] as String,
+      authorImg: map['authorImg'] as String,
+      authorID: map['authorID'] as String,
+      createdAt: map['createdAt'] as DateTime,
+      updatedAt: map['updatedAt'] as DateTime,
+      likes: map['likes'] as int,
+      views: map['views'] as int,
+    );
+  }
   final String userID;
   final String wordTurkish; // girilen türkçe kelime
-  final String wordEnglish; // girilen inglizce kelime
+  final String wordEnglish; // girilen ingilizce kelime
   final String sentenceTurkish; // girilen türkçe cümle
-  final String sentenceEnglish; // girilen inglizce cümle
+  final String sentenceEnglish; // girilen ingilizce cümle
   final String? coverImg; // girilen kelimenin resmi
   final String authorName; // word and sentence giren yazar adı
   final String? authorImg; // word and sentence giren yazar resmi
@@ -12,22 +45,6 @@ class WordAndSentenceModel {
   final DateTime? updatedAt; // güncelleme tarihi
   final int likes;
   final int views;
-
-  const WordAndSentenceModel({
-    required this.userID,
-    required this.wordTurkish,
-    required this.wordEnglish,
-    required this.sentenceTurkish,
-    required this.sentenceEnglish,
-    this.coverImg,
-    required this.authorName,
-    this.authorImg,
-    required this.authorID,
-    required this.createdAt,
-    this.updatedAt,
-    required this.likes,
-    required this.views,
-  });
 
   WordAndSentenceModel copyWith({
     String? userID,
@@ -77,23 +94,5 @@ class WordAndSentenceModel {
       'likes': likes,
       'views': views,
     };
-  }
-
-  factory WordAndSentenceModel.fromMap(Map<String, dynamic> map) {
-    return WordAndSentenceModel(
-      userID: map['userID'] as String,
-      wordTurkish: map['wordTurkish'] as String,
-      wordEnglish: map['wordEnglish'] as String,
-      sentenceTurkish: map['sentenceTurkish'] as String,
-      sentenceEnglish: map['sentenceEnglish'] as String,
-      coverImg: map['coverImg'] as String,
-      authorName: map['authorName'] as String,
-      authorImg: map['authorImg'] as String,
-      authorID: map['authorID'] as String,
-      createdAt: map['createdAt'] as DateTime,
-      updatedAt: map['updatedAt'] as DateTime,
-      likes: map['likes'] as int,
-      views: map['views'] as int,
-    );
   }
 }

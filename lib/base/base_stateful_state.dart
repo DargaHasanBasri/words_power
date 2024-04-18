@@ -2,12 +2,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:words_power/route/app_routes.dart';
-import '../services/authentication_service.dart';
-import '../services/localstorage_service.dart';
-import '../services/service_locator.dart';
-import '../utils/custom_colors.dart';
-import '../utils/firebase_storage_repository.dart';
-import '../utils/utility.dart';
+import 'package:words_power/services/authentication_service.dart';
+import 'package:words_power/services/localstorage_service.dart';
+import 'package:words_power/services/service_locator.dart';
+import 'package:words_power/utils/custom_colors.dart';
+import 'package:words_power/utils/firebase_storage_repository.dart';
+import 'package:words_power/utils/utility.dart';
 
 abstract class BaseStatefulState<T extends StatefulWidget> extends State<T> {
   Utility utility = Utility();
@@ -59,8 +59,8 @@ abstract class BaseStatefulState<T extends StatefulWidget> extends State<T> {
 
   void startTimer() {
     if (_timeoutTimer != null) _timeoutTimer!.cancel();
-    const oneSec = const Duration(seconds: 1);
-    _timeoutTimer = new Timer.periodic(
+    const oneSec = Duration(seconds: 1);
+    _timeoutTimer = Timer.periodic(
       oneSec,
       (Timer timer) {
         if (_start == 0) {
@@ -85,19 +85,16 @@ abstract class BaseStatefulState<T extends StatefulWidget> extends State<T> {
               right: 0,
               top: 0,
               bottom: 0,
-              child: Container(
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CircularProgressIndicator(
-                      color: CustomColors.buttonBackground,
-                    ),
-                  ],
-                ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator(
+                    color: CustomColors.buttonBackground,
+                  ),
+                ],
               ),
-            )
+            ),
           ],
         ),
       );

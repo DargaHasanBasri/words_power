@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
 class SettingsItem extends StatelessWidget {
-  final String title;
-  final String iconAddress;
-  final Function onClick;
   const SettingsItem({
-    super.key,
     required this.title,
     required this.iconAddress,
     required this.onClick,
+    super.key,
   });
+  final String title;
+  final String iconAddress;
+  final VoidCallback onClick;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => onClick.call(),
+      onTap: onClick.call,
       child: SizedBox(
         height: 40,
         child: Row(

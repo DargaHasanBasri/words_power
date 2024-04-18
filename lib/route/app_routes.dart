@@ -5,8 +5,12 @@ class AppRoutes {
   final GlobalKey<NavigatorState> baseNavigatorKey =
       GlobalKey<NavigatorState>();
 
-  Future<dynamic> navigateTo(String routeName,
-      {dynamic key, dynamic arguments, Function? callback}) {
+  Future<dynamic> navigateTo(
+    String routeName, {
+    GlobalKey<NavigatorState>? key,
+    dynamic arguments,
+    Function? callback,
+  }) {
     GlobalKey<NavigatorState> theKey;
     if (key != null) {
       theKey = key;
@@ -22,8 +26,12 @@ class AppRoutes {
     );
   }
 
-  Future<dynamic> navigateToReplacement(String routeName,
-      {dynamic key, dynamic arguments, Function? callback}) {
+  Future<dynamic> navigateToReplacement(
+    String routeName, {
+    GlobalKey<NavigatorState>? key,
+    dynamic arguments,
+    Function? callback,
+  }) {
     GlobalKey<NavigatorState> theKey;
     if (key != null) {
       theKey = key;
@@ -41,8 +49,12 @@ class AppRoutes {
     );
   }
 
-  Future<dynamic> navigateRemoveUntil(String routeName,
-      {dynamic key, dynamic arguments, Function? callback}) {
+  Future<dynamic> navigateRemoveUntil(
+    String routeName, {
+    GlobalKey<NavigatorState>? key,
+    dynamic arguments,
+    Function? callback,
+  }) {
     GlobalKey<NavigatorState> theKey;
     if (key != null) {
       theKey = key;
@@ -50,8 +62,11 @@ class AppRoutes {
       theKey = baseNavigatorKey;
     }
     return theKey.currentState!
-        .pushNamedAndRemoveUntil(routeName, (Route<dynamic> route) => false,
-            arguments: arguments)
+        .pushNamedAndRemoveUntil(
+      routeName,
+      (Route<dynamic> route) => false,
+      arguments: arguments,
+    )
         .then(
       (x) {
         if (callback != null) {
@@ -61,14 +76,18 @@ class AppRoutes {
     );
   }
 
-  Future<dynamic> popPages(int pageNumber, {dynamic key, dynamic arguments}) {
-    GlobalKey<NavigatorState> theKey;
+  Future<dynamic> popPages(
+    int pageNumber, {
+    GlobalKey<NavigatorState>? key,
+    dynamic arguments,
+  }) {
+    GlobalKey<NavigatorState>? theKey;
     if (key != null) {
       theKey = key;
     } else {
       theKey = baseNavigatorKey;
     }
-    for (int i = 0; i < pageNumber; i++) {
+    for (var i = 0; i < pageNumber; i++) {
       if (theKey.currentState!.canPop()) {
         theKey.currentState!.pop(arguments);
       } else {
@@ -79,7 +98,10 @@ class AppRoutes {
     return Future.value(arguments);
   }
 
-  Future<dynamic> popIfBackStackNotEmpty({dynamic key, dynamic arguments}) {
+  Future<dynamic> popIfBackStackNotEmpty({
+    GlobalKey<NavigatorState>? key,
+    dynamic arguments,
+  }) {
     GlobalKey<NavigatorState> theKey;
     if (key != null) {
       theKey = key;
