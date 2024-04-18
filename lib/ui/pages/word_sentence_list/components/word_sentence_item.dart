@@ -103,7 +103,6 @@ class WordSentenceListItem extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 10),
               ],
             ),
           ),

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:words_power/export.dart';
 import 'package:words_power/ui/pages/word_sentence_add/components/write_area.dart';
 import 'package:words_power/ui/pages/word_sentence_add/word_sentence_add_view_model.dart';
@@ -163,8 +164,8 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
                           authorID: '${vm.userModel!.userID}',
                           authorName: vm.userModel!.name,
                           authorImg: '${vm.userModel!.profilePhoto}',
-                          createdAt: DateTime.now(),
-                          updatedAt: DateTime.now(),
+                          createdAt: Timestamp.now(),
+                          updatedAt: Timestamp.now(),
                           likes: 0,
                           views: 0,
                           coverImg: '',

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class WordAndSentenceModel {
   const WordAndSentenceModel({
     required this.userID,
@@ -26,8 +28,8 @@ class WordAndSentenceModel {
       authorName: map['authorName'] as String,
       authorImg: map['authorImg'] as String,
       authorID: map['authorID'] as String,
-      createdAt: map['createdAt'] as DateTime,
-      updatedAt: map['updatedAt'] as DateTime,
+      createdAt: map['createdAt'] as Timestamp,
+      updatedAt: map['updatedAt'] as Timestamp,
       likes: map['likes'] as int,
       views: map['views'] as int,
     );
@@ -41,8 +43,8 @@ class WordAndSentenceModel {
   final String authorName; // word and sentence giren yazar adı
   final String? authorImg; // word and sentence giren yazar resmi
   final String authorID; // word and sentence giren yazar id
-  final DateTime createdAt; // oluşturulduğu tarih
-  final DateTime? updatedAt; // güncelleme tarihi
+  final Timestamp createdAt; // oluşturulduğu tarih
+  final Timestamp? updatedAt; // güncelleme tarihi
   final int likes;
   final int views;
 
@@ -56,8 +58,8 @@ class WordAndSentenceModel {
     String? authorName,
     String? authorImg,
     String? authorID,
-    DateTime? createdAt,
-    DateTime? updatedAt,
+    Timestamp? createdAt,
+    Timestamp? updatedAt,
     int? likes,
     int? views,
   }) {
