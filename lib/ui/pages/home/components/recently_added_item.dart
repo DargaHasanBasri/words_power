@@ -49,9 +49,8 @@ class RecentlyAddedItem extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                       overflow: TextOverflow.ellipsis,
-                      maxLines: 4,
+                      maxLines: 2,
                     ),
-                    const Spacer(),
                     Text(
                       byUserName,
                       style: TextStyle(
