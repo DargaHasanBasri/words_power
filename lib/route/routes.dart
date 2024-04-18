@@ -1,4 +1,4 @@
-import '../export.dart';
+import 'package:words_power/export.dart';
 
 class Routes {
   const Routes._();
@@ -31,9 +31,9 @@ class Routes {
           builder: (context) => const RegisterProvider(),
         );
       case Routes.login:
-        bool? isCanPop = settings.arguments as bool?;
+        final isCanPop = settings.arguments as bool?;
         return MaterialPageRoute(
-          builder: (context) => LoginProvider(isCanPop ?? false),
+          builder: (context) => LoginProvider(isCanPop: isCanPop ?? false),
         );
       case Routes.forgotPassword:
         return MaterialPageRoute(
@@ -48,12 +48,12 @@ class Routes {
           builder: (context) => const MainTabProvider(),
         );
       case Routes.home:
-        String? userName = settings.arguments as String?;
+        final userName = settings.arguments as String?;
         return MaterialPageRoute(
           builder: (context) => HomeProvider(userName),
         );
       case Routes.settings:
-        UserModel? userModel = settings.arguments as UserModel?;
+        final userModel = settings.arguments as UserModel?;
         return MaterialPageRoute(
           builder: (context) => SettingsProvider(userModel),
         );
@@ -62,7 +62,7 @@ class Routes {
           builder: (context) => const FavoriteProvider(),
         );
       case Routes.wordSentenceAdd:
-        UserModel? userModel = settings.arguments as UserModel?;
+        final userModel = settings.arguments as UserModel?;
         return MaterialPageRoute(
           builder: (context) => WordSentenceAddProvider(userModel),
         );
@@ -71,7 +71,7 @@ class Routes {
           builder: (context) => const WordSentenceListProvider(),
         );
       case Routes.personalInformations:
-        UserModel? userModel = settings.arguments as UserModel?;
+        final userModel = settings.arguments as UserModel?;
         return MaterialPageRoute(
           builder: (context) => PersonalInformationsProvider(userModel),
         );

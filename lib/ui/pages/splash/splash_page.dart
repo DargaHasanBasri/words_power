@@ -1,5 +1,5 @@
-import '../../../export.dart';
-import 'splash_view_model.dart';
+import 'package:words_power/export.dart';
+import 'package:words_power/ui/pages/splash/splash_view_model.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -35,7 +35,7 @@ class _SplashPageState extends BaseStatefulState<SplashPage> {
               child: CircleAvatar(
                 backgroundColor: CustomColors.buttonBackground,
                 radius: 32,
-                child: Image.asset("images/logo.png"),
+                child: Image.asset('images/logo.png'),
               ),
             ),
           ),
@@ -45,11 +45,15 @@ class _SplashPageState extends BaseStatefulState<SplashPage> {
   }
 
   Future<void> waitAndNavigate(BuildContext context) async {
-    await Future.delayed(const Duration(seconds: 2));
-    if (localStorage.getString("mail") != null) {
-      appRoutes.navigateToReplacement(Routes.mainTab);
-    } else {
-      appRoutes.navigateToReplacement(Routes.welcome);
-    }
+    await Future.delayed(
+      const Duration(seconds: 2),
+      () {
+        if (localStorage.getString('mail') != null) {
+          appRoutes.navigateToReplacement(Routes.mainTab);
+        } else {
+          appRoutes.navigateToReplacement(Routes.welcome);
+        }
+      },
+    );
   }
 }

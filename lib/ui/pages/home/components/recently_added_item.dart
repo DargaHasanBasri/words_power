@@ -1,19 +1,19 @@
-import '../../../../export.dart';
+import 'package:words_power/export.dart';
 
 class RecentlyAddedItem extends StatelessWidget {
+  const RecentlyAddedItem({
+    required this.wordAdded,
+    required this.sentencesAdded,
+    required this.imagesAdded,
+    required this.byUserName,
+    required this.dateAdded,
+    super.key,
+  });
   final String wordAdded;
   final String sentencesAdded;
   final String byUserName;
   final String dateAdded;
   final String imagesAdded;
-
-  const RecentlyAddedItem(
-      {super.key,
-      required this.wordAdded,
-      required this.sentencesAdded,
-      required this.imagesAdded,
-      required this.byUserName,
-      required this.dateAdded});
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +72,7 @@ class RecentlyAddedItem extends StatelessWidget {
                         ),
                         const Spacer(),
                         Image.asset(
-                          "images/ic_favorite.png",
+                          'images/ic_favorite.png',
                           width: 30,
                           color: CustomColors.whiteSmoke,
                         ),

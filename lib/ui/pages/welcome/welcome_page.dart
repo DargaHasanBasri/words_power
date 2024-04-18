@@ -1,4 +1,4 @@
-import '../../../export.dart';
+import 'package:words_power/export.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -19,7 +19,7 @@ class _WelcomePageState extends BaseStatefulState<WelcomePage> {
             aspectRatio: 0.8,
             child: FadedWidget(
               child: Image.asset(
-                "images/welcome2.png",
+                'images/welcome2.png',
                 fit: BoxFit.fitWidth,
               ),
             ),
@@ -27,12 +27,12 @@ class _WelcomePageState extends BaseStatefulState<WelcomePage> {
           CircleAvatar(
             backgroundColor: CustomColors.buttonBackground,
             radius: 32,
-            child: Image.asset("images/logo.png"),
+            child: Image.asset('images/logo.png'),
           ),
           const SizedBox(height: 20),
           Center(
             child: Text(
-              "Words-Power",
+              'Words-Power',
               style: TextStyle(
                 color: CustomColors.whiteSmoke,
                 fontSize: 22,
@@ -47,7 +47,7 @@ class _WelcomePageState extends BaseStatefulState<WelcomePage> {
               onClick: () {
                 appRoutes.navigateTo(Routes.login);
               },
-              title: "Login",
+              title: 'Login',
               backgroundColor: CustomColors.buttonBackground,
             ),
           ),
@@ -57,7 +57,7 @@ class _WelcomePageState extends BaseStatefulState<WelcomePage> {
               onClick: () {
                 appRoutes.navigateTo(Routes.register);
               },
-              title: "Register",
+              title: 'Register',
               titleColor: CustomColors.blueCloudBurst,
               backgroundColor: CustomColors.whiteSmoke,
             ),

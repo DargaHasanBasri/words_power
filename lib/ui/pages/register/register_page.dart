@@ -1,5 +1,6 @@
-import '../../../export.dart';
-import 'register_view_model.dart';
+import 'package:words_power/export.dart';
+
+import 'package:words_power/ui/pages/register/register_view_model.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -28,7 +29,7 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
             children: [
               AspectRatio(
                 aspectRatio: 1.2,
-                child: Image.asset("images/img_register.png"),
+                child: Image.asset('images/img_register.png'),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -37,7 +38,7 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
                     children: [
                       const SizedBox(height: 30),
                       const Text(
-                        "KAYIT OL",
+                        'KAYIT OL',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 24,
@@ -50,9 +51,9 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
                         builder: (_, __, ___) {
                           return CustomTextFormField(
                             controller: vm.controllerName,
-                            hintText: "Kullanıcı Adı Giriniz",
-                            onChanged: (value) {
-                              vm.name.value = value.toString().trim();
+                            hintText: 'Kullanıcı Adı Giriniz',
+                            onChanged: (String value) {
+                              vm.name.value = value.trim();
                             },
                           );
                         },
@@ -63,9 +64,9 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
                         builder: (_, __, ___) {
                           return CustomTextFormField(
                             controller: vm.controllerMailAddress,
-                            hintText: "E-mail adresi giriniz",
-                            onChanged: (value) {
-                              vm.mailAddress.value = value.toString().trim();
+                            hintText: 'E-mail adresi giriniz',
+                            onChanged: (String value) {
+                              vm.mailAddress.value = value.trim();
                             },
                           );
                         },
@@ -76,9 +77,9 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
                         builder: (_, __, ___) {
                           return CustomTextFormField(
                             controller: vm.controllerPassword,
-                            hintText: "Parola giriniz",
+                            hintText: 'Parola giriniz',
                             isHaveObscure: true,
-                            onChanged: (value) {
+                            onChanged: (String value) {
                               vm.password.value = value;
                             },
                           );
@@ -88,43 +89,44 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
                       getTextPrivacyPolicy(),
                       const SizedBox(height: 20),
                       CustomButton(
-                          title: "Kayıt Ol",
-                          onClick: () async {
-                            debugPrint("Kayıt Ol Tıklandı!!!!");
-                            UserModel userModel = UserModel(
-                              email: vm.mailAddress.value,
-                              name: vm.name.value,
-                              password: vm.password.value,
-                            );
-                            await vm.register();
-                            userInfo.saveUserInfoToFirebase(userModel);
-                            vm.isRegister.value
-                                ? appRoutes.navigateTo(
-                                    Routes.login,
-                                    arguments: true,
-                                  )
-                                : showSnackBar(context, "Boş alan bırakmayın!");
-                          }),
+                        title: 'Kayıt Ol',
+                        onClick: () async {
+                          debugPrint('Kayıt Ol Tıklandı!!!!');
+                          final userModel = UserModel(
+                            email: vm.mailAddress.value,
+                            name: vm.name.value,
+                            password: vm.password.value,
+                          );
+                          await vm.register();
+                          await userInfo.saveUserInfoToFirebase(userModel);
+                          vm.isRegister.value
+                              ? appRoutes.navigateTo(
+                                  Routes.login,
+                                  arguments: true,
+                                )
+                              : showSnackBar(context, 'Boş alan bırakmayın!');
+                        },
+                      ),
                       const SizedBox(height: 14),
                       Center(
                         child: RichText(
                           textAlign: TextAlign.center,
                           text: TextSpan(
-                            text: "Zaten hesabın var mı? ",
+                            text: 'Zaten hesabın var mı? ',
                             style: TextStyle(
                               color: CustomColors.whitePorcelain,
                               fontSize: 18,
                             ),
                             children: [
                               TextSpan(
-                                text: "Giriş Yap",
+                                text: 'Giriş Yap',
                                 style: TextStyle(
                                   color: CustomColors.buttonBackground,
                                   fontSize: 20,
                                 ),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
-                                    debugPrint("Giriş Yap Tıklantı");
+                                    debugPrint('Giriş Yap Tıklantı');
                                     appRoutes.navigateTo(
                                       Routes.login,
                                       arguments: true,
@@ -151,7 +153,7 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
     return RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-        text: "Devam ettiğinizde, ",
+        text: 'Devam ettiğinizde, ',
         style: TextStyle(
           color: CustomColors.greyTextColor,
           fontSize: 14,
@@ -159,7 +161,7 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
         ),
         children: [
           TextSpan(
-            text: "Gizlilik Sözleşmesi ve Kullanım Şartlarını",
+            text: 'Gizlilik Sözleşmesi ve Kullanım Şartlarını',
             style: TextStyle(
               color: CustomColors.buttonBackground,
               fontSize: 16,
@@ -168,22 +170,22 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
             ),
             recognizer: TapGestureRecognizer()
               ..onTap = () {
-                debugPrint("Gizlilik Sözleşmesi ve Kullanım Şartları tıklandı");
+                debugPrint('Gizlilik Sözleşmesi ve Kullanım Şartları tıklandı');
                 DialogHelper.exit(context);
               },
           ),
           TextSpan(
-            text: " kabul etmiş olacaksınız.",
+            text: ' kabul etmiş olacaksınız.',
             style: TextStyle(
               color: CustomColors.greyTextColor,
               fontSize: 14,
               fontWeight: FontWeight.w400,
             ),
-          )
+          ),
         ],
       ),
     );
   }
 
-  listeners() {}
+  void listeners() {}
 }

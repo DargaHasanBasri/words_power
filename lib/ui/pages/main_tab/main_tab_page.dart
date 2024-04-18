@@ -1,9 +1,9 @@
-import '../../../export.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'main_tab_view_model.dart';
+import 'package:words_power/export.dart';
+import 'package:words_power/ui/pages/main_tab/main_tab_view_model.dart';
 
 class MainTabPage extends StatefulWidget {
-  const MainTabPage({Key? key}) : super(key: key);
+  const MainTabPage({super.key});
 
   @override
   State<MainTabPage> createState() => _MainTabPageState();
@@ -13,7 +13,7 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
   late final MainTabViewModel vm;
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     vm = Provider.of<MainTabViewModel>(context, listen: false);
     listeners();
@@ -38,56 +38,57 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
 
   Widget _buildBody() {
     return ValueListenableBuilder(
-        valueListenable: vm.userModel,
-        builder: (_, __, ___) {
-          return ValueListenableBuilder(
-              valueListenable: vm.currentIndex,
-              builder: (_, __, ___) {
-                return Scaffold(
-                  extendBody: true,
-                  backgroundColor: CustomColors.backgroundColor,
-                  floatingActionButton: SpeedDial(
-                    activeIcon: Icons.close,
-                    icon: Icons.add,
-                    overlayColor: Colors.black,
-                    overlayOpacity: 0.5,
-                    childrenButtonSize: const Size(100, 60),
-                    children: [
-                      SpeedDialChild(
-                        child: const Text("W&S"),
-                      ),
-                      SpeedDialChild(
-                        onTap: () {
-                          appRoutes.navigateTo(
-                            Routes.wordSentenceAdd,
-                            arguments: vm.userModel.value,
-                          );
-                        },
-                        child: const Text("W&S ADD"),
-                      ),
-                    ],
+      valueListenable: vm.userModel,
+      builder: (_, __, ___) {
+        return ValueListenableBuilder(
+          valueListenable: vm.currentIndex,
+          builder: (_, __, ___) {
+            return Scaffold(
+              extendBody: true,
+              backgroundColor: CustomColors.backgroundColor,
+              floatingActionButton: SpeedDial(
+                activeIcon: Icons.close,
+                icon: Icons.add,
+                overlayColor: Colors.black,
+                overlayOpacity: 0.5,
+                childrenButtonSize: const Size(100, 60),
+                children: [
+                  SpeedDialChild(
+                    child: const Text('W&S'),
                   ),
-                  floatingActionButtonLocation:
-                      FloatingActionButtonLocation.centerDocked,
-                  bottomNavigationBar: BottomAppBar(
-                    shape: const CircularNotchedRectangle(),
-                    notchMargin: 10,
-                    child: _buildNavigationBar(),
+                  SpeedDialChild(
+                    onTap: () {
+                      appRoutes.navigateTo(
+                        Routes.wordSentenceAdd,
+                        arguments: vm.userModel.value,
+                      );
+                    },
+                    child: const Text('W&S ADD'),
                   ),
-                  body: _getBody(vm.currentIndex.value),
-                );
-              });
-        });
+                ],
+              ),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerDocked,
+              bottomNavigationBar: BottomAppBar(
+                shape: const CircularNotchedRectangle(),
+                notchMargin: 10,
+                child: _buildNavigationBar(),
+              ),
+              body: _getBody(vm.currentIndex.value),
+            );
+          },
+        );
+      },
+    );
   }
 
   Widget _buildNavigationBar() {
     return Row(
-      mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         IconButton(
           icon: Image.asset(
-            "images/ic_home.png",
+            'images/ic_home.png',
             width: 28,
           ),
           onPressed: () {
@@ -96,7 +97,7 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
         ),
         IconButton(
           icon: Image.asset(
-            "images/ic_bookmark.png",
+            'images/ic_bookmark.png',
             width: 28,
           ),
           onPressed: () {
@@ -106,7 +107,7 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
         const SizedBox(width: 10),
         IconButton(
           icon: Image.asset(
-            "images/ic_favorite.png",
+            'images/ic_favorite.png',
             width: 28,
           ),
           onPressed: () {
@@ -115,13 +116,13 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
         ),
         IconButton(
           icon: Image.asset(
-            "images/ic_user_settings.png",
+            'images/ic_user_settings.png',
             width: 28,
           ),
           onPressed: () {
             vm.currentIndex.value = 3;
           },
-        )
+        ),
       ],
     );
   }
@@ -141,5 +142,5 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
     }
   }
 
-  listeners() {}
+  void listeners() {}
 }

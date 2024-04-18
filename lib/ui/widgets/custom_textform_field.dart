@@ -3,6 +3,31 @@ import 'package:flutter/services.dart';
 import 'package:words_power/utils/custom_colors.dart';
 
 class CustomTextFormField extends StatefulWidget {
+  const CustomTextFormField({
+    required this.controller,
+    super.key,
+    String? hintText,
+    String? textFieldName,
+    double? borderRadius,
+    bool? multiline,
+    TextInputType? inputType,
+    Color? textFieldBgColor,
+    TextInputFormatter? inputFormatter,
+    this.isEnabled,
+    this.onChanged,
+    this.onObscureChanged,
+    bool? isAutoTrue,
+    this.isRequired = false,
+    this.isHaveObscure = false,
+  })  : inputType = inputType ?? TextInputType.text,
+        textFieldBgColor = textFieldBgColor ?? Colors.transparent,
+        textFieldTitle = textFieldName ?? '',
+        hintText = hintText ?? '',
+        borderRadius = borderRadius ?? 4,
+        isAutoTrue = isAutoTrue ?? false,
+        // ignore: unnecessary_null_in_if_null_operators
+        inputFormatter = inputFormatter ?? null,
+        multiline = multiline ?? false;
   final TextEditingController controller;
   final String hintText;
   final String textFieldTitle;
@@ -17,32 +42,6 @@ class CustomTextFormField extends StatefulWidget {
   final bool? isAutoTrue;
   final bool isRequired;
   final bool isHaveObscure;
-
-  const CustomTextFormField(
-      {super.key,
-      required this.controller,
-      String? hintText,
-      String? textFieldName,
-      double? borderRadius,
-      bool? multiline,
-      TextInputType? inputType,
-      Color? textFieldBgColor,
-      TextInputFormatter? inputFormatter,
-      this.isEnabled,
-      this.onChanged,
-      this.onObscureChanged,
-      bool? isAutoTrue,
-      this.isRequired = false,
-      this.isHaveObscure = false})
-      : inputType = inputType ?? TextInputType.text,
-        textFieldBgColor = textFieldBgColor ?? Colors.transparent,
-        textFieldTitle = textFieldName ?? "",
-        hintText = hintText ?? "",
-        borderRadius = borderRadius ?? 4,
-        isAutoTrue = isAutoTrue ?? false,
-        // ignore: unnecessary_null_in_if_null_operators
-        inputFormatter = inputFormatter ?? null,
-        multiline = multiline ?? false;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -97,10 +96,10 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     );
   }
 
-  getTextFieldTitle() {
+  Widget getTextFieldTitle() {
     if (widget.textFieldTitle.isNotEmpty) {
       return Padding(
-        padding: EdgeInsets.only(bottom: 10),
+        padding: const EdgeInsets.only(bottom: 10),
         child: Row(
           children: [
             Text(
@@ -114,7 +113,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             const SizedBox(width: 6),
             if (widget.isRequired)
               const Text(
-                "*",
+                '*',
                 style: TextStyle(color: Colors.black),
               ),
           ],
@@ -126,6 +125,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   }
 
   void _onChanged(String value) {
-    if (widget.onChanged != null) widget.onChanged!(value.trim());
+    if (widget.onChanged != null) {
+      widget.onChanged?.call(value.trim());
+    }
   }
 }

@@ -1,10 +1,10 @@
-import '../../../export.dart';
-import 'settings_view_model.dart';
-import 'settings_page.dart';
+import 'package:words_power/export.dart';
+import 'package:words_power/ui/pages/settings/settings_page.dart';
+import 'package:words_power/ui/pages/settings/settings_view_model.dart';
 
 class SettingsProvider extends StatelessWidget {
-  final UserModel? userModel;
   const SettingsProvider(this.userModel, {super.key});
+  final UserModel? userModel;
 
   @override
   Widget build(BuildContext context) {

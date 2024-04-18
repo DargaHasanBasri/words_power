@@ -1,5 +1,5 @@
-import '../../../export.dart';
-import 'forgot_password_view_model.dart';
+import 'package:words_power/export.dart';
+import 'package:words_power/ui/pages/forgot_password/forgot_password_view_model.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
@@ -23,7 +23,7 @@ class _ForgotPasswordPageState extends BaseStatefulState<ForgotPasswordPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "ŞİFREMİ UNUTTUM",
+          'ŞİFREMİ UNUTTUM',
           style: TextStyle(
             color: CustomColors.white,
             fontSize: 24,
@@ -51,11 +51,12 @@ class _ForgotPasswordPageState extends BaseStatefulState<ForgotPasswordPage> {
               const SizedBox(height: 30),
               AspectRatio(
                 aspectRatio: 1,
-                child: Image.asset("images/forgot_password.png"),
+                child: Image.asset('images/forgot_password.png'),
               ),
               const SizedBox(height: 30),
               Text(
-                "Doğrulama Kodu Almak İçin Lütfen Kayıt Olduğunuz E-posta Adresinizi Girin",
+                'Doğrulama Kodu Almak İçin Lütfen Kayıt Olduğunuz E-posta '
+                    'Adresinizi Girin',
                 style: TextStyle(
                   color: CustomColors.white,
                   fontSize: 14,
@@ -66,27 +67,31 @@ class _ForgotPasswordPageState extends BaseStatefulState<ForgotPasswordPage> {
               const SizedBox(height: 20),
               CustomTextFormField(
                 controller: vm.controllerMailAddress,
-                hintText: "E-mail adresi giriniz",
+                hintText: 'E-mail adresi giriniz',
                 isRequired: true,
-                onChanged: (value) {
-                  vm.mailAddress.value = value.toString().trim();
+                onChanged: (String value) {
+                  vm.mailAddress.value = value.trim();
                 },
               ),
               const SizedBox(height: 30),
               ValueListenableBuilder(
-                  valueListenable: vm.mailAddress,
-                  builder: (_, __, ___) {
-                    return CustomButton(
-                      title: "Gönder",
-                      onClick: () {
-                        debugPrint("Kayıt Ol Tıklandı!!!!");
-                        vm.mailAddress.value.isNotEmpty
-                            ? appRoutes.navigateTo(Routes.onboarding)
-                            : showSnackBar(
-                                context, "Lütfen şifre ve e-mail alanlarını kontrol edin. Boş alan bırakmayın!");
-                      },
-                    );
-                  }),
+                valueListenable: vm.mailAddress,
+                builder: (_, __, ___) {
+                  return CustomButton(
+                    title: 'Gönder',
+                    onClick: () {
+                      debugPrint('Kayıt Ol Tıklandı!!!!');
+                      vm.mailAddress.value.isNotEmpty
+                          ? appRoutes.navigateTo(Routes.onboarding)
+                          : showSnackBar(
+                              context,
+                              'Lütfen şifre ve e-mail alanlarını kontrol edin. '
+                                  'Boş alan bırakmayın!',
+                            );
+                    },
+                  );
+                },
+              ),
             ],
           ),
         ),
@@ -94,5 +99,5 @@ class _ForgotPasswordPageState extends BaseStatefulState<ForgotPasswordPage> {
     );
   }
 
-  listeners() {}
+  void listeners() {}
 }

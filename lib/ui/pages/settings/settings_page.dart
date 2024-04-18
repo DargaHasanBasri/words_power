@@ -1,6 +1,6 @@
-import '../../../export.dart';
-import 'components/settings_item.dart';
-import 'settings_view_model.dart';
+import 'package:words_power/export.dart';
+import 'package:words_power/ui/pages/settings/components/settings_item.dart';
+import 'package:words_power/ui/pages/settings/settings_view_model.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -13,7 +13,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
   late final SettingsViewModel vm;
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     vm = Provider.of<SettingsViewModel>(context, listen: false);
     listeners();
@@ -27,7 +27,9 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
         children: [
           AspectRatio(
             aspectRatio: 1.8,
-            child: Container(
+
+            /// Container yerine coloredBox önerildi
+            child: ColoredBox(
               color: CustomColors.backgroundColor,
               child: Padding(
                 padding: const EdgeInsets.only(top: 20, left: 24),
@@ -68,47 +70,50 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
             SettingsItem(
               title: 'Kişisel Bilgilerim',
               onClick: () {
-                const Text("Kişisel Bilgilerim tıklandı!!!");
-                appRoutes.navigateTo(Routes.personalInformations, arguments: vm.userModel);
+                const Text('Kişisel Bilgilerim tıklandı!!!');
+                appRoutes.navigateTo(
+                  Routes.personalInformations,
+                  arguments: vm.userModel,
+                );
               },
-              iconAddress: "images/ic_person_info.png",
+              iconAddress: 'images/ic_person_info.png',
             ),
             const SizedBox(height: 30),
             SettingsItem(
               title: 'Güvenlik ve Gizlilik',
               onClick: () {
-                const Text("Güvenlik ve Gizlilik tıklandı!!!");
+                const Text('Güvenlik ve Gizlilik tıklandı!!!');
               },
-              iconAddress: "images/ic_security.png",
+              iconAddress: 'images/ic_security.png',
             ),
             const SizedBox(height: 30),
             SettingsItem(
               title: 'FAQ',
               onClick: () {
-                const Text("FAQ tıklandı!!!");
+                const Text('FAQ tıklandı!!!');
               },
-              iconAddress: "images/ic_faq.png",
+              iconAddress: 'images/ic_faq.png',
             ),
             const SizedBox(height: 30),
             SettingsItem(
               title: 'About',
               onClick: () {
-                const Text("About tıklandı!!!");
+                const Text('About tıklandı!!!');
               },
-              iconAddress: "images/ic_about.png",
+              iconAddress: 'images/ic_about.png',
             ),
             const SizedBox(height: 30),
             SettingsItem(
               title: 'Log out',
               onClick: () async {
                 await vm.logOut();
-                appRoutes.navigateTo(
+                await appRoutes.navigateTo(
                   Routes.login,
                   arguments: false,
                 );
-                const Text("Log out tıklandı!!!");
+                const Text('Log out tıklandı!!!');
               },
-              iconAddress: "images/ic_log_out.png",
+              iconAddress: 'images/ic_log_out.png',
             ),
             const SizedBox(height: 30),
           ],
@@ -126,13 +131,13 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
           child: CircleAvatar(
             radius: 54,
             backgroundImage: CachedNetworkImageProvider(
-              vm.userModel?.profilePhoto ?? "Null",
+              vm.userModel?.profilePhoto ?? 'Null',
             ),
           ),
         ),
         const SizedBox(width: 10),
         Text(
-          vm.userModel?.name ?? "NULL",
+          vm.userModel?.name ?? 'NULL',
           style: TextStyle(
             fontSize: 22,
             color: CustomColors.white,
@@ -142,5 +147,5 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
     );
   }
 
-  listeners() {}
+  void listeners() {}
 }

@@ -1,8 +1,8 @@
-import '../../../export.dart';
-import 'category_view_model.dart';
+import 'package:words_power/export.dart';
+import 'package:words_power/ui/pages/category/category_view_model.dart';
 
 class CategoryPage extends StatefulWidget {
-  const CategoryPage({Key? key}) : super(key: key);
+  const CategoryPage({super.key});
 
   @override
   State<CategoryPage> createState() => _CategoryPageState();
@@ -37,12 +37,12 @@ class _CategoryPageState extends State<CategoryPage> {
                 color: CustomColors.textFormFieldBorderColor,
               ),
             ),
-            child: const Text("Kategoriler"),
+            child: const Text('Kategoriler'),
           ),
         ),
       ),
     );
   }
 
-  listeners() {}
+  void listeners() {}
 }

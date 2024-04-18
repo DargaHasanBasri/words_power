@@ -1,20 +1,21 @@
-import '../../../../export.dart';
+import 'package:words_power/export.dart';
 
 class WriteArea extends StatelessWidget {
+  const WriteArea({
+    required this.englishTextController,
+    required this.turkishTextController,
+    required this.writeEnglish,
+    required this.writeTurkish,
+    required this.titleEnglish,
+    required this.titleTurkish,
+    super.key,
+  });
   final TextEditingController englishTextController;
   final TextEditingController turkishTextController;
   final ValueNotifier<String?> writeEnglish;
   final ValueNotifier<String?> writeTurkish;
   final String titleEnglish;
   final String titleTurkish;
-  const WriteArea(
-      {super.key,
-      required this.englishTextController,
-      required this.turkishTextController,
-      required this.writeEnglish,
-      required this.writeTurkish,
-      required this.titleEnglish,
-      required this.titleTurkish});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,7 @@ class WriteArea extends StatelessWidget {
             CustomTextFormField(
               controller: englishTextController,
               hintText: titleEnglish,
-              onChanged: (value) {
+              onChanged: (String value) {
                 writeEnglish.value = value;
               },
             ),
@@ -42,7 +43,7 @@ class WriteArea extends StatelessWidget {
             CustomTextFormField(
               controller: turkishTextController,
               hintText: titleTurkish,
-              onChanged: (value) {
+              onChanged: (String value) {
                 writeTurkish.value = value;
               },
             ),

@@ -1,14 +1,14 @@
 import 'package:words_power/base/base_view_model.dart';
 
-import '../../../export.dart';
+import 'package:words_power/export.dart';
 
 class PersonalInformationsViewModel extends BaseViewModel {
-  final UserModel? userModel;
   PersonalInformationsViewModel(this.userModel);
+  final UserModel? userModel;
 
   ValueNotifier<XFile?> image = ValueNotifier(null);
 
-  void pickImage(ImageSource imageSource) async {
+  Future<void> pickImage(ImageSource imageSource) async {
     image.value = await Utility().pickImageFromGallery(imageSource);
   }
 }

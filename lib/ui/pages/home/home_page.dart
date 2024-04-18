@@ -1,6 +1,6 @@
-import '../../../export.dart';
-import 'components/activitiesItem.dart';
-import 'home_view_model.dart';
+import 'package:words_power/export.dart';
+import 'package:words_power/ui/pages/home/components/activities_item.dart';
+import 'package:words_power/ui/pages/home/home_view_model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -28,13 +28,12 @@ class _HomePageState extends BaseStatefulState<HomePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Expanded(
-            flex: 1,
             child: _userProfiles(),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
             child: Text(
-              "Recently Added",
+              'Recently Added',
               style: TextStyle(
                 color: CustomColors.white,
                 fontSize: 22,
@@ -50,11 +49,11 @@ class _HomePageState extends BaseStatefulState<HomePage> {
               itemCount: 10,
               itemBuilder: (context, index) {
                 return const RecentlyAddedItem(
-                  wordAdded: "Word Word",
-                  sentencesAdded: "Sentence Sentence addd Sentence addd",
-                  imagesAdded: "images/bookmark_test.png",
-                  byUserName: "Developer Dev",
-                  dateAdded: "2 weeks ago",
+                  wordAdded: 'Word Word',
+                  sentencesAdded: 'Sentence Sentence addd Sentence addd',
+                  imagesAdded: 'images/bookmark_test.png',
+                  byUserName: 'Developer Dev',
+                  dateAdded: '2 weeks ago',
                 );
               },
               separatorBuilder: (context, index) => const SizedBox(width: 20),
@@ -63,7 +62,7 @@ class _HomePageState extends BaseStatefulState<HomePage> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
             child: Text(
-              "Activities",
+              'Activities',
               style: TextStyle(
                 color: CustomColors.white,
                 fontSize: 22,
@@ -119,7 +118,7 @@ class _HomePageState extends BaseStatefulState<HomePage> {
       itemBuilder: (context, index) {
         return const CircleAvatar(
           radius: 24,
-          child: Text("A"),
+          child: Text('A'),
         );
       },
       separatorBuilder: (context, index) => const SizedBox(width: 10),
@@ -130,7 +129,7 @@ class _HomePageState extends BaseStatefulState<HomePage> {
     return AppBar(
       backgroundColor: CustomColors.backgroundColor,
       title: Text(
-        vm.userName ?? "NULL",
+        vm.userName ?? 'NULL',
         style: TextStyle(
           color: CustomColors.white,
         ),
@@ -139,5 +138,5 @@ class _HomePageState extends BaseStatefulState<HomePage> {
     );
   }
 
-  listeners() {}
+  void listeners() {}
 }

@@ -1,5 +1,5 @@
-import '../../../export.dart';
-import 'personal_informations_page.dart';
+import 'package:words_power/export.dart';
+import 'package:words_power/ui/pages/personal_informations/personal_informations_page.dart';
 
 mixin PersonalInformationsPageMixin on State<PersonalInformationsPage> {
   final TextEditingController emailController = TextEditingController();
