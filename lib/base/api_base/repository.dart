@@ -9,7 +9,12 @@ class Repository {
         data.map((doc) => WordAndSentenceModel.fromMap(doc)).toList());
   }
 
-  Future<UserModel?> getUsers(String userId) async {
+  Stream<List<UserModel>> getUsers() {
+    return _api.getDocuments('users').map((data) =>
+        data.map((doc) => UserModel.fromMap(doc)).toList());
+  }
+
+  Future<UserModel?> getUser(String userId) async {
     try {
       final data = await _api.getDocumentById('users', userId);
       if (data != null) {
@@ -21,4 +26,6 @@ class Repository {
       return null;
     }
   }
+
+
 }

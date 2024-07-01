@@ -16,6 +16,7 @@ class _HomePageState extends BaseStatefulState<HomePage> {
   void initState() {
     super.initState();
     vm = Provider.of<HomeViewModel>(context, listen: false);
+    vm.getUsers();
     listeners();
   }
 
@@ -111,25 +112,46 @@ class _HomePageState extends BaseStatefulState<HomePage> {
   }
 
   Widget _userProfiles() {
-    return ListView.separated(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      scrollDirection: Axis.horizontal,
-      itemCount: 10,
-      itemBuilder: (context, index) {
-        return const CircleAvatar(
-          radius: 24,
-          child: Text('A'),
-        );
-      },
-      separatorBuilder: (context, index) => const SizedBox(width: 10),
-    );
+    return ValueListenableBuilder(
+        valueListenable: vm.usersInfo,
+        builder: (_, __, ___) {
+          return StreamBuilder<List<UserModel>>(
+              stream: vm.usersInfo.value,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return showProgress(context);
+                } else if (snapshot.hasError) {
+                  return Center(child: Text('Error: ${snapshot.error}'));
+                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  return Center(child: Text('No data available'));
+                } else {
+                  hideProgress();
+                  final users = snapshot.data!
+                      .where((user) => user.userID != vm.userModel?.userID)
+                      .toList();
+                  return ListView.separated(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: users.length,
+                    itemBuilder: (context, index) {
+                      return CircleAvatar(
+                        radius: 24,
+                        child: Text(users[index].name[0].toUpperCase()),
+                      );
+                    },
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(width: 10),
+                  );
+                }
+              });
+        });
   }
 
   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: CustomColors.backgroundColor,
       title: Text(
-        vm.userName ?? 'NULL',
+        vm.userModel?.name ?? 'NULL',
         style: TextStyle(
           color: CustomColors.white,
         ),
