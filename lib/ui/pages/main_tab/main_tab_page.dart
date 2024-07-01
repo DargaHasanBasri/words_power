@@ -130,7 +130,7 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
   Widget _getBody(int pageIndex) {
     switch (pageIndex) {
       case 0:
-        return HomeProvider(vm.userModel.value?.name);
+        return HomeProvider(vm.userModel.value);
       case 1:
         return const WordSentenceListProvider();
       case 2:

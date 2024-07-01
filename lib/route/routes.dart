@@ -48,9 +48,9 @@ class Routes {
           builder: (context) => const MainTabProvider(),
         );
       case Routes.home:
-        final userName = settings.arguments as String?;
+        final userModel = settings.arguments as UserModel?;
         return MaterialPageRoute(
-          builder: (context) => HomeProvider(userName),
+          builder: (context) => HomeProvider(userModel),
         );
       case Routes.settings:
         final userModel = settings.arguments as UserModel?;
