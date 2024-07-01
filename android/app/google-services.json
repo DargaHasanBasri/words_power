@@ -1,26 +1,43 @@
 {
   "project_info": {
-    "project_number": "274075340171",
-    "project_id": "words-power-hbd80",
-    "storage_bucket": "words-power-hbd80.appspot.com"
+    "project_number": "1044680486924",
+    "project_id": "words-power-d8330",
+    "storage_bucket": "words-power-d8330.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:274075340171:android:29aa3e8c599fab5815b38e",
+        "mobilesdk_app_id": "1:1044680486924:android:9610be8345a30ebca53e29",
         "android_client_info": {
           "package_name": "com.example.words_power"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1044680486924-1qvfe85rrikcse6i58li8pvek99jm1v3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyAtaZr3ZKAj5ECAzlGGWZMvUHivzEW5JAY"
+          "current_key": "AIzaSyD7-lkk5CCfhUrY5Q7EwkQvfeiqAkZYCag"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1044680486924-1qvfe85rrikcse6i58li8pvek99jm1v3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1044680486924-vbl2813asqd1fjt543mp8op9oklu5gab.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.wordsPower"
+              }
+            }
+          ]
         }
       }
     }

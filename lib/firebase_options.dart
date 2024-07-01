@@ -27,10 +27,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.macOS:
         return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -44,38 +41,51 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAhC_DmBOHJWU1HX0AihQJXv8n8qLE37Wc',
-    appId: '1:274075340171:web:45b7dff8b601864f15b38e',
-    messagingSenderId: '274075340171',
-    projectId: 'words-power-hbd80',
-    authDomain: 'words-power-hbd80.firebaseapp.com',
-    storageBucket: 'words-power-hbd80.appspot.com',
-    measurementId: 'G-29QQ25PGS6',
+    apiKey: 'AIzaSyA5ItNpwXWgZwGkKxFK9b149i_h6n-HR1w',
+    appId: '1:1044680486924:web:d4967b062592cb58a53e29',
+    messagingSenderId: '1044680486924',
+    projectId: 'words-power-d8330',
+    authDomain: 'words-power-d8330.firebaseapp.com',
+    storageBucket: 'words-power-d8330.appspot.com',
+    measurementId: 'G-BK728L369M',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAtaZr3ZKAj5ECAzlGGWZMvUHivzEW5JAY',
-    appId: '1:274075340171:android:29aa3e8c599fab5815b38e',
-    messagingSenderId: '274075340171',
-    projectId: 'words-power-hbd80',
-    storageBucket: 'words-power-hbd80.appspot.com',
+    apiKey: 'AIzaSyD7-lkk5CCfhUrY5Q7EwkQvfeiqAkZYCag',
+    appId: '1:1044680486924:android:9610be8345a30ebca53e29',
+    messagingSenderId: '1044680486924',
+    projectId: 'words-power-d8330',
+    storageBucket: 'words-power-d8330.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBBwHRrSYd47mb6343M7mTaLLuu3CqBVEQ',
-    appId: '1:274075340171:ios:fce90e370326ede015b38e',
-    messagingSenderId: '274075340171',
-    projectId: 'words-power-hbd80',
-    storageBucket: 'words-power-hbd80.appspot.com',
+    apiKey: 'AIzaSyBiPPVsVq5RG0GvwuQvrpTkf6kvzxFKP18',
+    appId: '1:1044680486924:ios:173b07bf0812215da53e29',
+    messagingSenderId: '1044680486924',
+    projectId: 'words-power-d8330',
+    storageBucket: 'words-power-d8330.appspot.com',
+    iosClientId: '1044680486924-vbl2813asqd1fjt543mp8op9oklu5gab.apps.googleusercontent.com',
     iosBundleId: 'com.example.wordsPower',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBBwHRrSYd47mb6343M7mTaLLuu3CqBVEQ',
-    appId: '1:274075340171:ios:62b266fcaf3ed68f15b38e',
-    messagingSenderId: '274075340171',
-    projectId: 'words-power-hbd80',
-    storageBucket: 'words-power-hbd80.appspot.com',
-    iosBundleId: 'com.example.wordsPower.RunnerTests',
+    apiKey: 'AIzaSyBiPPVsVq5RG0GvwuQvrpTkf6kvzxFKP18',
+    appId: '1:1044680486924:ios:173b07bf0812215da53e29',
+    messagingSenderId: '1044680486924',
+    projectId: 'words-power-d8330',
+    storageBucket: 'words-power-d8330.appspot.com',
+    iosClientId: '1044680486924-vbl2813asqd1fjt543mp8op9oklu5gab.apps.googleusercontent.com',
+    iosBundleId: 'com.example.wordsPower',
   );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyA5ItNpwXWgZwGkKxFK9b149i_h6n-HR1w',
+    appId: '1:1044680486924:web:2c87dafa7d1adc35a53e29',
+    messagingSenderId: '1044680486924',
+    projectId: 'words-power-d8330',
+    authDomain: 'words-power-d8330.firebaseapp.com',
+    storageBucket: 'words-power-d8330.appspot.com',
+    measurementId: 'G-VQ5JWNMP5S',
+  );
+
 }

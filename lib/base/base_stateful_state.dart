@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:words_power/base/api_base/repository.dart';
 import 'package:words_power/route/app_routes.dart';
 import 'package:words_power/services/authentication_service.dart';
 import 'package:words_power/services/localstorage_service.dart';
@@ -13,6 +14,7 @@ abstract class BaseStatefulState<T extends StatefulWidget> extends State<T> {
   Utility utility = Utility();
   LocalStorageService localStorage = LocalStorageService();
   final AppRoutes appRoutes = locator<AppRoutes>();
+  final Repository repository = locator<Repository>();
   AuthenticationService userInfo = AuthenticationService();
   FirebaseStorageRepository firebaseStorageRepository =
       FirebaseStorageRepository();

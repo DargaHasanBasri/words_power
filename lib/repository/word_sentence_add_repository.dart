@@ -26,7 +26,7 @@ class WordAndSentenceAddRepository {
     String collectionName,
     String docId,
     String subCollectionName,
-    String subCollectionDocId,
+    String? subCollectionDocId,
     Map<String, dynamic> data,
   ) async {
     await firebaseFirestore

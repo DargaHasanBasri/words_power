@@ -16,15 +16,8 @@ class _WordSentenceListPageState
   @override
   void initState() {
     vm = Provider.of<WordSentenceListViewModel>(context, listen: false);
-    vm.subscribeToData();
+    vm.getWordsAndSentences();
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    vm.subscription.cancel();
-    vm.wordAndSentenceListNotifier.dispose();
-    super.dispose();
   }
 
   @override
@@ -42,35 +35,43 @@ class _WordSentenceListPageState
               const SizedBox(height: 24),
               Expanded(
                 child: ValueListenableBuilder(
-                  valueListenable: vm.wordAndSentenceListNotifier,
+                  valueListenable: vm.wordsAndSentences,
                   builder: (_, __, ___) {
-                    return ListView.separated(
-                      physics: const BouncingScrollPhysics(),
-                      padding: const EdgeInsets.only(bottom: 80),
-                      itemCount:
-                          vm.wordAndSentenceListNotifier.value?.length ?? 0,
-                      itemBuilder: (context, index) {
-                        return WordSentenceListItem(
-                          word: vm.wordAndSentenceListNotifier.value?[index]
-                                  .wordEnglish ??
-                              '',
-                          sentence: vm.wordAndSentenceListNotifier.value?[index]
-                                  .sentenceEnglish ??
-                              '',
-                          imageAddress: 'images/bookmark_test.png',
-                          whoPersonWrote: vm.wordAndSentenceListNotifier
-                                  .value?[index].authorName ??
-                              '',
-                          numberViews: vm.wordAndSentenceListNotifier
-                                  .value?[index].views
-                                  .toString() ??
-                              '0',
-                          dateAdded: '00-00-0000',
-                        );
-                      },
-                      separatorBuilder: (BuildContext context, int index) =>
-                          const SizedBox(height: 20),
-                    );
+                    return StreamBuilder<List<WordAndSentenceModel>>(
+                        stream: vm.wordsAndSentences.value,
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Center(child: CircularProgressIndicator());
+                          } else if (snapshot.hasError) {
+                            return Center(
+                                child: Text('Error: ${snapshot.error}'));
+                          } else if (!snapshot.hasData ||
+                              snapshot.data!.isEmpty) {
+                            return Center(child: Text('No data available'));
+                          } else {
+                            final wordsAndSentences = snapshot.data!;
+                            return ListView.separated(
+                              physics: const BouncingScrollPhysics(),
+                              padding: const EdgeInsets.only(bottom: 80),
+                              itemCount: wordsAndSentences.length,
+                              itemBuilder: (context, index) {
+                                final item = wordsAndSentences[index];
+                                return WordSentenceListItem(
+                                  word: item.wordTurkish ?? '',
+                                  sentence: item.sentenceEnglish ?? '',
+                                  imageAddress: 'images/bookmark_test.png',
+                                  whoPersonWrote: item.authorName ?? '',
+                                  numberViews: item.views.toString(),
+                                  dateAdded: '00-00-0000',
+                                );
+                              },
+                              separatorBuilder:
+                                  (BuildContext context, int index) =>
+                                      const SizedBox(height: 20),
+                            );
+                          }
+                        });
                   },
                 ),
               ),

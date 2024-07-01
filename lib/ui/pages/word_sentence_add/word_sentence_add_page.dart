@@ -13,6 +13,11 @@ class WordSentenceAddPage extends StatefulWidget {
 class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
   late final WordSentenceAddViewModel vm;
 
+  TextEditingController _wordEnTextController = TextEditingController();
+  TextEditingController _wordTrTextController = TextEditingController();
+  TextEditingController _sentenceEnTextController = TextEditingController();
+  TextEditingController _sentenceTrTextController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -23,21 +28,21 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColors.backgroundColor,
+      backgroundColor: const Color(0xfff5f9ff),
       appBar: AppBar(
         leading: IconButton(
           icon: Image.asset(
             'images/ic_back.png',
-            color: CustomColors.whitePorcelain,
+            color: CustomColors.black,
             height: 24,
           ),
           onPressed: appRoutes.popIfBackStackNotEmpty,
         ),
-        backgroundColor: CustomColors.backgroundColor,
+        backgroundColor: const Color(0xfff5f9ff),
         title: Text(
           'Word & Sentence Add',
           style: TextStyle(
-            color: CustomColors.white,
+            color: CustomColors.black,
           ),
         ),
         centerTitle: true,
@@ -54,84 +59,64 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
                   children: [
                     const SizedBox(height: 20),
                     Text(
-                      'Word',
+                      'Write Your Word',
                       style: TextStyle(
-                        color: CustomColors.whiteSmoke,
+                        color: CustomColors.black,
                         fontSize: 22,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
-                    const SizedBox(height: 4),
-                    WriteArea(
-                      englishTextController: vm.wordEnglishTextController,
-                      turkishTextController: vm.wordTurkishTextController,
-                      writeEnglish: vm.wordWriteEnglish,
-                      writeTurkish: vm.wordWriteTurkish,
-                      titleEnglish: 'English Write Word',
-                      titleTurkish: 'Türkçe Kelime Yaz',
-                    ),
-                    const SizedBox(height: 30),
-                    Text(
-                      'Add a picture that reminds you',
-                      style: TextStyle(
-                        color: CustomColors.whiteSmoke,
-                        fontSize: 22,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    GestureDetector(
-                      onTap: () {
-                        debugPrint('tıklandı!!!');
-                        DialogHelper.isImageSource(
-                          context,
-                          () {
-                            vm.pickImage(ImageSource.camera);
-                            appRoutes.popIfBackStackNotEmpty();
-                          },
-                          () {
-                            vm.pickImage(ImageSource.gallery);
-                            appRoutes.popIfBackStackNotEmpty();
-                          },
-                        );
+                    const SizedBox(height: 10),
+                    CustomTextFormField(
+                      controller: _wordTrTextController,
+                      borderRadius: 18,
+                      hintText: 'Enter TR Word',
+                      onChanged: (String value) {
+                        vm.wordAndSentenceModelNotifier.value.wordTurkish =
+                            _wordTrTextController.text;
                       },
-                      child: AspectRatio(
-                        aspectRatio: 16 / 9,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: CustomColors.whitePorcelain,
-                            borderRadius: BorderRadius.circular(8),
-                            image: vm.image.value != null
-                                ? DecorationImage(
-                                    image:
-                                        FileImage(File(vm.image.value!.path)),
-                                    fit: BoxFit.cover,
-                                  )
-                                : const DecorationImage(
-                                    image: AssetImage(
-                                      'images/ic_add_image.png',
-                                    ),
-                                  ),
-                          ),
-                        ),
-                      ),
+                    ),
+                    SizedBox(height: 10),
+                    CustomTextFormField(
+                      controller: _wordEnTextController,
+                      borderRadius: 18,
+                      hintText: 'Enter EN Word',
+                      onChanged: (String value) {
+                        vm.wordAndSentenceModelNotifier.value.wordEnglish =
+                            _wordEnTextController.text;
+                      },
                     ),
                     const SizedBox(height: 30),
                     Text(
-                      'Sentence',
+                      'Write Your Sentence',
                       style: TextStyle(
-                        color: CustomColors.whiteSmoke,
+                        color: CustomColors.black,
                         fontSize: 22,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
-                    const SizedBox(height: 4),
-                    WriteArea(
-                      englishTextController: vm.sentenceEnglishTextController,
-                      turkishTextController: vm.sentenceTurkishTextController,
-                      writeEnglish: vm.sentenceWriteEnglish,
-                      writeTurkish: vm.sentenceWriteTurkish,
-                      titleEnglish: 'English Write Sentence',
-                      titleTurkish: 'Türkçe Cümle Yaz',
+                    const SizedBox(height: 10),
+                    CustomTextFormField(
+                      controller: _sentenceTrTextController,
+                      borderRadius: 18,
+                      hintText: 'Enter TR Sentence',
+                      onChanged: (String value) {
+                        vm.wordAndSentenceModelNotifier.value.sentenceTurkish =
+                            _sentenceTrTextController.text;
+                      },
+                    ),
+                    SizedBox(height: 10),
+                    CustomTextFormField(
+                      controller: _sentenceEnTextController,
+                      borderRadius: 18,
+                      hintText: 'Enter EN Sentence',
+                      onChanged: (String value) {
+                        vm.wordAndSentenceModelNotifier.value.sentenceEnglish =
+                            _sentenceEnTextController.text;
+                      },
                     ),
                     const SizedBox(height: 30),
+                    addExampleFoto(context),
                     Text(
                       'Gemini Generate Example Sentence',
                       style: TextStyle(
@@ -145,32 +130,22 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
                     ),
                     const SizedBox(height: 20),
                     CustomButton(
-                      onClick: () {
-                        /*
-                          firebaseStorageRepository
-                              .storeFileToFirebase(
-                            "wordAndSentence/${vm.userModel!.userID}/${DateTime.now().millisecondsSinceEpoch}",
-                            File(vm.image.value?.path ?? "null geliyor"),
-                          )
-                              .then((value) {
-                           */
-                        final uid = const Uuid().v4();
-                        final wordAndSentenceModel = WordAndSentenceModel(
-                          userID: uid,
-                          wordTurkish: '${vm.wordWriteTurkish.value}',
-                          wordEnglish: '${vm.wordWriteEnglish.value}',
-                          sentenceTurkish: '${vm.sentenceWriteTurkish.value}',
-                          sentenceEnglish: '${vm.sentenceWriteEnglish.value}',
-                          authorID: '${vm.userModel!.userID}',
-                          authorName: vm.userModel!.name,
-                          authorImg: '${vm.userModel!.profilePhoto}',
-                          createdAt: Timestamp.now(),
-                          updatedAt: Timestamp.now(),
-                          likes: 0,
-                          views: 0,
-                          coverImg: '',
-                        );
-                        vm.addWordAndSentence(wordAndSentenceModel);
+                      onClick: () async {
+                        vm.wordAndSentenceModelNotifier.value.createdAt =
+                            Timestamp.now();
+                        vm.wordAndSentenceModelNotifier.value.updatedAt =
+                            Timestamp.now();
+                        vm.wordAndSentenceModelNotifier.value.authorID =
+                            '${vm.userModel!.userID}';
+                        vm.wordAndSentenceModelNotifier.value.authorName =
+                            vm.userModel!.name;
+                        vm.wordAndSentenceModelNotifier.value.authorImg =
+                            '${vm.userModel!.profilePhoto}';
+                        vm.wordAndSentenceModelNotifier.value.likes = 0;
+                        vm.wordAndSentenceModelNotifier.value.views = 0;
+                        await vm.addWordAndSentence(
+                            vm.wordAndSentenceModelNotifier.value);
+                        appRoutes.navigateTo(Routes.mainTab);
                       },
                       title: 'Add',
                       borderRadius: 10,
@@ -181,6 +156,71 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
               },
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget addExampleFoto(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        DialogHelper.isImageSource(
+          context,
+          () {
+            vm.pickImage(ImageSource.camera);
+            appRoutes.popIfBackStackNotEmpty();
+          },
+          () {
+            vm.pickImage(ImageSource.gallery);
+            appRoutes.popIfBackStackNotEmpty();
+          },
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: CustomColors.white,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: const Color(0x00000000).withOpacity(0.5),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Column(
+          children: [
+            vm.isImgPathNull()
+                ? ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: AspectRatio(
+                      aspectRatio: 16 / 9,
+                      child: Image.file(
+                        File(vm.image.value!.path),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  )
+                : AspectRatio(
+                    aspectRatio: 16 / 9,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset('images/ic_add_foto.png'),
+                        SizedBox(height: 30),
+                        Text(
+                          'Add a picture that reminds you',
+                          style: TextStyle(
+                            color: CustomColors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+          ],
         ),
       ),
     );
