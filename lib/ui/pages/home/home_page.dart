@@ -135,8 +135,8 @@ class _HomePageState extends BaseStatefulState<HomePage> {
                     itemCount: users.length,
                     itemBuilder: (context, index) {
                       return CircleAvatar(
-                        radius: 24,
-                        child: Text(users[index].name[0].toUpperCase()),
+                        radius: 32,
+                        child: Text('${users[index].name?[0].toUpperCase()}'),
                       );
                     },
                     separatorBuilder: (context, index) =>

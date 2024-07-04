@@ -52,47 +52,62 @@ class _PersonalInformationsPageState
                   ),
                 ],
               ),
-              Padding(
-                padding: ProjectPadding.pagePaddingSymmetricXLarge,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    CustomTextFormField(
-                      controller: emailController,
-                      textFieldName: 'Email',
-                    ),
-                    const SizedBox(height: 20),
-                    CustomTextFormField(
-                      controller: fullNameController,
-                      textFieldName: 'Full Name',
-                    ),
-                    const SizedBox(height: 20),
-                    CustomTextFormField(
-                      controller: userNameController,
-                      textFieldName: 'User Name',
-                    ),
-                    const SizedBox(height: 20),
-                    CustomTextFormField(
-                      controller: passwordController,
-                      textFieldName: 'Password',
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 50),
-              Padding(
-                padding: ProjectPadding.pagePaddingSymmetricXLarge,
-                child: CustomButton(
-                  onClick: () {
-                    debugPrint('Update tıklantı');
-                  },
-                  title: 'Update',
-                ),
+              ValueListenableBuilder(
+                valueListenable: vm.userNewModel,
+                builder: (_, __, ___) {
+                  return Padding(
+                    padding: ProjectPadding.pagePaddingSymmetricXLarge,
+                    child: _userInfo(),
+                  );
+                },
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _userInfo() {
+    return Column(
+      children: [
+        CustomTextFormField(
+          controller: emailController,
+          textFieldName: 'Email',
+        ),
+        const SizedBox(height: 20),
+        CustomTextFormField(
+          controller: fullNameController,
+          textFieldName: 'Full Name',
+        ),
+        const SizedBox(height: 20),
+        CustomTextFormField(
+          controller: userNameController,
+          textFieldName: 'User Name',
+        ),
+        const SizedBox(height: 20),
+        CustomTextFormField(
+          controller: passwordController,
+          textFieldName: 'Password',
+        ),
+        const SizedBox(height: 50),
+        CustomButton(
+          onClick: () async {
+            debugPrint('Update tıklantı');
+            final UserModel model = UserModel(
+              password: passwordController.text,
+              email: emailController.text,
+              name: fullNameController.text,
+              profilePhoto:
+                  'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
+              userID: vm.userModel?.userID,
+            );
+            await vm.updateUserInfo(model);
+            appRoutes.navigateToReplacement(Routes.mainTab);
+          },
+          title: 'Update',
+        ),
+      ],
     );
   }
 

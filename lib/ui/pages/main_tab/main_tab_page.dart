@@ -16,6 +16,7 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
   void initState() {
     super.initState();
     vm = Provider.of<MainTabViewModel>(context, listen: false);
+    vm.getUser();
     listeners();
   }
 
@@ -23,14 +24,13 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: vm.getUser(),
-      builder: (BuildContext context, AsyncSnapshot<UserModel> snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          hideProgress();
-          return _buildBody();
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
-          return Text('Hata oluştu: ${snapshot.error}');
+          return Center(child: Text('Error: ${snapshot.error}'));
         } else {
-          return showProgress(context);
+          return _buildBody();
         }
       },
     );
