@@ -1,8 +1,8 @@
 class UserModel {
   UserModel({
-    required this.name,
-    required this.email,
-    required this.password,
+    this.name,
+    this.email,
+    this.password,
     this.userID,
     this.profilePhoto,
   });
@@ -16,9 +16,9 @@ class UserModel {
       profilePhoto: map['profilePhoto'] as String,
     );
   }
-  String name;
-  String email;
-  String password;
+  String? name;
+  String? email;
+  String? password;
   String? userID;
   String? profilePhoto;
 
