@@ -134,9 +134,30 @@ class _HomePageState extends BaseStatefulState<HomePage> {
                     scrollDirection: Axis.horizontal,
                     itemCount: users.length,
                     itemBuilder: (context, index) {
-                      return CircleAvatar(
-                        radius: 32,
-                        child: Text('${users[index].name?[0].toUpperCase()}'),
+                      return Column(
+                        children: [
+                          CircleAvatar(
+                            radius: 30,
+                            backgroundImage: CachedNetworkImageProvider(
+                              '${users[index].profilePhoto}',
+                            ),
+                          ),
+                          Expanded(
+                            child: Container(
+                              width: 80,
+                              child: Text(
+                                '${users[index].name?.toUpperCase()}',
+                                style: TextStyle(
+                                  fontSize: 1678,
+                                  color: Colors.white,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                maxLines: 1,
+                              ),
+                              alignment: Alignment.center,
+                            ),
+                          ),
+                        ],
                       );
                     },
                     separatorBuilder: (context, index) =>
