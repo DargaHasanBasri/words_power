@@ -1,5 +1,4 @@
 import 'package:words_power/base/base_view_model.dart';
-
 import 'package:words_power/export.dart';
 
 class PersonalInformationsViewModel extends BaseViewModel {
@@ -14,10 +13,37 @@ class PersonalInformationsViewModel extends BaseViewModel {
   }
 
   Future<void> updateUserInfo(UserModel userModel) async {
-    apiBase.updateDocument(
+    await apiBase.updateDocument(
       'users',
       '${userModel.userID}',
       userModel.toMap(),
     );
   }
+
+  Future<void> uploadProfileImage() async {
+    try {
+      if (userModel?.profilePhoto != null) {
+        await apiBase.deleteProfileImage(userModel!.profilePhoto!);
+      }
+      if (image.value != null) {
+        String? downloadUrl = await repository.uploadImage(
+          File(image.value!.path),
+          userModel?.userID ?? '',
+          'userProfiles',
+        );
+        if (downloadUrl != null) {
+          await repository.updateDocumentField(
+            'users',
+            userModel?.userID ?? '',
+            'profilePhoto',
+            downloadUrl,
+          );
+        }
+      }
+    } catch (e) {
+      print("Error uploading profile image: $e");
+    }
+  }
+
+
 }

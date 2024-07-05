@@ -10,8 +10,9 @@ class Repository {
   }
 
   Stream<List<UserModel>> getUsers() {
-    return _api.getDocuments('users').map((data) =>
-        data.map((doc) => UserModel.fromMap(doc)).toList());
+    return _api
+        .getDocuments('users')
+        .map((data) => data.map((doc) => UserModel.fromMap(doc)).toList());
   }
 
   Future<UserModel?> getUser(String userId) async {
@@ -27,5 +28,35 @@ class Repository {
     }
   }
 
+  Future<void> updateDocumentField(
+    String collectionPath,
+    String docId,
+    String fieldName,
+    dynamic value,
+  ) async {
+    try {
+      await _api.updateDocument(
+        collectionPath,
+        docId,
+        {fieldName: value},
+      );
+    } catch (e) {
+      print("Error updating document field: $e");
+    }
+  }
 
+  Future<String?> uploadImage(
+    File file,
+    String docId,
+    String storageFileName,
+  ) async {
+    try {
+      String storagePath =
+          '$storageFileName/$docId/${file.path.split('/').last}';
+      return await _api.uploadFile(file.path, storagePath);
+    } catch (e) {
+      print("Error uploading word and sentence image: $e");
+      return null;
+    }
+  }
 }

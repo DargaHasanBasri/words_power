@@ -1,7 +1,10 @@
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class ApiBase {
-  FirebaseFirestore _db = FirebaseFirestore.instance;
+  final FirebaseFirestore _db = FirebaseFirestore.instance;
+  final FirebaseStorage _storage = FirebaseStorage.instance;
 
   Future<void> addDocument(
       String collectionPath, String docId, Map<String, dynamic> data) {
@@ -37,5 +40,27 @@ class ApiBase {
         .snapshots()
         .map((snapshot) =>
             snapshot.docs.map((document) => document.data()).toList());
+  }
+
+  Future<String?> uploadFile(String filePath, String storagePath) async {
+    try {
+      File file = File(filePath);
+      final storageRef = _storage.ref().child(storagePath);
+      await storageRef.putFile(file);
+      final downloadURL = await storageRef.getDownloadURL();
+      return downloadURL;
+    } on FirebaseException catch (e) {
+      print("Error uploading file: $e");
+      return null;
+    }
+  }
+
+  Future<void> deleteProfileImage(String imageUrl) async {
+    try {
+      Reference storageRef = _storage.refFromURL(imageUrl);
+      await storageRef.delete();
+    } catch (e) {
+      print("Error deleting profile image: $e");
+    }
   }
 }
