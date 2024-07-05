@@ -89,7 +89,7 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
         IconButton(
           icon: Image.asset(
             'images/ic_home.png',
-            width: 28,
+            width: vm.currentIndex.value == 0 ? 28 : 24,
           ),
           onPressed: () {
             vm.currentIndex.value = 0;
@@ -98,7 +98,7 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
         IconButton(
           icon: Image.asset(
             'images/ic_bookmark.png',
-            width: 28,
+            width: vm.currentIndex.value == 1 ? 28 : 24,
           ),
           onPressed: () {
             vm.currentIndex.value = 1;
@@ -108,7 +108,7 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
         IconButton(
           icon: Image.asset(
             'images/ic_favorite.png',
-            width: 28,
+            width: vm.currentIndex.value == 2 ? 28 : 24,
           ),
           onPressed: () {
             vm.currentIndex.value = 2;
@@ -117,7 +117,7 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
         IconButton(
           icon: Image.asset(
             'images/ic_user_settings.png',
-            width: 28,
+            width: vm.currentIndex.value == 3 ? 28 : 24,
           ),
           onPressed: () {
             vm.currentIndex.value = 3;
