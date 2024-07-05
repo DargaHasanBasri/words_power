@@ -98,11 +98,11 @@ class _PersonalInformationsPageState
               password: passwordController.text,
               email: emailController.text,
               name: fullNameController.text,
-              profilePhoto:
-                  'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
+              profilePhoto: vm.userModel?.profilePhoto,
               userID: vm.userModel?.userID,
             );
             await vm.updateUserInfo(model);
+            await vm.uploadProfileImage();
             appRoutes.navigateToReplacement(Routes.mainTab);
           },
           title: 'Update',
@@ -154,12 +154,12 @@ class _PersonalInformationsPageState
                     debugPrint('edit tıklandı');
                     DialogHelper.isImageSource(
                       context,
-                      () {
-                        vm.pickImage(ImageSource.camera);
+                      () async {
+                        await vm.pickImage(ImageSource.camera);
                         appRoutes.popIfBackStackNotEmpty();
                       },
-                      () {
-                        vm.pickImage(ImageSource.gallery);
+                      () async {
+                        await vm.pickImage(ImageSource.gallery);
                         appRoutes.popIfBackStackNotEmpty();
                       },
                     );

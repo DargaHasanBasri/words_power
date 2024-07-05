@@ -49,13 +49,9 @@ abstract class BaseStatefulState<T extends StatefulWidget> extends State<T> {
   }
 
   void hideProgress() {
-    try {
-      if (_progressOverlayEntry != null && _progressOverlayEntry!.mounted) {
-        _progressOverlayEntry!.remove();
-        _progressOverlayEntry = null;
-      }
-    } catch (e) {
-      //
+    if (_progressOverlayEntry != null && _progressOverlayEntry!.mounted) {
+      _progressOverlayEntry!.remove();
+      _progressOverlayEntry = null;
     }
   }
 
