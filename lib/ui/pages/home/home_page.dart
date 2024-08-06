@@ -1,5 +1,4 @@
 import 'package:words_power/export.dart';
-import 'package:words_power/ui/pages/home/components/activities_item.dart';
 import 'package:words_power/ui/pages/home/home_view_model.dart';
 
 class HomePage extends StatefulWidget {
@@ -40,7 +39,10 @@ class _HomePageState extends BaseStatefulState<HomePage> {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 itemCount: 10,
                 itemBuilder: (context, index) {
-                  return const RecentlyAddedItem(
+                  return RecentlyAddedItem(
+                    onPressDetail: () {
+                      appRoutes.navigateTo(Routes.detailPost);
+                    },
                     wordAdded: 'Word Word',
                     sentencesAdded: 'Sentence Sentence addd Sentence addd',
                     imagesAdded: 'images/bookmark_test.png',
@@ -154,7 +156,6 @@ class _HomePageState extends BaseStatefulState<HomePage> {
         ),
         SizedBox(width: 12),
       ],
-
     );
   }
 

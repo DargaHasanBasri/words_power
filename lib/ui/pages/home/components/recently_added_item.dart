@@ -4,6 +4,7 @@ import 'package:words_power/export.dart';
 
 class RecentlyAddedItem extends StatelessWidget {
   const RecentlyAddedItem({
+    required this.onPressDetail,
     required this.wordAdded,
     required this.sentencesAdded,
     required this.imagesAdded,
@@ -16,6 +17,7 @@ class RecentlyAddedItem extends StatelessWidget {
   final String byUserName;
   final String dateAdded;
   final String imagesAdded;
+  final VoidCallback onPressDetail;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +47,8 @@ class RecentlyAddedItem extends StatelessWidget {
                     child: CircleAvatar(
                       radius: 16,
                       backgroundImage: CachedNetworkImageProvider(
-                          'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'),
+                        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
+                      ),
                     ),
                   ),
                   SizedBox(width: 10),
@@ -62,80 +65,83 @@ class RecentlyAddedItem extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Stack(
-                  alignment: Alignment.bottomLeft,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        image: DecorationImage(
-                          image: AssetImage(imagesAdded),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    ClipRRect(
-                      borderRadius: BorderRadius.vertical(
-                        bottom: Radius.circular(30),
-                      ),
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Color(0xff37638d).withOpacity(0.4),
-                            borderRadius: BorderRadius.vertical(
-                              bottom: Radius.circular(30),
-                            ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 14,
-                              horizontal: 20,
-                            ),
-                            child: Row(
-                              children: [
-                                Image.asset('images/ic_comment.png'),
-                                SizedBox(width: 6),
-                                Text(
-                                  '10',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                SizedBox(width: 14),
-                                Image.asset('images/ic_like.png'),
-                                SizedBox(width: 6),
-                                Text(
-                                  '10',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                Spacer(),
-                                Image.asset('images/ic_send.png'),
-                                SizedBox(width: 6),
-                                Text(
-                                  '10',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                SizedBox(width: 14),
-                                Image.asset('images/ic_save.png'),
-                                SizedBox(width: 6),
-                                Text(
-                                  '10',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ],
-                            ),
+                child: GestureDetector(
+                  onTap: () => onPressDetail.call(),
+                  child: Stack(
+                    alignment: Alignment.bottomLeft,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          image: DecorationImage(
+                            image: AssetImage(imagesAdded),
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                      ClipRRect(
+                        borderRadius: BorderRadius.vertical(
+                          bottom: Radius.circular(30),
+                        ),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0xff37638d).withOpacity(0.4),
+                              borderRadius: BorderRadius.vertical(
+                                bottom: Radius.circular(30),
+                              ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 14,
+                                horizontal: 20,
+                              ),
+                              child: Row(
+                                children: [
+                                  Image.asset('images/ic_comment.png'),
+                                  SizedBox(width: 6),
+                                  Text(
+                                    '10',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  SizedBox(width: 14),
+                                  Image.asset('images/ic_like.png'),
+                                  SizedBox(width: 6),
+                                  Text(
+                                    '10',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  Image.asset('images/ic_send.png'),
+                                  SizedBox(width: 6),
+                                  Text(
+                                    '10',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  SizedBox(width: 14),
+                                  Image.asset('images/ic_save.png'),
+                                  SizedBox(width: 6),
+                                  Text(
+                                    '10',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
