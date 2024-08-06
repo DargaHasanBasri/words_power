@@ -1,4 +1,5 @@
 import 'package:words_power/export.dart';
+import 'package:words_power/ui/pages/detail_post/components/user_comments.dart';
 import 'package:words_power/ui/pages/detail_post/detail_post_view_model.dart';
 
 class DetailPostPage extends StatefulWidget {
@@ -22,24 +23,49 @@ class _DetailPostPageState extends BaseStatefulState<DetailPostPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColors.white,
+      backgroundColor: Color(0xffe6eefa),
       appBar: _buildAppBar(),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Container(
-            alignment: Alignment.center,
-            height: MediaQuery.of(context).size.height / 2,
-            decoration: BoxDecoration(
-              color: CustomColors.white,
-              borderRadius: BorderRadius.circular(25),
-              border: Border.all(
-                width: 4,
-                color: CustomColors.textFormFieldBorderColor,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 14),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _userDateInfo(),
+            SizedBox(height: 20),
+            AspectRatio(
+              aspectRatio: 1.6,
+              child: Container(
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: CustomColors.white,
+                  borderRadius: BorderRadius.circular(25),
+                  image: DecorationImage(
+                    image: AssetImage('images/bookmark_test.png'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
             ),
-            child: const Text('Detail Post'),
-          ),
+            SizedBox(height: 20),
+            Text(
+              'Örnek Cümle:',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text('Search for your friends on the app and connect with them.'),
+            SizedBox(height: 20),
+            _userActions(),
+            Expanded(
+              child: ListView.builder(
+                itemCount: 20,
+                itemBuilder: (context, index) {
+                  return UserComments();
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -54,12 +80,98 @@ class _DetailPostPageState extends BaseStatefulState<DetailPostPage> {
       leading: IconButton(
         icon: Image.asset(
           'images/ic_back.png',
-          width: 26,
+          width: 24,
         ),
         onPressed: () {
           appRoutes.popIfBackStackNotEmpty();
         },
       ),
+      title: Text('Detail'),
+      centerTitle: true,
+      actions: [
+        Padding(
+          padding: const EdgeInsets.only(right: 4),
+          child: IconButton(
+            icon: Image.asset(
+              'images/ic_bookmark.png',
+              width: 24,
+              color: Colors.black,
+            ),
+            onPressed: () {},
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _userDateInfo() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Row(
+        children: [
+          Container(
+            padding: EdgeInsets.all(2),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.white,
+              border: Border.all(
+                color: Color(0xff648fd9),
+                width: 2,
+              ),
+            ),
+            child: CircleAvatar(
+              radius: 16,
+              backgroundImage: CachedNetworkImageProvider(
+                'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
+              ),
+            ),
+          ),
+          SizedBox(width: 10),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Kullanıcı Adı'),
+              Text('06.08.2024'),
+            ],
+          ),
+          Spacer(),
+          Text(
+            'Kelime -> Elma',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _userActions() {
+    return Row(
+      children: [
+        IconButton(
+          icon: Image.asset(
+            'images/ic_favorite.png',
+            width: 24,
+            color: Colors.black,
+          ),
+          onPressed: () {},
+        ),
+        Text('20'),
+        SizedBox(width: 10),
+        IconButton(
+          icon: Image.asset(
+            'images/ic_comment.png',
+            width: 24,
+            color: Colors.black,
+          ),
+          onPressed: () {},
+        ),
+        Text('20'),
+        Spacer(),
+        Text('20 dk önce'),
+      ],
     );
   }
 
