@@ -1,4 +1,5 @@
 import 'package:words_power/export.dart';
+import 'package:words_power/ui/pages/detail_post/detail_post_provider.dart';
 
 class Routes {
   const Routes._();
@@ -15,6 +16,7 @@ class Routes {
   static const String wordSentenceAdd = 'wordSentenceAddProvider';
   static const String wordSentenceList = 'wordSentenceListProvider';
   static const String personalInformations = 'personalInformationsProvider';
+  static const String detailPost = 'detailPostProvider';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -74,6 +76,10 @@ class Routes {
         final userModel = settings.arguments as UserModel?;
         return MaterialPageRoute(
           builder: (context) => PersonalInformationsProvider(userModel),
+        );
+      case Routes.detailPost:
+        return MaterialPageRoute(
+          builder: (context) => DetailPostProvider(),
         );
       default:
         return MaterialPageRoute(
