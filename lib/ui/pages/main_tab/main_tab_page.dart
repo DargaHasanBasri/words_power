@@ -185,7 +185,10 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Image.asset(
-                      'images/ic_like.png',
+                      'images/ic_bookmark.png',
+                      width: 24,
+                      height: 24,
+                      color: Colors.white,
                     ),
                   ),
                 ),
