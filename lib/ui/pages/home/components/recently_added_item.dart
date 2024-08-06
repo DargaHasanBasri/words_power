@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:words_power/export.dart';
 
 class RecentlyAddedItem extends StatelessWidget {
@@ -18,88 +20,137 @@ class RecentlyAddedItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 1.6,
+      aspectRatio: 0.9,
       child: Container(
         decoration: BoxDecoration(
-          color: CustomColors.blueBall,
-          borderRadius: BorderRadius.circular(12),
+          color: Color(0xffe6eefa),
+          borderRadius: BorderRadius.circular(40),
         ),
-        child: Row(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(width: 18),
+            Padding(
+              padding: const EdgeInsets.all(14.0),
+              child: Row(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(1),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white,
+                      border: Border.all(
+                        color: Colors.white,
+                      ),
+                    ),
+                    child: CircleAvatar(
+                      radius: 16,
+                      backgroundImage: CachedNetworkImageProvider(
+                          'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'),
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(byUserName),
+                      Text(byUserName),
+                    ],
+                  ),
+                ],
+              ),
+            ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Stack(
+                  alignment: Alignment.bottomLeft,
                   children: [
-                    Text(
-                      wordAdded,
-                      style: TextStyle(
-                        color: CustomColors.whiteSmoke,
-                        fontSize: 16,
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        image: DecorationImage(
+                          image: AssetImage(imagesAdded),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
-                    Text(
-                      sentencesAdded,
-                      style: TextStyle(
-                        color: CustomColors.whiteSmoke,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
+                    ClipRRect(
+                      borderRadius: BorderRadius.vertical(
+                        bottom: Radius.circular(30),
                       ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                    ),
-                    Text(
-                      byUserName,
-                      style: TextStyle(
-                        color: CustomColors.backgroundColor,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          dateAdded,
-                          style: TextStyle(
-                            color: CustomColors.textFormFieldBorderColor,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Color(0xff37638d).withOpacity(0.4),
+                            borderRadius: BorderRadius.vertical(
+                              bottom: Radius.circular(30),
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 14,
+                              horizontal: 20,
+                            ),
+                            child: Row(
+                              children: [
+                                Image.asset('images/ic_comment.png'),
+                                SizedBox(width: 6),
+                                Text(
+                                  '10',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                SizedBox(width: 14),
+                                Image.asset('images/ic_like.png'),
+                                SizedBox(width: 6),
+                                Text(
+                                  '10',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Spacer(),
+                                Image.asset('images/ic_send.png'),
+                                SizedBox(width: 6),
+                                Text(
+                                  '10',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                SizedBox(width: 14),
+                                Image.asset('images/ic_save.png'),
+                                SizedBox(width: 6),
+                                Text(
+                                  '10',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                        const Spacer(),
-                        Image.asset(
-                          'images/ic_favorite.png',
-                          width: 30,
-                          color: CustomColors.whiteSmoke,
-                        ),
-                      ],
+                      ),
                     ),
                   ],
                 ),
               ),
             ),
-            const SizedBox(width: 6),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: AspectRatio(
-                  aspectRatio: 9 / 16,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      image: DecorationImage(
-                        image: AssetImage(imagesAdded),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
+            SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Kelime: $wordAdded'),
+                  Text('Örnek Cümle: $sentencesAdded'),
+                ],
               ),
             ),
-            const SizedBox(width: 10),
+            SizedBox(height: 10),
           ],
         ),
       ),

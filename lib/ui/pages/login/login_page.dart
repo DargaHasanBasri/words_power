@@ -99,7 +99,7 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
                               debugPrint('Giriş Yap Tıklandı!!!!');
                               await vm.login();
                               vm.isLogin.value
-                                  ? appRoutes.navigateTo(Routes.mainTab)
+                                  ? appRoutes.navigateToReplacement(Routes.mainTab)
                                   : showSnackBar(
                                       context,
                                       'Lütfen şifre ve e-mail kontrol edin.',

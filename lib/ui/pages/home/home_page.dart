@@ -22,91 +22,39 @@ class _HomePageState extends BaseStatefulState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: CustomColors.backgroundColor,
-      appBar: _buildAppBar(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-            child: _userProfiles(),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
-            child: Text(
-              'Recently Added',
-              style: TextStyle(
-                color: CustomColors.white,
-                fontSize: 22,
+    return SafeArea(
+      bottom: false,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: _buildAppBar(),
+        body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              _userProfiles(),
+              SizedBox(height: 4),
+              ListView.separated(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return const RecentlyAddedItem(
+                    wordAdded: 'Word Word',
+                    sentencesAdded: 'Sentence Sentence addd Sentence addd',
+                    imagesAdded: 'images/bookmark_test.png',
+                    byUserName: 'Developer Dev',
+                    dateAdded: '2 weeks ago',
+                  );
+                },
+                separatorBuilder: (context, index) =>
+                    const SizedBox(height: 20),
               ),
-            ),
+              const SizedBox(height: kBottomNavigationBarHeight + 60),
+            ],
           ),
-          Expanded(
-            flex: 3,
-            child: ListView.separated(
-              physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              scrollDirection: Axis.horizontal,
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return const RecentlyAddedItem(
-                  wordAdded: 'Word Word',
-                  sentencesAdded: 'Sentence Sentence addd Sentence addd',
-                  imagesAdded: 'images/bookmark_test.png',
-                  byUserName: 'Developer Dev',
-                  dateAdded: '2 weeks ago',
-                );
-              },
-              separatorBuilder: (context, index) => const SizedBox(width: 20),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
-            child: Text(
-              'Activities',
-              style: TextStyle(
-                color: CustomColors.white,
-                fontSize: 22,
-              ),
-            ),
-          ),
-          const Expanded(
-            flex: 2,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: ActivitiesItem(),
-                  ),
-                  SizedBox(width: 10),
-                  Expanded(
-                    child: ActivitiesItem(),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(height: 4),
-          const Expanded(
-            flex: 2,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: ActivitiesItem(),
-                  ),
-                  SizedBox(width: 10),
-                  Expanded(
-                    child: ActivitiesItem(),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(height: kBottomNavigationBarHeight + 60),
-        ],
+        ),
       ),
     );
   }
@@ -129,39 +77,55 @@ class _HomePageState extends BaseStatefulState<HomePage> {
                   final users = snapshot.data!
                       .where((user) => user.userID != vm.userModel?.userID)
                       .toList();
-                  return ListView.separated(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: users.length,
-                    itemBuilder: (context, index) {
-                      return Column(
-                        children: [
-                          CircleAvatar(
-                            radius: 30,
-                            backgroundImage: CachedNetworkImageProvider(
-                              '${users[index].profilePhoto}',
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              width: 80,
-                              child: Text(
-                                '${users[index].name?.toUpperCase()}',
-                                style: TextStyle(
-                                  fontSize: 1678,
-                                  color: Colors.white,
-                                  overflow: TextOverflow.ellipsis,
+                  return Container(
+                    height: 100,
+                    child: ListView.separated(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      scrollDirection: Axis.horizontal,
+                      itemCount: users.length,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          children: [
+                            Container(
+                              height: 80,
+                              padding: EdgeInsets.all(2),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.white,
+                                border: Border.all(
+                                  color: Color(0xff648fd9),
+                                  width: 2,
                                 ),
-                                maxLines: 1,
                               ),
-                              alignment: Alignment.center,
+                              child: CircleAvatar(
+                                radius: 34,
+                                backgroundImage: CachedNetworkImageProvider(
+                                  '${users[index].profilePhoto}',
+                                ),
+                              ),
                             ),
-                          ),
-                        ],
-                      );
-                    },
-                    separatorBuilder: (context, index) =>
-                        const SizedBox(width: 10),
+                            Expanded(
+                              child: Container(
+                                width: 60,
+                                child: Text(
+                                  '${users[index].name?.toUpperCase()}',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  maxLines: 1,
+                                ),
+                                alignment: Alignment.center,
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(width: 10),
+                    ),
                   );
                 }
               });
@@ -170,14 +134,27 @@ class _HomePageState extends BaseStatefulState<HomePage> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: CustomColors.backgroundColor,
+      backgroundColor: Colors.white,
+      automaticallyImplyLeading: false,
+      forceMaterialTransparency: true,
+      elevation: 0,
       title: Text(
-        vm.userModel?.name ?? 'NULL',
+        'Explore',
         style: TextStyle(
-          color: CustomColors.white,
+          color: Colors.black,
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
         ),
       ),
       centerTitle: true,
+      actions: [
+        CircleAvatar(
+          radius: 24,
+          child: Image.asset('images/ic_notifications.png'),
+        ),
+        SizedBox(width: 12),
+      ],
+
     );
   }
 
