@@ -45,11 +45,12 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
           builder: (_, __, ___) {
             return Scaffold(
               extendBody: true,
-              backgroundColor: CustomColors.backgroundColor,
+              backgroundColor: CustomColors.white,
               floatingActionButton: SpeedDial(
                 activeIcon: Icons.close,
                 icon: Icons.add,
                 overlayColor: Colors.black,
+                buttonSize: Size(70, 70),
                 overlayOpacity: 0.5,
                 childrenButtonSize: const Size(100, 60),
                 children: [
@@ -70,8 +71,9 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerDocked,
               bottomNavigationBar: BottomAppBar(
+                color: Color(0xff5790DF),
                 shape: const CircularNotchedRectangle(),
-                notchMargin: 10,
+                notchMargin: 14,
                 child: _buildNavigationBar(),
               ),
               body: _getBody(vm.currentIndex.value),
