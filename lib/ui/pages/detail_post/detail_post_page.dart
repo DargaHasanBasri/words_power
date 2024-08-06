@@ -11,7 +11,6 @@ class DetailPostPage extends StatefulWidget {
 
 class _DetailPostPageState extends BaseStatefulState<DetailPostPage> {
   late final DetailPostViewModel vm;
-  ScrollController listViewController = ScrollController();
 
   @override
   void initState() {

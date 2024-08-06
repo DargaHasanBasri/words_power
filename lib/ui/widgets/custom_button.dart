@@ -40,7 +40,7 @@ class _CustomButtonState extends State<CustomButton> {
         ),
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
             child: Text(
               widget.title,
               style: TextStyle(
