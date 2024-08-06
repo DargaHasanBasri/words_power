@@ -21,41 +21,37 @@ class _HomePageState extends BaseStatefulState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      bottom: false,
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: _buildAppBar(),
-        body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              _userProfiles(),
-              SizedBox(height: 4),
-              ListView.separated(
-                shrinkWrap: true,
-                physics: const BouncingScrollPhysics(),
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return RecentlyAddedItem(
-                    onPressDetail: () {
-                      appRoutes.navigateTo(Routes.detailPost);
-                    },
-                    wordAdded: 'Word Word',
-                    sentencesAdded: 'Sentence Sentence addd Sentence addd',
-                    imagesAdded: 'images/bookmark_test.png',
-                    byUserName: 'Developer Dev',
-                    dateAdded: '2 weeks ago',
-                  );
-                },
-                separatorBuilder: (context, index) =>
-                    const SizedBox(height: 20),
-              ),
-              const SizedBox(height: kBottomNavigationBarHeight + 60),
-            ],
-          ),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: _buildAppBar(),
+      body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            _userProfiles(),
+            SizedBox(height: 4),
+            ListView.separated(
+              shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return RecentlyAddedItem(
+                  onPressDetail: () {
+                    appRoutes.navigateTo(Routes.detailPost);
+                  },
+                  wordAdded: 'Word Word',
+                  sentencesAdded: 'Sentence Sentence addd Sentence addd',
+                  imagesAdded: 'images/bookmark_test.png',
+                  byUserName: 'Developer Dev',
+                  dateAdded: '2 weeks ago',
+                );
+              },
+              separatorBuilder: (context, index) => const SizedBox(height: 20),
+            ),
+            const SizedBox(height: kBottomNavigationBarHeight + 60),
+          ],
         ),
       ),
     );
@@ -82,7 +78,7 @@ class _HomePageState extends BaseStatefulState<HomePage> {
                   return Container(
                     height: 100,
                     child: ListView.separated(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
                       scrollDirection: Axis.horizontal,
                       itemCount: users.length,
                       itemBuilder: (context, index) {
@@ -100,7 +96,7 @@ class _HomePageState extends BaseStatefulState<HomePage> {
                                 ),
                               ),
                               child: CircleAvatar(
-                                radius: 34,
+                                radius: 28,
                                 backgroundImage: CachedNetworkImageProvider(
                                   '${users[index].profilePhoto}',
                                 ),
@@ -112,7 +108,7 @@ class _HomePageState extends BaseStatefulState<HomePage> {
                                 child: Text(
                                   '${users[index].name?.toUpperCase()}',
                                   style: TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 12,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black,
                                     overflow: TextOverflow.ellipsis,
@@ -126,7 +122,7 @@ class _HomePageState extends BaseStatefulState<HomePage> {
                         );
                       },
                       separatorBuilder: (context, index) =>
-                          const SizedBox(width: 10),
+                          const SizedBox(width: 20),
                     ),
                   );
                 }
@@ -140,18 +136,29 @@ class _HomePageState extends BaseStatefulState<HomePage> {
       automaticallyImplyLeading: false,
       forceMaterialTransparency: true,
       elevation: 0,
-      title: Text(
-        'Explore',
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-        ),
+      title: Row(
+        children: [
+          CircleAvatar(
+            radius: 20,
+            backgroundImage: CachedNetworkImageProvider(
+              vm.userModel?.profilePhoto ??
+                  'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
+            ),
+          ),
+          SizedBox(width: 8),
+          Text(
+            'Good Morning, ${vm.userModel?.name?.toUpperCase() ?? "NULLUM"}',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
       ),
-      centerTitle: true,
       actions: [
         CircleAvatar(
-          radius: 24,
+          radius: 20,
           child: Image.asset('images/ic_notifications.png'),
         ),
         SizedBox(width: 12),
