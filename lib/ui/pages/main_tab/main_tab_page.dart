@@ -70,11 +70,16 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
               ),
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerDocked,
-              bottomNavigationBar: BottomAppBar(
-                color: Color(0xff5790DF),
-                shape: const CircularNotchedRectangle(),
-                notchMargin: 14,
-                child: _buildNavigationBar(),
+              bottomNavigationBar: ClipRRect(
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(30.0),
+                ),
+                child: BottomAppBar(
+                  color: Color(0xff5790DF),
+                  shape: const CircularNotchedRectangle(),
+                  notchMargin: 14,
+                  child: _buildNavigationBar(),
+                ),
               ),
               body: _getBody(vm.currentIndex.value),
             );
@@ -88,42 +93,154 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        IconButton(
-          icon: Image.asset(
-            'images/ic_home.png',
-            width: vm.currentIndex.value == 0 ? 28 : 24,
-          ),
-          onPressed: () {
-            vm.currentIndex.value = 0;
-          },
+        Column(
+          children: [
+            Material(
+              color: Colors.transparent,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(20),
+                  onTap: () {
+                    vm.currentIndex.value = 0;
+                  },
+                  child: Ink(
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Image.asset(
+                      'images/ic_home.png',
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 6),
+            Visibility(
+              visible: vm.currentIndex.value == 0 ? true : false,
+              child: Container(
+                height: 3,
+                width: 20,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
+            ),
+          ],
         ),
-        IconButton(
-          icon: Image.asset(
-            'images/ic_bookmark.png',
-            width: vm.currentIndex.value == 1 ? 28 : 24,
-          ),
-          onPressed: () {
-            vm.currentIndex.value = 1;
-          },
+        Column(
+          children: [
+            Material(
+              color: Colors.transparent,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(20),
+                  onTap: () {
+                    vm.currentIndex.value = 1;
+                  },
+                  child: Ink(
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Image.asset(
+                      'images/ic_game.png',
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 6),
+            Visibility(
+              visible: vm.currentIndex.value == 1 ? true : false,
+              child: Container(
+                height: 3,
+                width: 20,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
+            ),
+          ],
         ),
-        const SizedBox(width: 10),
-        IconButton(
-          icon: Image.asset(
-            'images/ic_favorite.png',
-            width: vm.currentIndex.value == 2 ? 28 : 24,
-          ),
-          onPressed: () {
-            vm.currentIndex.value = 2;
-          },
+        SizedBox(width: 40),
+        Column(
+          children: [
+            Material(
+              color: Colors.transparent,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(20),
+                  onTap: () {
+                    vm.currentIndex.value = 2;
+                  },
+                  child: Ink(
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Image.asset(
+                      'images/ic_like.png',
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 6),
+            Visibility(
+              visible: vm.currentIndex.value == 2 ? true : false,
+              child: Container(
+                height: 3,
+                width: 20,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
+            ),
+          ],
         ),
-        IconButton(
-          icon: Image.asset(
-            'images/ic_user_settings.png',
-            width: vm.currentIndex.value == 3 ? 28 : 24,
-          ),
-          onPressed: () {
-            vm.currentIndex.value = 3;
-          },
+        Column(
+          children: [
+            Material(
+              color: Colors.transparent,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(20),
+                  onTap: () {
+                    vm.currentIndex.value = 3;
+                  },
+                  child: Ink(
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Image.asset(
+                      'images/ic_person_account.png',
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 6),
+            Visibility(
+              visible: vm.currentIndex.value == 3 ? true : false,
+              child: Container(
+                height: 3,
+                width: 20,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
+            ),
+          ],
         ),
       ],
     );
