@@ -84,21 +84,26 @@ class _HomePageState extends BaseStatefulState<HomePage> {
                       itemBuilder: (context, index) {
                         return Column(
                           children: [
-                            Container(
-                              height: 80,
-                              padding: EdgeInsets.all(2),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.white,
-                                border: Border.all(
-                                  color: Color(0xff648fd9),
-                                  width: 2,
+                            GestureDetector(
+                              onTap: () {
+                                appRoutes.navigateTo(Routes.detailUser);
+                              },
+                              child: Container(
+                                height: 80,
+                                padding: EdgeInsets.all(2),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color: Color(0xff648fd9),
+                                    width: 2,
+                                  ),
                                 ),
-                              ),
-                              child: CircleAvatar(
-                                radius: 28,
-                                backgroundImage: CachedNetworkImageProvider(
-                                  '${users[index].profilePhoto}',
+                                child: CircleAvatar(
+                                  radius: 28,
+                                  backgroundImage: CachedNetworkImageProvider(
+                                    '${users[index].profilePhoto}',
+                                  ),
                                 ),
                               ),
                             ),
