@@ -21,7 +21,6 @@ export 'package:words_power/utils/dialog_helper.dart';
 export 'package:words_power/utils/project_padding.dart';
 export 'package:words_power/utils/utility.dart';
 
-export '../ui/pages/favorite/favorite_provider.dart';
 export '../ui/pages/forgot_password/forgot_password_provider.dart';
 export '../ui/pages/home/home_provider.dart';
 export '../ui/pages/login/login_provider.dart';
