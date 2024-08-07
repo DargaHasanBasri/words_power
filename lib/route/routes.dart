@@ -61,10 +61,6 @@ class Routes {
         return MaterialPageRoute(
           builder: (context) => SettingsProvider(userModel),
         );
-      case Routes.favorite:
-        return MaterialPageRoute(
-          builder: (context) => const FavoriteProvider(),
-        );
       case Routes.wordSentenceAdd:
         final userModel = settings.arguments as UserModel?;
         return MaterialPageRoute(
