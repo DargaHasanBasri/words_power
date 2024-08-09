@@ -2,6 +2,7 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:words_power/export.dart';
 import 'package:words_power/ui/pages/main_tab/main_tab_view_model.dart';
 import 'package:words_power/ui/pages/saved_posts/saved_posts_provider.dart';
+import 'package:words_power/ui/pages/user_info/user_info_provider.dart';
 
 class MainTabPage extends StatefulWidget {
   const MainTabPage({super.key});
@@ -259,7 +260,7 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
       case 2:
         return SavedPostsProvider();
       case 3:
-        return SettingsProvider(vm.userModel.value);
+        return UserInfoProvider();
       default:
         return SettingsProvider(vm.userModel.value);
     }
