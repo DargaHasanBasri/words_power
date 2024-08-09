@@ -41,6 +41,10 @@ class _DetailUserPageState extends BaseStatefulState<DetailUserPage> {
                     totalFollowings:
                         vm.userModel.value?.followings?.length.toString(),
                     profilePhotoAddress: vm.userModel.value?.profilePhoto,
+                    onTapIsFollowButton: () async {
+                      await vm.unFollow();
+                      appRoutes.navigateToReplacement(Routes.mainTab);
+                    },
                   );
                 }),
             SizedBox(height: 10),
