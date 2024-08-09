@@ -15,7 +15,7 @@ class _HomePageState extends BaseStatefulState<HomePage> {
   void initState() {
     super.initState();
     vm = Provider.of<HomeViewModel>(context, listen: false);
-    vm.getUsers();
+    vm.getFollowedUsers();
     listeners();
   }
 
@@ -86,7 +86,10 @@ class _HomePageState extends BaseStatefulState<HomePage> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                appRoutes.navigateTo(Routes.detailUser);
+                                appRoutes.navigateTo(
+                                  Routes.detailUser,
+                                  arguments: users[index].userID,
+                                );
                               },
                               child: Container(
                                 height: 80,
