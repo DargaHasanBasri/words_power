@@ -260,7 +260,7 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
       case 2:
         return SavedPostsProvider();
       case 3:
-        return UserInfoProvider();
+        return UserInfoProvider(vm.userModel.value);
       default:
         return SettingsProvider(vm.userModel.value);
     }
