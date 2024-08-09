@@ -17,6 +17,7 @@ class _DetailUserPageState extends BaseStatefulState<DetailUserPage> {
   void initState() {
     super.initState();
     vm = Provider.of<DetailUserViewModel>(context, listen: false);
+    vm.getUser();
     listeners();
   }
 
@@ -29,7 +30,19 @@ class _DetailUserPageState extends BaseStatefulState<DetailUserPage> {
         padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Column(
           children: [
-            ItemUserInformation(),
+            ValueListenableBuilder(
+                valueListenable: vm.userModel,
+                builder: (_, __, ___) {
+                  return ItemUserInformation(
+                    userName: vm.userModel.value?.name,
+                    totalPost: vm.userModel.value?.posts.toString(),
+                    totalFollowers:
+                        vm.userModel.value?.followers?.length.toString(),
+                    totalFollowings:
+                        vm.userModel.value?.followings?.length.toString(),
+                    profilePhotoAddress: vm.userModel.value?.profilePhoto,
+                  );
+                }),
             SizedBox(height: 10),
             Expanded(
               child: ListView.builder(
@@ -48,11 +61,10 @@ class _DetailUserPageState extends BaseStatefulState<DetailUserPage> {
                                   aspectRatio: 0.7,
                                   child: Container(
                                     width:
-                                        MediaQuery.of(context).size.width /
-                                            2,
+                                        MediaQuery.of(context).size.width / 2,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.only(
-                                        topLeft:  index == 0
+                                        topLeft: index == 0
                                             ? Radius.circular(30)
                                             : Radius.circular(0),
                                       ),
@@ -70,8 +82,7 @@ class _DetailUserPageState extends BaseStatefulState<DetailUserPage> {
                                   aspectRatio: 1.2,
                                   child: Container(
                                     width:
-                                        MediaQuery.of(context).size.width /
-                                            2,
+                                        MediaQuery.of(context).size.width / 2,
                                     child: Image.asset(
                                       'images/background3.png',
                                       fit: BoxFit.cover,
@@ -89,11 +100,10 @@ class _DetailUserPageState extends BaseStatefulState<DetailUserPage> {
                                   aspectRatio: 1.2,
                                   child: Container(
                                     width:
-                                        MediaQuery.of(context).size.width /
-                                            2,
+                                        MediaQuery.of(context).size.width / 2,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.only(
-                                        topRight:  index == 0
+                                        topRight: index == 0
                                             ? Radius.circular(30)
                                             : Radius.circular(0),
                                       ),
@@ -111,8 +121,7 @@ class _DetailUserPageState extends BaseStatefulState<DetailUserPage> {
                                   aspectRatio: 0.7,
                                   child: Container(
                                     width:
-                                        MediaQuery.of(context).size.width /
-                                            2,
+                                        MediaQuery.of(context).size.width / 2,
                                     decoration: BoxDecoration(
                                       image: DecorationImage(
                                         image: AssetImage(

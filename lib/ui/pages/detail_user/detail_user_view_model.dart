@@ -12,6 +12,5 @@ class DetailUserViewModel extends BaseViewModel {
     if (userID != null) {
       userModel.value = await repository.getUser(userID!);
     }
-    ;
   }
 }
