@@ -6,6 +6,7 @@ class ItemUserInformation extends StatelessWidget {
   final String? totalFollowers;
   final String? totalFollowings;
   final String? profilePhotoAddress;
+  final VoidCallback onTapIsFollowButton;
   const ItemUserInformation({
     super.key,
     required this.userName,
@@ -13,6 +14,7 @@ class ItemUserInformation extends StatelessWidget {
     required this.totalFollowers,
     required this.totalFollowings,
     required this.profilePhotoAddress,
+    required this.onTapIsFollowButton,
   });
 
   @override
@@ -68,22 +70,25 @@ class ItemUserInformation extends StatelessWidget {
                       child: Row(
                         children: [
                           Expanded(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(
-                                  color: Colors.transparent,
-                                  width: 2,
+                            child: GestureDetector(
+                              onTap: () => onTapIsFollowButton.call(),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color: Colors.transparent,
+                                    width: 2,
+                                  ),
+                                  borderRadius: BorderRadius.circular(4),
                                 ),
-                                borderRadius: BorderRadius.circular(4),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'Follow',
-                                  style: TextStyle(
-                                    color: Colors.blue,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
+                                child: Center(
+                                  child: Text(
+                                    'UnFollow',
+                                    style: TextStyle(
+                                      color: Colors.blue,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                   ),
                                 ),
                               ),

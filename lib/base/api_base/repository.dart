@@ -22,6 +22,32 @@ class Repository {
         .toList());
   }
 
+  Future<void> removeFollowing(String currentUserId, String unfollowUserId) async {
+    try {
+      final user = await getUser(currentUserId);
+      if (user != null && user.followings != null) {
+        user.followings!.remove(unfollowUserId);
+        await updateDocumentField('users', currentUserId, 'followings', user.followings);
+      }
+    } catch (e) {
+      print("Error removing following: $e");
+    }
+  }
+
+  Future<void> removeFollower(String unfollowUserId, String currentUserId) async {
+    try {
+      final user = await getUser(unfollowUserId);
+      if (user != null && user.followers != null) {
+        user.followers!.remove(currentUserId);
+        await updateDocumentField('users', unfollowUserId, 'followers', user.followers);
+      }
+    } catch (e) {
+      print("Error removing follower: $e");
+    }
+  }
+
+
+
   Future<UserModel?> getUser(String userId) async {
     try {
       final data = await _api.getDocumentById('users', userId);
