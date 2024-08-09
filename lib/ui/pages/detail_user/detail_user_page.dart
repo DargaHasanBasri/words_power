@@ -58,7 +58,7 @@ class _DetailUserPageState extends BaseStatefulState<DetailUserPage> {
                                       ),
                                       image: DecorationImage(
                                         image: AssetImage(
-                                          'images/background.png',
+                                          'images/background1.png',
                                         ),
                                         fit: BoxFit.cover,
                                       ),
