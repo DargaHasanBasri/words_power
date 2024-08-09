@@ -1,7 +1,19 @@
 import '../../../../export.dart';
 
 class ItemUserInformation extends StatelessWidget {
-  const ItemUserInformation({super.key});
+  final String? userName;
+  final String? totalPost;
+  final String? totalFollowers;
+  final String? totalFollowings;
+  final String? profilePhotoAddress;
+  const ItemUserInformation({
+    super.key,
+    required this.userName,
+    required this.totalPost,
+    required this.totalFollowers,
+    required this.totalFollowings,
+    required this.profilePhotoAddress,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +35,8 @@ class ItemUserInformation extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 50,
                   backgroundImage: CachedNetworkImageProvider(
-                    'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
+                    profilePhotoAddress ??
+                        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
                   ),
                 ),
               ),
@@ -33,7 +46,7 @@ class ItemUserInformation extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Kullanıcı Adı Kullanıcı',
+                      userName ?? 'NULLL',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 18,
@@ -128,7 +141,7 @@ class ItemUserInformation extends StatelessWidget {
                 Column(
                   children: [
                     Text(
-                      '57',
+                      totalPost ?? '0',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 18,
@@ -148,7 +161,7 @@ class ItemUserInformation extends StatelessWidget {
                 Column(
                   children: [
                     Text(
-                      '400',
+                      totalFollowers ?? '0',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 18,
@@ -168,7 +181,7 @@ class ItemUserInformation extends StatelessWidget {
                 Column(
                   children: [
                     Text(
-                      '981',
+                      totalFollowings ?? '0',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 18,
