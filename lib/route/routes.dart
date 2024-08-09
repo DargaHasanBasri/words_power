@@ -84,8 +84,9 @@ class Routes {
           builder: (context) => DetailPostProvider(),
         );
       case Routes.detailUser:
+        final userID = settings.arguments as String?;
         return MaterialPageRoute(
-          builder: (context) => DetailUserProvider(),
+          builder: (context) => DetailUserProvider(userID),
         );
       case Routes.savedPosts:
         return MaterialPageRoute(

@@ -15,6 +15,13 @@ class Repository {
         .map((data) => data.map((doc) => UserModel.fromMap(doc)).toList());
   }
 
+  Stream<List<UserModel>> getFollowedUsers(List<String> followedUserIds) {
+    return _api.getDocuments('users').map((data) => data
+        .map((doc) => UserModel.fromMap(doc))
+        .where((user) => followedUserIds.contains(user.userID))
+        .toList());
+  }
+
   Future<UserModel?> getUser(String userId) async {
     try {
       final data = await _api.getDocumentById('users', userId);

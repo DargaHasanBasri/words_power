@@ -6,10 +6,11 @@ class HomeViewModel extends BaseViewModel {
   HomeViewModel(this.userModel);
   final UserModel? userModel;
 
-  ValueNotifier<Stream<List<UserModel>>> usersInfo =
-  ValueNotifier(Stream.empty());
+  ValueNotifier<Stream<List<UserModel>>> usersInfo = ValueNotifier(Stream.empty());
 
-  Future<void> getUsers() async {
-    usersInfo.value = await repository.getUsers();
+  Future<void> getFollowedUsers() async {
+    if (userModel != null && userModel!.followings != null) {
+      usersInfo.value = repository.getFollowedUsers(userModel!.followings!);
+    }
   }
 }
