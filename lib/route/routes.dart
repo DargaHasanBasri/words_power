@@ -93,8 +93,9 @@ class Routes {
           builder: (context) => SavedPostsProvider(),
         );
       case Routes.userInfo:
+        final userModel = settings.arguments as UserModel?;
         return MaterialPageRoute(
-          builder: (context) => UserInfoProvider(),
+          builder: (context) => UserInfoProvider(userModel),
         );
       default:
         return MaterialPageRoute(
