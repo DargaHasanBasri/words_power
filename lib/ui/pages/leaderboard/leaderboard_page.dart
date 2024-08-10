@@ -1,4 +1,5 @@
 import 'package:words_power/ui/pages/leaderboard/components/ranking_tab.dart';
+import 'package:words_power/ui/pages/leaderboard/components/users_tab.dart';
 import 'package:words_power/ui/pages/leaderboard/leaderboard_view_model.dart';
 
 import '../../../export.dart';
@@ -23,7 +24,7 @@ class _LeaderboardPageState extends BaseStatefulState<LeaderboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffE6EEFA),
+      backgroundColor: Color(0xffE4C2ED),
       appBar: _buildAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -34,13 +35,18 @@ class _LeaderboardPageState extends BaseStatefulState<LeaderboardPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 _customTabBar(),
-                SizedBox(height: 70),
                 Expanded(
                   child: vm.currentTabIndex.value == 0
-                      ? _activitiesTab()
+                      ? Padding(
+                          padding: const EdgeInsets.only(top: 70),
+                          child: RankingTab(),
+                        )
                       : vm.currentTabIndex.value == 1
-                          ? RankingTab()
-                          : _usersTab(),
+                          ? _activitiesTab()
+                          : Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: UsersTab(),
+                            ),
                 ),
               ],
             );
@@ -56,14 +62,22 @@ class _LeaderboardPageState extends BaseStatefulState<LeaderboardPage> {
       automaticallyImplyLeading: false,
       forceMaterialTransparency: true,
       elevation: 0,
-      title: Text(
-        'Leaderboard',
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 20,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
+      title: ValueListenableBuilder(
+          valueListenable: vm.currentTabIndex,
+          builder: (_, __, ___) {
+            return Text(
+              vm.currentTabIndex.value == 0
+                  ? 'Leaderboard'
+                  : vm.currentTabIndex.value == 1
+                      ? 'Activities'
+                      : 'Users',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+              ),
+            );
+          }),
       centerTitle: true,
     );
   }
@@ -92,7 +106,7 @@ class _LeaderboardPageState extends BaseStatefulState<LeaderboardPage> {
                   child: Ink(
                     padding: EdgeInsets.symmetric(vertical: 10),
                     child: Text(
-                      'Activities',
+                      'Leaderboard',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
@@ -115,7 +129,7 @@ class _LeaderboardPageState extends BaseStatefulState<LeaderboardPage> {
                 child: Ink(
                   padding: EdgeInsets.symmetric(vertical: 10),
                   child: Text(
-                    'Ranking',
+                    'Activities',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,
@@ -142,7 +156,7 @@ class _LeaderboardPageState extends BaseStatefulState<LeaderboardPage> {
                   child: Ink(
                     padding: EdgeInsets.symmetric(vertical: 10),
                     child: Text(
-                      'My Activities',
+                      'Users',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
@@ -156,12 +170,6 @@ class _LeaderboardPageState extends BaseStatefulState<LeaderboardPage> {
           ),
         ],
       ),
-    );
-  }
-
-  Widget _usersTab() {
-    return Column(
-      children: [Text('Users')],
     );
   }
 
