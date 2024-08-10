@@ -1,6 +1,7 @@
 import 'package:words_power/export.dart';
 import 'package:words_power/ui/pages/detail_post/detail_post_provider.dart';
 import 'package:words_power/ui/pages/detail_user/detail_user_provider.dart';
+import 'package:words_power/ui/pages/leaderboard/leaderboard_provider.dart';
 import 'package:words_power/ui/pages/saved_posts/saved_posts_provider.dart';
 import 'package:words_power/ui/pages/user_info/user_info_provider.dart';
 
@@ -17,12 +18,12 @@ class Routes {
   static const String settings = 'settingsProvider';
   static const String favorite = 'favoriteProvider';
   static const String wordSentenceAdd = 'wordSentenceAddProvider';
-  static const String wordSentenceList = 'wordSentenceListProvider';
   static const String personalInformations = 'personalInformationsProvider';
   static const String detailPost = 'detailPostProvider';
   static const String detailUser = 'detailUserProvider';
   static const String savedPosts = 'savedPostsProvider';
   static const String userInfo = 'userInfoProvider';
+  static const String leaderboard = 'leaderboardProvider';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -70,10 +71,6 @@ class Routes {
         return MaterialPageRoute(
           builder: (context) => WordSentenceAddProvider(userModel),
         );
-      case Routes.wordSentenceList:
-        return MaterialPageRoute(
-          builder: (context) => const WordSentenceListProvider(),
-        );
       case Routes.personalInformations:
         final userModel = settings.arguments as UserModel?;
         return MaterialPageRoute(
@@ -96,6 +93,10 @@ class Routes {
         final userModel = settings.arguments as UserModel?;
         return MaterialPageRoute(
           builder: (context) => UserInfoProvider(userModel),
+        );
+      case Routes.leaderboard:
+        return MaterialPageRoute(
+          builder: (context) => LeaderboardProvider(),
         );
       default:
         return MaterialPageRoute(
