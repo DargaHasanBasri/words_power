@@ -140,6 +140,37 @@ class UsersTab extends StatelessWidget {
           ],
         ),
         SizedBox(height: 10),
+        Container(
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.white.withOpacity(0.3),
+                  blurRadius: 4,
+                  offset: Offset(0, 4),
+                ),
+              ]),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 12,
+            ),
+            child: Row(
+              children: [
+                Text(
+                  'Kullanıcı Ara',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(height: 10),
         Expanded(
           child: Container(
             width: double.infinity,

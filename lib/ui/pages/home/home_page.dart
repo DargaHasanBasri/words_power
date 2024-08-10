@@ -154,12 +154,16 @@ class _HomePageState extends BaseStatefulState<HomePage> {
             ),
           ),
           SizedBox(width: 8),
-          Text(
-            'Good Morning, ${vm.userModel?.name?.toUpperCase() ?? "NULLUM"}',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+          Expanded(
+            child: Text(
+              'Good Morning, ${vm.userModel?.name?.toUpperCase() ?? "NULLUM"}',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
             ),
           ),
         ],

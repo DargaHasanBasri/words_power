@@ -104,14 +104,31 @@ class _LeaderboardPageState extends BaseStatefulState<LeaderboardPage> {
                     vm.currentTabIndex.value = 0;
                   },
                   child: Ink(
-                    padding: EdgeInsets.symmetric(vertical: 10),
-                    child: Text(
-                      'Leaderboard',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                      ),
-                      textAlign: TextAlign.center,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          child: Text(
+                            'Leaderboard',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Visibility(
+                          visible: vm.currentTabIndex.value == 0,
+                          child: Container(
+                            height: 3,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -127,14 +144,31 @@ class _LeaderboardPageState extends BaseStatefulState<LeaderboardPage> {
                   vm.currentTabIndex.value = 1;
                 },
                 child: Ink(
-                  padding: EdgeInsets.symmetric(vertical: 10),
-                  child: Text(
-                    'Activities',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                    ),
-                    textAlign: TextAlign.center,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        child: Text(
+                          'Activities',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Visibility(
+                        visible: vm.currentTabIndex.value == 1,
+                        child: Container(
+                          height: 3,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -154,14 +188,31 @@ class _LeaderboardPageState extends BaseStatefulState<LeaderboardPage> {
                     vm.currentTabIndex.value = 2;
                   },
                   child: Ink(
-                    padding: EdgeInsets.symmetric(vertical: 10),
-                    child: Text(
-                      'Users',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                      ),
-                      textAlign: TextAlign.center,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          child: Text(
+                            'Users',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Visibility(
+                          visible: vm.currentTabIndex.value == 2,
+                          child: Container(
+                            height: 3,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
