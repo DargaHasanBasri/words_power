@@ -32,4 +32,3 @@ export '../ui/pages/settings/settings_provider.dart';
 export '../ui/pages/splash/splash_provider.dart';
 export '../ui/pages/welcome/welcome_provider.dart';
 export '../ui/pages/word_sentence_add/word_sentence_add_provider.dart';
-export '../ui/pages/word_sentence_list/word_sentence_list_provider.dart';

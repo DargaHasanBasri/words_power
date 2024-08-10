@@ -1,5 +1,6 @@
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:words_power/export.dart';
+import 'package:words_power/ui/pages/leaderboard/leaderboard_provider.dart';
 import 'package:words_power/ui/pages/main_tab/main_tab_view_model.dart';
 import 'package:words_power/ui/pages/saved_posts/saved_posts_provider.dart';
 import 'package:words_power/ui/pages/user_info/user_info_provider.dart';
@@ -113,6 +114,8 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
                     ),
                     child: Image.asset(
                       'images/ic_home.png',
+                      color: Colors.white,
+                      width: 24,
                     ),
                   ),
                 ),
@@ -149,7 +152,9 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Image.asset(
-                      'images/ic_game.png',
+                      'images/ic_leaderboard.png',
+                      color: Colors.white,
+                      width: 24,
                     ),
                   ),
                 ),
@@ -189,8 +194,6 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
                     child: Image.asset(
                       'images/ic_bookmark.png',
                       width: 24,
-                      height: 24,
-                      color: Colors.white,
                     ),
                   ),
                 ),
@@ -228,6 +231,8 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
                     ),
                     child: Image.asset(
                       'images/ic_person_account.png',
+                      color: Colors.white,
+                      width: 24,
                     ),
                   ),
                 ),
@@ -256,7 +261,7 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
       case 0:
         return HomeProvider(vm.userModel.value);
       case 1:
-        return const WordSentenceListProvider();
+        return LeaderboardProvider();
       case 2:
         return SavedPostsProvider();
       case 3:
