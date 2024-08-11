@@ -6,6 +6,7 @@ class UserModel {
     this.userID,
     this.profilePhoto,
     this.posts,
+    this.score,
     this.followers,
     this.followings,
   });
@@ -18,6 +19,7 @@ class UserModel {
       userID: map['userID'] as String,
       profilePhoto: map['profilePhoto'] as String,
       posts: map['posts'] as int? ?? 0,
+      score: map['score'] as int? ?? 0,
       followers: List<String>.from(
         map['followers'] != null
             ? List<String>.from(map['followers'] as List)
@@ -36,6 +38,7 @@ class UserModel {
   String? userID;
   String? profilePhoto;
   int? posts;
+  int? score;
   List<String>? followers;
   List<String>? followings;
 
@@ -46,6 +49,7 @@ class UserModel {
     String? userID,
     String? profilePhoto,
     int? posts,
+    int? score,
     List<String>? followers,
     List<String>? followings,
   }) {
@@ -56,6 +60,7 @@ class UserModel {
       userID: userID ?? this.userID,
       profilePhoto: profilePhoto ?? this.profilePhoto,
       posts: posts ?? this.posts,
+      score: score ?? this.score,
       followers: followers ?? this.followers,
       followings: followings ?? this.followings,
     );
@@ -69,6 +74,7 @@ class UserModel {
       'userID': userID,
       'profilePhoto': profilePhoto,
       'posts': posts,
+      'score': score,
       'followers': followers,
       'followings': followings,
     };

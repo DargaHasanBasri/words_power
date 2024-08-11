@@ -262,7 +262,7 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
       case 0:
         return HomeProvider(vm.userModel.value);
       case 1:
-        return LeaderboardProvider();
+        return LeaderboardProvider(vm.userModel.value);
       case 2:
         return SavedPostsProvider();
       case 3:
