@@ -22,11 +22,18 @@ class RecentlyAddedItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 0.9,
+      aspectRatio: 0.7,
       child: Container(
         decoration: BoxDecoration(
-          color: Color(0xffe6eefa),
-          borderRadius: BorderRadius.circular(40),
+          color: Color(0xffFCFCFC),
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.25),
+              blurRadius: 4,
+              offset: Offset(2, 3),
+            ),
+          ],
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,7 +79,7 @@ class RecentlyAddedItem extends StatelessWidget {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
+                          borderRadius: BorderRadius.circular(16),
                           image: DecorationImage(
                             image: AssetImage(imagesAdded),
                             fit: BoxFit.cover,
@@ -81,7 +88,7 @@ class RecentlyAddedItem extends StatelessWidget {
                       ),
                       ClipRRect(
                         borderRadius: BorderRadius.vertical(
-                          bottom: Radius.circular(30),
+                          bottom: Radius.circular(16),
                         ),
                         child: BackdropFilter(
                           filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
@@ -89,7 +96,7 @@ class RecentlyAddedItem extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: Color(0xff37638d).withOpacity(0.4),
                               borderRadius: BorderRadius.vertical(
-                                bottom: Radius.circular(30),
+                                bottom: Radius.circular(16),
                               ),
                             ),
                             child: Padding(
@@ -152,7 +159,7 @@ class RecentlyAddedItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text('Kelime: $wordAdded'),
-                  Text('Örnek Cümle: $sentencesAdded'),
+                  Text('Örnek  Cümle: $sentencesAdded'),
                 ],
               ),
             ),

@@ -50,6 +50,7 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
               extendBody: true,
               backgroundColor: CustomColors.white,
               floatingActionButton: SpeedDial(
+                backgroundColor: Color(0xffFA9884),
                 activeIcon: Icons.close,
                 icon: Icons.add,
                 overlayColor: Colors.black,
@@ -75,10 +76,10 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
                   FloatingActionButtonLocation.centerDocked,
               bottomNavigationBar: ClipRRect(
                 borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(30.0),
+                  top: Radius.circular(20.0),
                 ),
                 child: BottomAppBar(
-                  color: Color(0xff5790DF),
+                  color: Color(0xff423D3D).withOpacity(0.95),
                   shape: const CircularNotchedRectangle(),
                   notchMargin: 14,
                   child: _buildNavigationBar(),
