@@ -9,10 +9,19 @@ class Repository {
         data.map((doc) => WordAndSentenceModel.fromMap(doc)).toList());
   }
 
-  Stream<List<UserModel>> getUsers() {
-    return _api
-        .getDocuments('users')
-        .map((data) => data.map((doc) => UserModel.fromMap(doc)).toList());
+  Stream<List<UserModel>> getTop100Users() {
+    return _api.getDocuments('users').map((data) {
+      List<UserModel> users =
+          data.map((doc) => UserModel.fromMap(doc)).toList();
+
+      users.sort((a, b) {
+        int aScore = a.score ?? 0;
+        int bScore = b.score ?? 0;
+        return bScore.compareTo(aScore);
+      });
+
+      return users.take(100).toList();
+    });
   }
 
   Stream<List<UserModel>> getFollowedUsers(List<String> followedUserIds) {
@@ -22,31 +31,33 @@ class Repository {
         .toList());
   }
 
-  Future<void> removeFollowing(String currentUserId, String unfollowUserId) async {
+  Future<void> removeFollowing(
+      String currentUserId, String unfollowUserId) async {
     try {
       final user = await getUser(currentUserId);
       if (user != null && user.followings != null) {
         user.followings!.remove(unfollowUserId);
-        await updateDocumentField('users', currentUserId, 'followings', user.followings);
+        await updateDocumentField(
+            'users', currentUserId, 'followings', user.followings);
       }
     } catch (e) {
       print("Error removing following: $e");
     }
   }
 
-  Future<void> removeFollower(String unfollowUserId, String currentUserId) async {
+  Future<void> removeFollower(
+      String unfollowUserId, String currentUserId) async {
     try {
       final user = await getUser(unfollowUserId);
       if (user != null && user.followers != null) {
         user.followers!.remove(currentUserId);
-        await updateDocumentField('users', unfollowUserId, 'followers', user.followers);
+        await updateDocumentField(
+            'users', unfollowUserId, 'followers', user.followers);
       }
     } catch (e) {
       print("Error removing follower: $e");
     }
   }
-
-
 
   Future<UserModel?> getUser(String userId) async {
     try {

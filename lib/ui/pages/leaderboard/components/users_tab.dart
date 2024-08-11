@@ -1,166 +1,37 @@
 import '../../../../export.dart';
 import '../../../widgets/custom_user_avatar.dart';
 
-class UsersTab extends StatelessWidget {
+class UsersTab extends StatefulWidget {
+  final Stream<List<UserModel>> top100UsersModel;
+  const UsersTab({
+    super.key,
+    required this.top100UsersModel,
+  });
+
+  @override
+  State<UsersTab> createState() => _UsersTabState();
+}
+
+class _UsersTabState extends BaseStatefulState<UsersTab> {
   final String defaultProfileImg =
       'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
-  const UsersTab({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Stack(
-          alignment: Alignment.center,
-          clipBehavior: Clip.none,
-          children: [
-            Container(
-              height: 200,
-              decoration: BoxDecoration(
-                color: Color(0xffFA9884),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.25),
-                    blurRadius: 4,
-                    offset: Offset(2, 3),
-                  ),
-                ],
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-            Positioned(
-              right: 10,
-              top: 50,
-              child: Column(
-                children: [
-                  CustomUserAvatar(
-                    circleRadius: 40,
-                    profileImgAddress: defaultProfileImg,
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    'David',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        '1000',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(width: 4),
-                      Image.asset(
-                        'images/ic_like.png',
-                        color: Colors.red,
-                        width: 18,
-                        height: 18,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Positioned(
-              top: 20,
-              child: Column(
-                children: [
-                  CustomUserAvatar(
-                    circleRadius: 50,
-                    profileImgAddress: defaultProfileImg,
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    'David',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        '1000',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(width: 4),
-                      Image.asset(
-                        'images/ic_like.png',
-                        color: Colors.red,
-                        width: 18,
-                        height: 18,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Positioned(
-              left: 10,
-              top: 50,
-              child: Column(
-                children: [
-                  CustomUserAvatar(
-                    circleRadius: 40,
-                    profileImgAddress: defaultProfileImg,
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    'David',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        '1000',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(width: 4),
-                      Image.asset(
-                        'images/ic_like.png',
-                        color: Colors.red,
-                        width: 18,
-                        height: 18,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: 10),
         Container(
           decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.white.withOpacity(0.3),
-                  blurRadius: 4,
-                  offset: Offset(0, 4),
-                ),
-              ]),
+            color: Colors.transparent,
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.white.withOpacity(0.3),
+                blurRadius: 4,
+                offset: Offset(0, 4),
+              ),
+            ],
+          ),
           child: Padding(
             padding: EdgeInsets.symmetric(
               horizontal: 20,
@@ -181,91 +52,106 @@ class UsersTab extends StatelessWidget {
           ),
         ),
         SizedBox(height: 10),
-        Expanded(
-          child: Container(
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Colors.transparent,
-            ),
-            child: ClipRRect(
-              child: ListView.separated(
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return Container(
+        StreamBuilder<List<UserModel>>(
+            stream: widget.top100UsersModel,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return showProgress(context);
+              } else if (snapshot.hasError) {
+                return Center(child: Text('Error: ${snapshot.error}'));
+              } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                return Center(child: Text('No data available'));
+              } else {
+                hideProgress();
+                final users = snapshot.data!;
+                return Expanded(
+                  child: Container(
+                    width: double.infinity,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.25),
-                          blurRadius: 4,
-                          offset: Offset(0, 4),
-                        ),
-                      ],
-                    ),
-                    child: Material(
                       color: Colors.transparent,
-                      child: InkWell(
-                        splashColor: Color(0xffFA9884),
-                        borderRadius: BorderRadius.circular(12),
-                        onTap: () {},
-                        child: Ink(
-                          decoration: BoxDecoration(
-                            color: Color(0xffFCFCFC),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 20,
-                              vertical: 12,
-                            ),
-                            child: Row(
-                              children: [
-                                CustomUserAvatar(
-                                  circleRadius: 20,
-                                  profileImgAddress: defaultProfileImg,
-                                ),
-                                SizedBox(width: 24),
-                                Text(
-                                  'Jackson',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                Spacer(),
-                                Row(
-                                  children: [
-                                    Text(
-                                      '1000',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                    SizedBox(width: 4),
-                                    Image.asset(
-                                      'images/ic_like.png',
-                                      color: Colors.red,
-                                      width: 18,
-                                      height: 18,
-                                    ),
-                                  ],
+                    ),
+                    child: ClipRRect(
+                      child: ListView.separated(
+                        itemCount: users.length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.25),
+                                  blurRadius: 4,
+                                  offset: Offset(0, 4),
                                 ),
                               ],
                             ),
-                          ),
-                        ),
+                            child: Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                splashColor: Color(0xffFA9884),
+                                borderRadius: BorderRadius.circular(12),
+                                onTap: () {},
+                                child: Ink(
+                                  decoration: BoxDecoration(
+                                    color: Color(0xffFCFCFC),
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 20,
+                                      vertical: 12,
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        CustomUserAvatar(
+                                          circleRadius: 20,
+                                          profileImgAddress: users[index].profilePhoto,
+                                        ),
+                                        SizedBox(width: 24),
+                                        Text(
+                                          '${users[index].name}',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                        Spacer(),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              '${users[index].score}',
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                            SizedBox(width: 4),
+                                            Image.asset(
+                                              'images/ic_like.png',
+                                              color: Colors.red,
+                                              width: 18,
+                                              height: 18,
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                        separatorBuilder: (context, index) =>
+                            SizedBox(height: 20),
                       ),
                     ),
-                  );
-                },
-                separatorBuilder: (context, index) => SizedBox(height: 20),
-              ),
-            ),
-          ),
-        ),
+                  ),
+                );
+              }
+            }),
       ],
     );
   }

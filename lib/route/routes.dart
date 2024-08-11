@@ -95,8 +95,9 @@ class Routes {
           builder: (context) => UserInfoProvider(userModel),
         );
       case Routes.leaderboard:
+        final userModel = settings.arguments as UserModel?;
         return MaterialPageRoute(
-          builder: (context) => LeaderboardProvider(),
+          builder: (context) => LeaderboardProvider(userModel),
         );
       default:
         return MaterialPageRoute(
