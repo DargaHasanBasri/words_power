@@ -16,7 +16,17 @@ class UsersTab extends StatelessWidget {
           children: [
             Container(
               height: 200,
-              color: Colors.transparent,
+              decoration: BoxDecoration(
+                color: Color(0xffFA9884),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.25),
+                    blurRadius: 4,
+                    offset: Offset(2, 3),
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(12),
+              ),
             ),
             Positioned(
               right: 10,
@@ -181,64 +191,70 @@ class UsersTab extends StatelessWidget {
               child: ListView.separated(
                 itemCount: 10,
                 itemBuilder: (context, index) {
-                  return Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      splashColor: Colors.indigo.withOpacity(0.5),
-                      borderRadius: BorderRadius.circular(10),
-                      onTap: () {},
-                      child: Ink(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.white.withOpacity(0.3),
-                                blurRadius: 4,
-                                offset: Offset(0, 4),
-                              ),
-                            ]),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 20,
-                            vertical: 12,
+                  return Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.25),
+                          blurRadius: 4,
+                          offset: Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        splashColor: Color(0xffFA9884),
+                        borderRadius: BorderRadius.circular(12),
+                        onTap: () {},
+                        child: Ink(
+                          decoration: BoxDecoration(
+                            color: Color(0xffFCFCFC),
+                            borderRadius: BorderRadius.circular(12),
                           ),
-                          child: Row(
-                            children: [
-                              CustomUserAvatar(
-                                circleRadius: 20,
-                                profileImgAddress: defaultProfileImg,
-                              ),
-                              SizedBox(width: 24),
-                              Text(
-                                'Jackson',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 20,
+                              vertical: 12,
+                            ),
+                            child: Row(
+                              children: [
+                                CustomUserAvatar(
+                                  circleRadius: 20,
+                                  profileImgAddress: defaultProfileImg,
                                 ),
-                              ),
-                              Spacer(),
-                              Row(
-                                children: [
-                                  Text(
-                                    '1000',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400,
+                                SizedBox(width: 24),
+                                Text(
+                                  'Jackson',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                Spacer(),
+                                Row(
+                                  children: [
+                                    Text(
+                                      '1000',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400,
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(width: 4),
-                                  Image.asset(
-                                    'images/ic_like.png',
-                                    color: Colors.red,
-                                    width: 18,
-                                    height: 18,
-                                  ),
-                                ],
-                              ),
-                            ],
+                                    SizedBox(width: 4),
+                                    Image.asset(
+                                      'images/ic_like.png',
+                                      color: Colors.red,
+                                      width: 18,
+                                      height: 18,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),

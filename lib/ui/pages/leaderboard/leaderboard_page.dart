@@ -1,4 +1,4 @@
-import 'package:words_power/ui/pages/leaderboard/components/ranking_tab.dart';
+import 'package:words_power/ui/pages/leaderboard/components/leaderboard_tab.dart';
 import 'package:words_power/ui/pages/leaderboard/components/users_tab.dart';
 import 'package:words_power/ui/pages/leaderboard/leaderboard_view_model.dart';
 
@@ -24,7 +24,7 @@ class _LeaderboardPageState extends BaseStatefulState<LeaderboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffE4C2ED),
+      backgroundColor: Colors.white,
       appBar: _buildAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -39,7 +39,7 @@ class _LeaderboardPageState extends BaseStatefulState<LeaderboardPage> {
                   child: vm.currentTabIndex.value == 0
                       ? Padding(
                           padding: const EdgeInsets.only(top: 70),
-                          child: RankingTab(),
+                          child: LeaderBoardBoardTab(),
                         )
                       : vm.currentTabIndex.value == 1
                           ? _activitiesTab()
@@ -85,7 +85,7 @@ class _LeaderboardPageState extends BaseStatefulState<LeaderboardPage> {
   Widget _customTabBar() {
     return Container(
       decoration: BoxDecoration(
-        color: Color(0xff1E2237),
+        color: Color(0xff423D3D).withOpacity(0.95),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -99,7 +99,7 @@ class _LeaderboardPageState extends BaseStatefulState<LeaderboardPage> {
               child: Material(
                 color: Colors.transparent,
                 child: InkWell(
-                  splashColor: Colors.indigo.withOpacity(0.5),
+                  splashColor: Color(0xffFA9884),
                   onTap: () {
                     vm.currentTabIndex.value = 0;
                   },
@@ -123,7 +123,7 @@ class _LeaderboardPageState extends BaseStatefulState<LeaderboardPage> {
                           child: Container(
                             height: 3,
                             decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: Color(0xffFA9884),
                               borderRadius: BorderRadius.circular(12),
                             ),
                           ),
@@ -139,7 +139,7 @@ class _LeaderboardPageState extends BaseStatefulState<LeaderboardPage> {
             child: Material(
               color: Colors.transparent,
               child: InkWell(
-                splashColor: Colors.indigo.withOpacity(0.5),
+                splashColor: Color(0xffFA9884),
                 onTap: () {
                   vm.currentTabIndex.value = 1;
                 },
@@ -163,7 +163,7 @@ class _LeaderboardPageState extends BaseStatefulState<LeaderboardPage> {
                         child: Container(
                           height: 3,
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Color(0xffFA9884),
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),
@@ -183,7 +183,7 @@ class _LeaderboardPageState extends BaseStatefulState<LeaderboardPage> {
               child: Material(
                 color: Colors.transparent,
                 child: InkWell(
-                  splashColor: Colors.indigo.withOpacity(0.5),
+                  splashColor: Color(0xffFA9884),
                   onTap: () {
                     vm.currentTabIndex.value = 2;
                   },
@@ -207,7 +207,7 @@ class _LeaderboardPageState extends BaseStatefulState<LeaderboardPage> {
                           child: Container(
                             height: 3,
                             decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: Color(0xffFA9884),
                               borderRadius: BorderRadius.circular(12),
                             ),
                           ),

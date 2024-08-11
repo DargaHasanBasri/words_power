@@ -1,7 +1,7 @@
 import '../../../../export.dart';
 
-class RankingTab extends StatelessWidget {
-  const RankingTab({super.key});
+class LeaderBoardBoardTab extends StatelessWidget {
+  const LeaderBoardBoardTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,14 @@ class RankingTab extends StatelessWidget {
               child: Container(
                 height: 140,
                 decoration: BoxDecoration(
-                  color: Color(0xff1E2237),
+                  color: Color(0xffFA9884).withOpacity(0.8),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.25),
+                      blurRadius: 4,
+                      offset: Offset(2, 3),
+                    ),
+                  ],
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(12),
                     bottomLeft: Radius.circular(12),
@@ -77,7 +84,14 @@ class RankingTab extends StatelessWidget {
               child: Container(
                 height: 200,
                 decoration: BoxDecoration(
-                  color: Color(0xff252A40),
+                  color: Color(0xffFA9884),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.25),
+                      blurRadius: 4,
+                      offset: Offset(2, 3),
+                    ),
+                  ],
                   borderRadius: BorderRadius.vertical(
                     top: Radius.circular(20),
                   ),
@@ -138,7 +152,14 @@ class RankingTab extends StatelessWidget {
               child: Container(
                 height: 140,
                 decoration: BoxDecoration(
-                  color: Color(0xff1E2237),
+                  color: Color(0xffFA9884).withOpacity(0.8),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.25),
+                      blurRadius: 4,
+                      offset: Offset(2, 3),
+                    ),
+                  ],
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(12),
                     bottomRight: Radius.circular(12),
@@ -202,7 +223,7 @@ class RankingTab extends StatelessWidget {
           child: Container(
             width: double.infinity,
             decoration: BoxDecoration(
-              color: Color(0xff1E2237),
+              color: Color(0xffFA9884).withOpacity(0.9),
               borderRadius: BorderRadius.vertical(
                 top: Radius.circular(16),
               ),
