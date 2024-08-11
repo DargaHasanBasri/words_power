@@ -30,11 +30,11 @@ class _HomePageState extends BaseStatefulState<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             _userProfiles(),
-            SizedBox(height: 4),
+            SizedBox(height: 10),
             ListView.separated(
               shrinkWrap: true,
               physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               itemCount: 10,
               itemBuilder: (context, index) {
                 return RecentlyAddedItem(
@@ -153,14 +153,14 @@ class _HomePageState extends BaseStatefulState<HomePage> {
                   'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
             ),
           ),
-          SizedBox(width: 8),
+          SizedBox(width: 12),
           Expanded(
             child: Text(
-              'Good Morning, ${vm.userModel?.name?.toUpperCase() ?? "NULLUM"}',
+              'Welcome, ${vm.userModel?.name?.toUpperCase() ?? "NULLUM"}',
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
               ),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
