@@ -7,6 +7,7 @@ class LeaderboardViewModel extends BaseViewModel {
   LeaderboardViewModel(this.userModel);
 
   ValueNotifier<int> currentTabIndex = ValueNotifier(1);
+  ValueNotifier<bool> isFollow = ValueNotifier(false);
   ValueNotifier<Stream<List<UserModel>>> usersNotifier =
       ValueNotifier(Stream.empty());
 
