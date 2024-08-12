@@ -6,7 +6,9 @@ class ItemUserInformation extends StatelessWidget {
   final String? totalFollowers;
   final String? totalFollowings;
   final String? profilePhotoAddress;
-  final VoidCallback onTapIsFollowButton;
+  final bool isFollow;
+  final void Function(bool isFollow) onTapIsFollowButton;
+
   const ItemUserInformation({
     super.key,
     required this.userName,
@@ -15,6 +17,7 @@ class ItemUserInformation extends StatelessWidget {
     required this.totalFollowings,
     required this.profilePhotoAddress,
     required this.onTapIsFollowButton,
+    required this.isFollow,
   });
 
   @override
@@ -71,7 +74,9 @@ class ItemUserInformation extends StatelessWidget {
                         children: [
                           Expanded(
                             child: GestureDetector(
-                              onTap: () => onTapIsFollowButton.call(),
+                              onTap: () {
+                                onTapIsFollowButton(isFollow);
+                              },
                               child: Container(
                                 decoration: BoxDecoration(
                                   color: Colors.white,
@@ -83,7 +88,7 @@ class ItemUserInformation extends StatelessWidget {
                                 ),
                                 child: Center(
                                   child: Text(
-                                    'UnFollow',
+                                    isFollow ? 'Unfollow' : 'Follow',
                                     style: TextStyle(
                                       color: Colors.blue,
                                       fontSize: 14,

@@ -71,6 +71,14 @@ class _LeaderboardPageState extends BaseStatefulState<LeaderboardPage> {
                                 builder: (_, __, ___) {
                                   return UsersTab(
                                     top100UsersModel: vm.usersNotifier.value,
+                                    loggedInUserModel: vm.userModel!,
+                                    onClickISFollow: (clickUserID) {
+                                      appRoutes.navigateTo(
+                                        Routes.detailUser,
+                                        arguments: clickUserID,
+                                      );
+                                    },
+                                    onClickUser: () {},
                                   );
                                 },
                               ),

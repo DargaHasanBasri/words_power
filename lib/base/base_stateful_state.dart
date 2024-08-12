@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:words_power/base/api_base/repository.dart';
@@ -18,6 +19,7 @@ abstract class BaseStatefulState<T extends StatefulWidget> extends State<T> {
   AuthenticationService userInfo = AuthenticationService();
   FirebaseStorageRepository firebaseStorageRepository =
       FirebaseStorageRepository();
+  final firebaseAuth = FirebaseAuth.instance;
 
   late OverlayEntry? _progressOverlayEntry;
   BuildContext? progressContext;

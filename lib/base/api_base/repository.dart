@@ -29,6 +29,13 @@ class Repository {
         data.map((doc) => WordAndSentenceModel.fromMap(doc)).toList());
   }
 
+  Stream<List<UserModel>> getFollowedUsers(List<String> followedUserIds) {
+    return _api.getDocuments('users').map((data) => data
+        .map((doc) => UserModel.fromMap(doc))
+        .where((user) => followedUserIds.contains(user.userID))
+        .toList());
+  }
+
   Stream<List<UserModel>> getTop100Users() {
     return _api.getDocuments('users').map((data) {
       List<UserModel> users =
@@ -44,11 +51,36 @@ class Repository {
     });
   }
 
-  Stream<List<UserModel>> getFollowedUsers(List<String> followedUserIds) {
-    return _api.getDocuments('users').map((data) => data
-        .map((doc) => UserModel.fromMap(doc))
-        .where((user) => followedUserIds.contains(user.userID))
-        .toList());
+  Future<void> addFollowing(
+    String currentUserId,
+    String followUserId,
+  ) async {
+    try {
+      final user = await getUser(currentUserId);
+      if (user != null && !user.followings!.contains(followUserId)) {
+        user.followings!.add(followUserId);
+        await updateDocumentField(
+            'users', currentUserId, 'followings', user.followings);
+      }
+    } catch (e) {
+      print("Error adding following: $e");
+    }
+  }
+
+  Future<void> addFollower(
+    String followUserId,
+    String currentUserId,
+  ) async {
+    try {
+      final user = await getUser(followUserId);
+      if (user != null && !user.followers!.contains(currentUserId)) {
+        user.followers!.add(currentUserId);
+        await updateDocumentField(
+            'users', followUserId, 'followers', user.followers);
+      }
+    } catch (e) {
+      print("Error adding follower: $e");
+    }
   }
 
   Future<void> removeFollowing(
@@ -68,7 +100,9 @@ class Repository {
   }
 
   Future<void> removeFollower(
-      String unfollowUserId, String currentUserId) async {
+    String unfollowUserId,
+    String currentUserId,
+  ) async {
     try {
       final user = await getUser(unfollowUserId);
       if (user != null && user.followers != null) {

@@ -14,6 +14,17 @@ class DetailUserViewModel extends BaseViewModel {
     }
   }
 
+  Future<void> follow() async {
+    String? currentUserId = firebaseAuth.currentUser!.uid;
+    String? unfollowUserId = userID;
+
+    if (unfollowUserId != null) {
+      await repository.addFollowing(currentUserId, unfollowUserId);
+      await repository.addFollower(unfollowUserId, currentUserId);
+      getUser();
+    }
+  }
+
   Future<void> unFollow() async {
     String? currentUserId = firebaseAuth.currentUser!.uid;
     String? unfollowUserId = userID;

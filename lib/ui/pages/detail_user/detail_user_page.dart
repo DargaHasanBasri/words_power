@@ -33,7 +33,13 @@ class _DetailUserPageState extends BaseStatefulState<DetailUserPage> {
             ValueListenableBuilder(
                 valueListenable: vm.userModel,
                 builder: (_, __, ___) {
+                  if (vm.userModel.value == null) {
+                    return CircularProgressIndicator();
+                  }
+                  bool isFollow = vm.userModel.value!.followers!
+                      .contains(firebaseAuth.currentUser!.uid);
                   return ItemUserInformation(
+                    isFollow: isFollow,
                     userName: vm.userModel.value?.name,
                     totalPost: vm.userModel.value?.posts.toString(),
                     totalFollowers:
@@ -41,9 +47,14 @@ class _DetailUserPageState extends BaseStatefulState<DetailUserPage> {
                     totalFollowings:
                         vm.userModel.value?.followings?.length.toString(),
                     profilePhotoAddress: vm.userModel.value?.profilePhoto,
-                    onTapIsFollowButton: () async {
-                      await vm.unFollow();
-                      appRoutes.navigateToReplacement(Routes.mainTab);
+                    onTapIsFollowButton: (isFollow) async {
+                      if (isFollow) {
+                        await vm.unFollow();
+                        appRoutes.navigateToReplacement(Routes.mainTab);
+                      } else {
+                        await vm.follow();
+                        appRoutes.navigateToReplacement(Routes.mainTab);
+                      }
                     },
                   );
                 }),
