@@ -24,8 +24,8 @@ class WordSentenceAddViewModel extends BaseViewModel {
   }
 
   Future<void> addWordAndSentence(
-      WordAndSentenceModel wordAndSentenceModel) async {
-    WordAndSentenceAddRepository(fireBaseFirestore)
-        .addWordAndSentence(wordAndSentenceModel);
+    WordAndSentenceModel wordAndSentenceModel,
+  ) async {
+    repository.addWordAndSentence(wordAndSentenceModel);
   }
 }

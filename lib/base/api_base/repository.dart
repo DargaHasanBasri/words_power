@@ -1,10 +1,30 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:words_power/base/api_base/api_base.dart';
 import 'package:words_power/export.dart';
 
 class Repository {
   final ApiBase _api = ApiBase();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Stream<List<WordAndSentenceModel>> getProducts() {
+  Future<void> addWordAndSentence(WordAndSentenceModel model) async {
+    try {
+      if (model.userID != null) {
+        await _api.addDocument('wordAndSentence', model.userID!, model.toMap());
+
+        await _api.addSubCollection(
+          'users',
+          _auth.currentUser!.uid,
+          'wordAndSentence',
+          model.userID,
+          model.toMap(),
+        );
+      }
+    } catch (e) {
+      print("Error removing follower: $e");
+    }
+  }
+
+  Stream<List<WordAndSentenceModel>> getAllPosts() {
     return _api.getDocuments('wordAndSentence').map((data) =>
         data.map((doc) => WordAndSentenceModel.fromMap(doc)).toList());
   }
@@ -32,7 +52,9 @@ class Repository {
   }
 
   Future<void> removeFollowing(
-      String currentUserId, String unfollowUserId) async {
+    String currentUserId,
+    String unfollowUserId,
+  ) async {
     try {
       final user = await getUser(currentUserId);
       if (user != null && user.followings != null) {

@@ -7,33 +7,64 @@ class ApiBase {
   final FirebaseStorage _storage = FirebaseStorage.instance;
 
   Future<void> addDocument(
-      String collectionPath, String docId, Map<String, dynamic> data) {
+    String collectionPath,
+    String docId,
+    Map<String, dynamic> data,
+  ) {
     return _db.collection(collectionPath).doc(docId).set(data);
   }
 
+  Future<void> addSubCollection(
+    String collectionName,
+    String docId,
+    String subCollectionName,
+    String? subCollectionDocId,
+    Map<String, dynamic> data,
+  ) async {
+    await _db
+        .collection(collectionName)
+        .doc(docId)
+        .collection(subCollectionName)
+        .doc(subCollectionDocId)
+        .set(data);
+  }
+
   Future<void> updateDocument(
-      String collectionPath, String docId, Map<String, dynamic> data) {
+    String collectionPath,
+    String docId,
+    Map<String, dynamic> data,
+  ) {
     return _db.collection(collectionPath).doc(docId).update(data);
   }
 
-  Stream<List<Map<String, dynamic>>> getDocuments(String collectionPath) {
+  Stream<List<Map<String, dynamic>>> getDocuments(
+    String collectionPath,
+  ) {
     return _db.collection(collectionPath).snapshots().map((snapshot) =>
         snapshot.docs.map((document) => document.data()).toList());
   }
 
-  Future<void> deleteDocument(String collectionPath, String docId) {
+  Future<void> deleteDocument(
+    String collectionPath,
+    String docId,
+  ) {
     return _db.collection(collectionPath).doc(docId).delete();
   }
 
   Future<Map<String, dynamic>?> getDocumentById(
-      String collectionPath, String docId) async {
+    String collectionPath,
+    String docId,
+  ) async {
     DocumentSnapshot document =
         await _db.collection(collectionPath).doc(docId).get();
     return document.exists ? document.data() as Map<String, dynamic>? : null;
   }
 
   Stream<List<Map<String, dynamic>>> getDocumentsByField(
-      String collectionPath, String field, String value) {
+    String collectionPath,
+    String field,
+    String value,
+  ) {
     return _db
         .collection(collectionPath)
         .where(field, isEqualTo: value)
@@ -42,7 +73,10 @@ class ApiBase {
             snapshot.docs.map((document) => document.data()).toList());
   }
 
-  Future<String?> uploadFile(String filePath, String storagePath) async {
+  Future<String?> uploadFile(
+    String filePath,
+    String storagePath,
+  ) async {
     try {
       File file = File(filePath);
       final storageRef = _storage.ref().child(storagePath);
@@ -55,7 +89,9 @@ class ApiBase {
     }
   }
 
-  Future<void> deleteProfileImage(String imageUrl) async {
+  Future<void> deleteProfileImage(
+    String imageUrl,
+  ) async {
     try {
       Reference storageRef = _storage.refFromURL(imageUrl);
       await storageRef.delete();

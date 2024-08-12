@@ -137,6 +137,9 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
                             Timestamp.now();
                         vm.wordAndSentenceModelNotifier.value.authorID =
                             '${vm.userModel!.userID}';
+                        vm.wordAndSentenceModelNotifier.value.userID =
+                            '${vm.uid}';
+                        debugPrint('${vm.uid}');
                         vm.wordAndSentenceModelNotifier.value.authorName =
                             vm.userModel!.name;
                         vm.wordAndSentenceModelNotifier.value.authorImg =
@@ -144,7 +147,8 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
                         vm.wordAndSentenceModelNotifier.value.likes = 0;
                         vm.wordAndSentenceModelNotifier.value.views = 0;
                         await vm.addWordAndSentence(
-                            vm.wordAndSentenceModelNotifier.value);
+                          vm.wordAndSentenceModelNotifier.value,
+                        );
                         appRoutes.navigateTo(Routes.mainTab);
                       },
                       title: 'Add',

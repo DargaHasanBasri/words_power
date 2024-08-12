@@ -9,7 +9,6 @@ export 'package:uuid/uuid.dart';
 export 'package:words_power/base/base_stateful_state.dart';
 export 'package:words_power/models/user_model.dart';
 export 'package:words_power/models/word_and_sentence_model.dart';
-export 'package:words_power/repository/word_sentence_add_repository.dart';
 export 'package:words_power/route/routes.dart';
 export 'package:words_power/services/authentication_service.dart';
 export 'package:words_power/ui/pages/home/components/recently_added_item.dart';
