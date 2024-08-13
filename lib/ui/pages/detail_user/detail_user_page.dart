@@ -116,8 +116,7 @@ class _DetailUserPageState extends BaseStatefulState<DetailUserPage> {
                               AspectRatio(
                                 aspectRatio: 0.7,
                                 child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width / 2,
+                                  width: MediaQuery.of(context).size.width / 2,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.only(
                                       topLeft: index == 0
@@ -137,8 +136,7 @@ class _DetailUserPageState extends BaseStatefulState<DetailUserPage> {
                               AspectRatio(
                                 aspectRatio: 1.2,
                                 child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width / 2,
+                                  width: MediaQuery.of(context).size.width / 2,
                                   child: Image.asset(
                                     'images/background3.png',
                                     fit: BoxFit.cover,
@@ -155,8 +153,7 @@ class _DetailUserPageState extends BaseStatefulState<DetailUserPage> {
                               AspectRatio(
                                 aspectRatio: 1.2,
                                 child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width / 2,
+                                  width: MediaQuery.of(context).size.width / 2,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.only(
                                       topRight: index == 0
@@ -176,8 +173,7 @@ class _DetailUserPageState extends BaseStatefulState<DetailUserPage> {
                               AspectRatio(
                                 aspectRatio: 0.7,
                                 child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width / 2,
+                                  width: MediaQuery.of(context).size.width / 2,
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
                                       image: AssetImage(

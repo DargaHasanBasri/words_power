@@ -85,6 +85,7 @@ class _UserInfoPageState extends BaseStatefulState<UserInfoPage> {
                     } else if (snapshot.hasError) {
                       return Text('Bir hata oluştu: ${snapshot.error}');
                     } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                      hideProgress();
                       return Text('Henüz kelime ve cümle eklenmedi.');
                     } else {
                       hideProgress();
