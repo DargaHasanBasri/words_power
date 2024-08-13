@@ -24,6 +24,19 @@ class Repository {
     }
   }
 
+  Stream<List<WordAndSentenceModel>> getUserPosts(String userId) {
+    return _api
+        .getSubCollectionDocuments(
+          'users',
+          userId,
+          'wordAndSentence',
+        )
+        .map(
+          (data) =>
+              data.map((doc) => WordAndSentenceModel.fromMap(doc)).toList(),
+        );
+  }
+
   Stream<List<WordAndSentenceModel>> getAllPosts() {
     return _api.getDocuments('wordAndSentence').map((data) =>
         data.map((doc) => WordAndSentenceModel.fromMap(doc)).toList());

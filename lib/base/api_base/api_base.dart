@@ -29,6 +29,19 @@ class ApiBase {
         .set(data);
   }
 
+  Stream<List<Map<String, dynamic>>> getSubCollectionDocuments(
+    String collectionName,
+    String docId,
+    String subCollectionName,
+  ) {
+    return _db
+        .collection(collectionName)
+        .doc(docId)
+        .collection(subCollectionName)
+        .snapshots()
+        .map((snapshot) => snapshot.docs.map((doc) => doc.data()).toList());
+  }
+
   Future<void> updateDocument(
     String collectionPath,
     String docId,
