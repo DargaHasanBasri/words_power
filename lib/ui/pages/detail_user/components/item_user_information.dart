@@ -1,3 +1,5 @@
+import 'package:words_power/ui/widgets/custom_user_avatar.dart';
+
 import '../../../../export.dart';
 
 class ItemUserInformation extends StatelessWidget {
@@ -6,6 +8,7 @@ class ItemUserInformation extends StatelessWidget {
   final String? totalFollowers;
   final String? totalFollowings;
   final String? profilePhotoAddress;
+  final String? score;
   final bool isFollow;
   final void Function(bool isFollow) onTapIsFollowButton;
 
@@ -18,198 +21,116 @@ class ItemUserInformation extends StatelessWidget {
     required this.profilePhotoAddress,
     required this.onTapIsFollowButton,
     required this.isFollow,
+    this.score,
   });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 24),
-          child: Row(
-            children: [
-              Container(
-                padding: EdgeInsets.all(1),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                  border: Border.all(
-                    color: Colors.white,
-                  ),
-                ),
-                child: CircleAvatar(
-                  radius: 50,
-                  backgroundImage: CachedNetworkImageProvider(
-                    profilePhotoAddress ??
-                        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
-                  ),
-                ),
-              ),
-              SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      userName ?? 'NULLL',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                    Text(
-                      'O Yeni Başlayan Seviyesi 2',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 10, right: 8),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: () {
-                                onTapIsFollowButton(isFollow);
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(
-                                    color: Colors.transparent,
-                                    width: 2,
-                                  ),
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    isFollow ? 'Unfollow' : 'Follow',
-                                    style: TextStyle(
-                                      color: Colors.blue,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 30),
-                          Expanded(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(
-                                  color: Colors.transparent,
-                                  width: 2,
-                                ),
-                                borderRadius: BorderRadius.circular(4),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'Game Invite',
-                                  style: TextStyle(
-                                    color: Colors.blue,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(30),
-            border: Border.all(
-              color: Colors.grey.withOpacity(0.5),
-              width: 2,
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 16,
-              horizontal: 26,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Column(
               children: [
-                Column(
-                  children: [
-                    Text(
-                      totalPost ?? '0',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Text(
-                      'Posts',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
+                Text(
+                  totalFollowers?.toString() ?? '',
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: Color(0xff242760),
+                  ),
                 ),
-                Column(
-                  children: [
-                    Text(
-                      totalFollowers ?? '0',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Text(
-                      'Followers',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Text(
-                      totalFollowings ?? '0',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Text(
-                      'Following',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
+                Text(
+                  'Followers',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Color(0xff242760),
+                  ),
                 ),
               ],
             ),
+            CustomUserAvatar(
+              circleRadius: 50,
+              profileImgAddress: profilePhotoAddress,
+              borderColor: Color(0xff242760),
+            ),
+            Column(
+              children: [
+                Text(
+                  totalFollowings?.toString() ?? '',
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: Color(0xff242760),
+                  ),
+                ),
+                Text(
+                  'Followings',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Color(0xff242760),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+        SizedBox(height: 10),
+        Text(
+          userName?.toUpperCase() ?? '',
+          style: TextStyle(
+            fontSize: 18,
+            color: Color(0xff242760),
+          ),
+        ),
+        Text(
+          '${totalPost?.toString() ?? ''} Posts @${userName?.toLowerCase() ?? ''}',
+          style: TextStyle(
+            fontSize: 16,
+            color: Color(0xff242760),
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Score, ${score?.toString() ?? '0'}',
+              style: TextStyle(
+                fontSize: 14,
+                color: Color(0xff544C4C),
+              ),
+            ),
+            Image.asset(
+              'images/level_star.png',
+              height: 24,
+              width: 24,
+            ),
+          ],
+        ),
+        SizedBox(height: 10),
+        Padding(
+          padding: const EdgeInsets.all(10),
+          child: Row(
+            children: [
+              Expanded(
+                child: CustomButton(
+                  title: isFollow ? 'Unfollow' : 'Follow',
+                  titleColor: Colors.white,
+                  backgroundColor: Color(0xff242760),
+                  borderRadius: 12,
+                  onClick: () => onTapIsFollowButton(isFollow),
+                ),
+              ),
+              SizedBox(width: 10),
+              Expanded(
+                child: CustomButton(
+                  title: 'Game Invite',
+                  titleColor: Colors.white,
+                  backgroundColor: Color(0xff242760),
+                  borderRadius: 12,
+                  onClick: () {},
+                ),
+              ),
+            ],
           ),
         ),
       ],
