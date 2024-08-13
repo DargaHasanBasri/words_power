@@ -106,7 +106,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               widget.textFieldTitle,
               style: const TextStyle(
                 fontSize: 16,
-                color: Colors.white,
+                color: Colors.black,
                 fontWeight: FontWeight.w500,
               ),
             ),

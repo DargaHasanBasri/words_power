@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:words_power/export.dart';
-import 'package:words_power/ui/pages/word_sentence_add/components/write_area.dart';
 import 'package:words_power/ui/pages/word_sentence_add/word_sentence_add_view_model.dart';
 
 class WordSentenceAddPage extends StatefulWidget {
@@ -28,25 +27,8 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xfff5f9ff),
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Image.asset(
-            'images/ic_back.png',
-            color: CustomColors.black,
-            height: 24,
-          ),
-          onPressed: appRoutes.popIfBackStackNotEmpty,
-        ),
-        backgroundColor: const Color(0xfff5f9ff),
-        title: Text(
-          'Word & Sentence Add',
-          style: TextStyle(
-            color: CustomColors.black,
-          ),
-        ),
-        centerTitle: true,
-      ),
+      backgroundColor: Colors.white,
+      appBar: _buildAppBar(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -57,20 +39,12 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const SizedBox(height: 20),
-                    Text(
-                      'Write Your Word',
-                      style: TextStyle(
-                        color: CustomColors.black,
-                        fontSize: 22,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
                     const SizedBox(height: 10),
                     CustomTextFormField(
                       controller: _wordTrTextController,
-                      borderRadius: 18,
-                      hintText: 'Enter TR Word',
+                      borderRadius: 10,
+                      textFieldName: 'Türkçe Kelime',
+                      hintText: 'Örneğin: Elma ',
                       onChanged: (String value) {
                         vm.wordAndSentenceModelNotifier.value.wordTurkish =
                             _wordTrTextController.text;
@@ -79,27 +53,20 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
                     SizedBox(height: 10),
                     CustomTextFormField(
                       controller: _wordEnTextController,
-                      borderRadius: 18,
-                      hintText: 'Enter EN Word',
+                      borderRadius: 10,
+                      textFieldName: 'İngilizce Kelime',
+                      hintText: 'Example: Apple ',
                       onChanged: (String value) {
                         vm.wordAndSentenceModelNotifier.value.wordEnglish =
                             _wordEnTextController.text;
                       },
                     ),
-                    const SizedBox(height: 30),
-                    Text(
-                      'Write Your Sentence',
-                      style: TextStyle(
-                        color: CustomColors.black,
-                        fontSize: 22,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
                     const SizedBox(height: 10),
                     CustomTextFormField(
                       controller: _sentenceTrTextController,
-                      borderRadius: 18,
-                      hintText: 'Enter TR Sentence',
+                      borderRadius: 10,
+                      textFieldName: 'Türkçe Cümle',
+                      hintText: 'Örneğin: Eve elma al',
                       onChanged: (String value) {
                         vm.wordAndSentenceModelNotifier.value.sentenceTurkish =
                             _sentenceTrTextController.text;
@@ -108,26 +75,16 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
                     SizedBox(height: 10),
                     CustomTextFormField(
                       controller: _sentenceEnTextController,
-                      borderRadius: 18,
-                      hintText: 'Enter EN Sentence',
+                      borderRadius: 10,
+                      textFieldName: 'İngilizce Cümle',
+                      hintText: 'Örneğin: Buy apples home',
                       onChanged: (String value) {
                         vm.wordAndSentenceModelNotifier.value.sentenceEnglish =
                             _sentenceEnTextController.text;
                       },
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 20),
                     addExampleFoto(context),
-                    Text(
-                      'Gemini Generate Example Sentence',
-                      style: TextStyle(
-                        color: CustomColors.whiteSmoke,
-                        fontSize: 16,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: _buildGenerateGemini(),
-                    ),
                     const SizedBox(height: 20),
                     CustomButton(
                       onClick: () async {
@@ -162,6 +119,31 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
           ),
         ),
       ),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      backgroundColor: Colors.white,
+      forceMaterialTransparency: true,
+      elevation: 0,
+      leading: IconButton(
+        icon: Image.asset(
+          'images/ic_back.png',
+          color: CustomColors.black,
+          height: 24,
+        ),
+        onPressed: appRoutes.popIfBackStackNotEmpty,
+      ),
+      title: Text(
+        'Add Word And Sentence',
+        style: TextStyle(
+          color: CustomColors.black,
+          fontSize: 20,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+      centerTitle: true,
     );
   }
 
@@ -213,47 +195,24 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
                       children: [
                         Image.asset('images/ic_add_foto.png'),
                         SizedBox(height: 30),
-                        Text(
-                          'Add a picture that reminds you',
-                          style: TextStyle(
-                            color: CustomColors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w400,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Text(
+                            'Add a picture that reminds you',
+                            style: TextStyle(
+                              color: CustomColors.black,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                            ),
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                       ],
                     ),
                   ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildGenerateGemini() {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(8),
-      child: Material(
-        child: InkWell(
-          onTap: () {},
-          child: Ink(
-            decoration: BoxDecoration(
-              color: CustomColors.whitePorcelain,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(8),
-              child: Center(
-                child: Text(
-                  'Click me for example sentence',
-                  style: TextStyle(
-                    color: CustomColors.blueCloudBurst,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-            ),
-          ),
         ),
       ),
     );
