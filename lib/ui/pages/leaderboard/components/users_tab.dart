@@ -82,6 +82,8 @@ class _UsersTabState extends BaseStatefulState<UsersTab> {
                               widget.loggedInUserModel.followings!.contains(
                             users[index].userID,
                           );
+                          bool isLoggedInUser = users[index].userID !=
+                              widget.loggedInUserModel.userID;
                           return Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
@@ -151,20 +153,30 @@ class _UsersTabState extends BaseStatefulState<UsersTab> {
                                           ],
                                         ),
                                         Spacer(),
-                                        IconButton(
-                                          onPressed: () {
-                                            widget.onClickISFollow(
-                                              users[index].userID!,
-                                            );
-                                          },
-                                          icon: Image.asset(
-                                            isFollowing
-                                                ? 'images/ic_follow_tic.png'
-                                                : 'images/ic_follow_plus.png',
-                                            width: 24,
-                                            height: 24,
-                                          ),
-                                        ),
+                                        isLoggedInUser
+                                            ? IconButton(
+                                                onPressed: () {
+                                                  widget.onClickISFollow(
+                                                    users[index].userID!,
+                                                  );
+                                                },
+                                                icon: Image.asset(
+                                                  isFollowing
+                                                      ? 'images/ic_follow_tic.png'
+                                                      : 'images/ic_follow_plus.png',
+                                                  width: 24,
+                                                  height: 24,
+                                                ),
+                                              )
+                                            : Padding(
+                                              padding: const EdgeInsets.only(right: 10),
+                                              child: Text(
+                                                  'Ben',
+                                                  style: TextStyle(
+                                                    fontSize: 18,
+                                                  ),
+                                                ),
+                                            ),
                                       ],
                                     ),
                                   ),

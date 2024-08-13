@@ -46,7 +46,12 @@ class AuthenticationService {
   }
 
   Future<void> saveUserInfoToFirebase(UserModel userModel) async {
-    userModel.profilePhoto ??= profileNullPhoto;
+    userModel.profilePhoto = profileNullPhoto;
+    userModel.posts = 0;
+    userModel.score = 0;
+    userModel.followers = [];
+    userModel.followings = [];
+
     userModel.userID = firebaseAuth.currentUser!.uid;
     await userCollection
         .doc(firebaseAuth.currentUser!.uid)

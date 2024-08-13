@@ -69,6 +69,7 @@ class _HomePageState extends BaseStatefulState<HomePage> {
                 } else if (snapshot.hasError) {
                   return Center(child: Text('Error: ${snapshot.error}'));
                 } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  hideProgress();
                   return Center(child: Text('No data available'));
                 } else {
                   hideProgress();
