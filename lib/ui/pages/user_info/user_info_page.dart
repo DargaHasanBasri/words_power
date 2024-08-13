@@ -1,4 +1,5 @@
 import 'package:words_power/ui/pages/user_info/user_info_view_model.dart';
+import 'package:words_power/ui/widgets/custom_user_avatar.dart';
 
 import '../../../export.dart';
 import 'components/item_user_post.dart';
@@ -17,13 +18,14 @@ class _UserInfoPageState extends BaseStatefulState<UserInfoPage> {
   void initState() {
     super.initState();
     vm = Provider.of<UserInfoViewModel>(context, listen: false);
+    vm.getUserPosts();
     listeners();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffE6EEFA),
+      backgroundColor: Colors.white,
       appBar: _buildAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -33,22 +35,76 @@ class _UserInfoPageState extends BaseStatefulState<UserInfoPage> {
             _userInfo(),
             SizedBox(height: 10),
             Container(
-              height: 1,
+              padding: EdgeInsets.symmetric(vertical: 10),
               decoration: BoxDecoration(
-                color: Color(0xff000000).withOpacity(0.1),
-                borderRadius: BorderRadius.circular(15),
+                border: Border.symmetric(
+                  horizontal: BorderSide(
+                    color: Color(0xffCBC4C4),
+                    width: 1,
+                  ),
+                ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Image.asset(
+                    'images/ic_save.png',
+                    width: 24,
+                    height: 24,
+                    color: Colors.black,
+                  ),
+                  Container(
+                    height: 30,
+                    decoration: BoxDecoration(
+                      color: Color(0xffCBC4C4),
+                      border: Border.symmetric(
+                        vertical: BorderSide(
+                          color: Color(0xffCBC4C4),
+                          width: 1,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Image.asset(
+                    'images/ic_save.png',
+                    width: 24,
+                    height: 24,
+                    color: Colors.black,
+                  ),
+                ],
               ),
             ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: ItemUserPost(),
-                  );
-                },
-              ),
+            ValueListenableBuilder(
+              valueListenable: vm.userPosts,
+              builder: (_, __, ___) {
+                return StreamBuilder<List<WordAndSentenceModel>>(
+                  stream: vm.userPosts.value,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return showProgress(context);
+                    } else if (snapshot.hasError) {
+                      return Text('Bir hata oluştu: ${snapshot.error}');
+                    } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                      return Text('Henüz kelime ve cümle eklenmedi.');
+                    } else {
+                      hideProgress();
+                      final userPost = snapshot.data!;
+                      return Expanded(
+                        child: ListView.builder(
+                          itemCount: userPost.length ?? 0,
+                          itemBuilder: (context, index) {
+                            debugPrint(userPost[index].userID);
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              child: ItemUserPost(),
+                            );
+                          },
+                        ),
+                      );
+                    }
+                  },
+                );
+              },
             ),
           ],
         ),
@@ -61,22 +117,10 @@ class _UserInfoPageState extends BaseStatefulState<UserInfoPage> {
       children: [
         Row(
           children: [
-            Container(
-              padding: EdgeInsets.all(1),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.white,
-                border: Border.all(
-                  color: Colors.white,
-                ),
-              ),
-              child: CircleAvatar(
-                radius: 50,
-                backgroundImage: CachedNetworkImageProvider(
-                  vm.userModel?.profilePhoto ??
-                      'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
-                ),
-              ),
+            CustomUserAvatar(
+              circleRadius: 50,
+              profileImgAddress: vm.userModel?.profilePhoto,
+              borderColor: Color(0xff242760),
             ),
             SizedBox(width: 12),
             Expanded(
@@ -84,22 +128,29 @@ class _UserInfoPageState extends BaseStatefulState<UserInfoPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    vm.userModel?.name ?? 'NULL',
+                    vm.userModel?.name?.toUpperCase() ?? '',
                     style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
+                      fontSize: 20,
+                      color: Color(0xff242760),
                     ),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),
-                  Text(
-                    'O Yeni Başlayan Seviyesi 2',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        'Score, ${vm.userModel?.score?.toString() ?? '0'}',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Color(0xff544C4C),
+                        ),
+                      ),
+                      Image.asset(
+                        'images/level_star.png',
+                        height: 24,
+                        width: 24,
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -113,58 +164,55 @@ class _UserInfoPageState extends BaseStatefulState<UserInfoPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    vm.userModel?.posts.toString() ?? '0',
+                    vm.userModel?.posts.toString() ?? '',
                     style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
+                      fontSize: 24,
+                      color: Color(0xff242760),
                     ),
                   ),
                   Text(
                     'Posts',
                     style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 16,
+                      fontSize: 14,
+                      color: Color(0xff242760),
                     ),
                   ),
                 ],
               ),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     vm.userModel?.followers?.length.toString() ?? '0',
                     style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
+                      fontSize: 24,
+                      color: Color(0xff242760),
                     ),
                   ),
                   Text(
                     'Followers',
                     style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 16,
+                      fontSize: 14,
+                      color: Color(0xff242760),
                     ),
                   ),
                 ],
               ),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     vm.userModel?.followings?.length.toString() ?? '0',
                     style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
+                      fontSize: 24,
+                      color: Color(0xff242760),
                     ),
                   ),
                   Text(
-                    'Following',
+                    'Followings',
                     style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 16,
+                      fontSize: 14,
+                      color: Color(0xff242760),
                     ),
                   ),
                 ],
