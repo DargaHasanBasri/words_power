@@ -2,5 +2,7 @@ include: package:very_good_analysis/analysis_options.yaml
 
 linter:
   rules:
+    file_names: false,
     public_member_api_docs: false,
-    prefer_conditional_expressions: false
+    prefer_conditional_expressions: false,
+    lines_longer_than_80_chars: false,
