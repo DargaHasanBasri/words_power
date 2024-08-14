@@ -40,7 +40,7 @@ class _LeaderBoardBoardTabState extends BaseStatefulState<LeaderBoardBoardTab> {
                           color: Color(0xffFA9884).withOpacity(0.8),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.25),
+                              color: AppColors.black.withOpacity(0.25),
                               blurRadius: 4,
                               offset: Offset(2, 3),
                             ),
@@ -108,7 +108,7 @@ class _LeaderBoardBoardTabState extends BaseStatefulState<LeaderBoardBoardTab> {
                           color: Color(0xffFA9884),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.25),
+                              color: AppColors.black.withOpacity(0.25),
                               blurRadius: 4,
                               offset: Offset(2, 3),
                             ),
@@ -177,7 +177,7 @@ class _LeaderBoardBoardTabState extends BaseStatefulState<LeaderBoardBoardTab> {
                           color: Color(0xffFA9884).withOpacity(0.8),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.25),
+                              color: AppColors.black.withOpacity(0.25),
                               blurRadius: 4,
                               offset: Offset(2, 3),
                             ),

@@ -12,7 +12,7 @@ class _WelcomePageState extends BaseStatefulState<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColors.backgroundColor.withOpacity(0.6),
+      backgroundColor: AppColors.backgroundColor.withOpacity(0.6),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -27,7 +27,7 @@ class _WelcomePageState extends BaseStatefulState<WelcomePage> {
               ),
             ),
             CircleAvatar(
-              backgroundColor: CustomColors.buttonBackground,
+              backgroundColor: AppColors.buttonBackground,
               radius: 32,
               child: Image.asset('images/logo.png'),
             ),
@@ -36,7 +36,7 @@ class _WelcomePageState extends BaseStatefulState<WelcomePage> {
               child: Text(
                 'Words-Power',
                 style: TextStyle(
-                  color: CustomColors.whiteSmoke,
+                  color: AppColors.whiteSmoke,
                   fontSize: 22,
                   fontWeight: FontWeight.w600,
                 ),
@@ -54,7 +54,7 @@ class _WelcomePageState extends BaseStatefulState<WelcomePage> {
                       appRoutes.navigateTo(Routes.login);
                     },
                     title: 'Login',
-                    backgroundColor: CustomColors.buttonBackground,
+                    backgroundColor: AppColors.buttonBackground,
                   ),
                   const SizedBox(height: 14),
                   CustomButton(
@@ -62,8 +62,8 @@ class _WelcomePageState extends BaseStatefulState<WelcomePage> {
                       appRoutes.navigateTo(Routes.register);
                     },
                     title: 'Register',
-                    titleColor: CustomColors.blueCloudBurst,
-                    backgroundColor: CustomColors.whiteSmoke,
+                    titleColor: AppColors.blueCloudBurst,
+                    backgroundColor: AppColors.whiteSmoke,
                   ),
                 ],
               ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:words_power/utils/custom_colors.dart';
+import 'package:words_power/utils/app_colors.dart';
 
 class CustomCameraGalleryPopup extends StatelessWidget {
   const CustomCameraGalleryPopup(
@@ -22,7 +22,7 @@ class CustomCameraGalleryPopup extends StatelessWidget {
           borderRadius: BorderRadius.circular(24),
         ),
         elevation: 0,
-        backgroundColor: CustomColors.buttonBackground,
+        backgroundColor: AppColors.buttonBackground,
         child: _buildContent(context, onClickCamera, onClickGallery),
       ),
     );
@@ -41,7 +41,7 @@ class CustomCameraGalleryPopup extends StatelessWidget {
             onPressed: () => Navigator.of(context).pop(),
             icon: Icon(
               Icons.exit_to_app,
-              color: CustomColors.white,
+              color: AppColors.white,
             ),
           ),
         ),
@@ -50,7 +50,7 @@ class CustomCameraGalleryPopup extends StatelessWidget {
           onPressed: () => onClickCamera.call(),
           icon: Icon(
             Icons.camera,
-            color: CustomColors.white,
+            color: AppColors.white,
           ),
         ),
         const SizedBox(height: 20),
@@ -58,7 +58,7 @@ class CustomCameraGalleryPopup extends StatelessWidget {
           onPressed: () => onClickGallery.call(),
           icon: Icon(
             Icons.camera_enhance_rounded,
-            color: CustomColors.white,
+            color: AppColors.white,
           ),
         ),
       ],

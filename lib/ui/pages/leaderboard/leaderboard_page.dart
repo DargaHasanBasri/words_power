@@ -25,7 +25,7 @@ class _LeaderboardPageState extends BaseStatefulState<LeaderboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.backgroundColor,
       appBar: _buildAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -94,7 +94,7 @@ class _LeaderboardPageState extends BaseStatefulState<LeaderboardPage> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       automaticallyImplyLeading: false,
       forceMaterialTransparency: true,
       elevation: 0,
@@ -108,7 +108,7 @@ class _LeaderboardPageState extends BaseStatefulState<LeaderboardPage> {
                       ? 'Activities'
                       : 'Users',
               style: TextStyle(
-                color: Colors.black,
+                color: AppColors.black,
                 fontSize: 20,
                 fontWeight: FontWeight.w500,
               ),

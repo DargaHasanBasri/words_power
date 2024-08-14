@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:words_power/utils/custom_colors.dart';
+import 'package:words_power/utils/app_colors.dart';
 
 class CustomTextFormField extends StatefulWidget {
   const CustomTextFormField({
@@ -64,7 +64,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             hintStyle: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w400,
-              color: CustomColors.backgroundColor,
+              color: AppColors.backgroundColor,
             ),
             filled: true,
             fillColor: Colors.white,
@@ -72,7 +72,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(widget.borderRadius),
               borderSide: BorderSide(
-                color: CustomColors.textFormFieldBorderColor,
+                color: AppColors.textFormFieldBorderColor,
                 width: 2,
               ),
             ),
@@ -86,7 +86,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(widget.borderRadius),
               borderSide: BorderSide(
-                color: CustomColors.backgroundColor,
+                color: AppColors.backgroundColor,
                 width: 2,
               ),
             ),
@@ -106,7 +106,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               widget.textFieldTitle,
               style: const TextStyle(
                 fontSize: 16,
-                color: Colors.black,
+                color: AppColors.black,
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -114,7 +114,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             if (widget.isRequired)
               const Text(
                 '*',
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(color: AppColors.black,),
               ),
           ],
         ),

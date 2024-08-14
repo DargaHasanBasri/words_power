@@ -25,7 +25,7 @@ class _ForgotPasswordPageState extends BaseStatefulState<ForgotPasswordPage> {
         title: Text(
           'ŞİFREMİ UNUTTUM',
           style: TextStyle(
-            color: CustomColors.white,
+            color: AppColors.white,
             fontSize: 24,
             fontWeight: FontWeight.w400,
           ),
@@ -34,13 +34,13 @@ class _ForgotPasswordPageState extends BaseStatefulState<ForgotPasswordPage> {
           onTap: () => Navigator.of(context).pop(),
           child: Icon(
             Icons.arrow_back_ios,
-            color: CustomColors.buttonBackground,
+            color: AppColors.buttonBackground,
           ),
         ),
         centerTitle: true,
-        backgroundColor: CustomColors.backgroundColor,
+        backgroundColor: AppColors.backgroundColor,
       ),
-      backgroundColor: CustomColors.backgroundColor,
+      backgroundColor: AppColors.backgroundColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
         child: SingleChildScrollView(
@@ -58,7 +58,7 @@ class _ForgotPasswordPageState extends BaseStatefulState<ForgotPasswordPage> {
                 'Doğrulama Kodu Almak İçin Lütfen Kayıt Olduğunuz E-posta '
                     'Adresinizi Girin',
                 style: TextStyle(
-                  color: CustomColors.white,
+                  color: AppColors.white,
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                 ),

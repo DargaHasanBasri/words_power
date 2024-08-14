@@ -22,7 +22,7 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: CustomColors.backgroundColor,
+      backgroundColor: AppColors.backgroundColor,
       body: PopScope(
         canPop: vm.isCanPop ?? false,
         child: SafeArea(
@@ -40,7 +40,7 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
                       Text(
                         'GİRİŞ YAP',
                         style: TextStyle(
-                          color: CustomColors.white,
+                          color: AppColors.white,
                           fontSize: 24,
                           fontWeight: FontWeight.w400,
                         ),
@@ -82,7 +82,7 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
                           child: Text(
                             'Şifreni mi Unuttun?',
                             style: TextStyle(
-                              color: CustomColors.greyTextColor,
+                              color: AppColors.greyTextColor,
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
                             ),
@@ -136,14 +136,14 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
                           text: TextSpan(
                             text: 'New member? ',
                             style: TextStyle(
-                              color: CustomColors.whitePorcelain,
+                              color: AppColors.whitePorcelain,
                               fontSize: 18,
                             ),
                             children: [
                               TextSpan(
                                 text: 'Register Now',
                                 style: TextStyle(
-                                  color: CustomColors.buttonBackground,
+                                  color: AppColors.buttonBackground,
                                   fontSize: 20,
                                 ),
                                 recognizer: TapGestureRecognizer()
@@ -177,7 +177,7 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
       onTap: () => onClick.call(),
       child: Container(
         decoration: BoxDecoration(
-          color: CustomColors.buttonBackground,
+          color: AppColors.buttonBackground,
           border: Border.all(
             color: Colors.transparent,
             width: 2,
@@ -190,7 +190,7 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CircleAvatar(
-                backgroundColor: CustomColors.white,
+                backgroundColor: AppColors.white,
                 radius: 14,
                 child: Image.asset(iconAddress),
               ),
@@ -198,7 +198,7 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
               Text(
                 title,
                 style: TextStyle(
-                  color: CustomColors.white,
+                  color: AppColors.white,
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
@@ -215,20 +215,20 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Expanded(
-          child: Divider(color: CustomColors.greyTextColor),
+          child: Divider(color: AppColors.greyTextColor),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Text(
             'or',
             style: TextStyle(
-              color: CustomColors.white,
+              color: AppColors.white,
               fontSize: 16,
             ),
           ),
         ),
         Expanded(
-          child: Divider(color: CustomColors.greyTextColor),
+          child: Divider(color: AppColors.greyTextColor),
         ),
       ],
     );

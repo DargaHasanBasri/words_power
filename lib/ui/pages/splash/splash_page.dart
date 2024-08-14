@@ -25,7 +25,7 @@ class _SplashPageState extends BaseStatefulState<SplashPage> {
       children: [
         Container(
           decoration: BoxDecoration(
-            color: CustomColors.backgroundColor,
+            color: AppColors.backgroundColor,
           ),
         ),
         Positioned.fill(
@@ -33,7 +33,7 @@ class _SplashPageState extends BaseStatefulState<SplashPage> {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(25),
               child: CircleAvatar(
-                backgroundColor: CustomColors.buttonBackground,
+                backgroundColor: AppColors.buttonBackground,
                 radius: 32,
                 child: Image.asset('images/logo.png'),
               ),

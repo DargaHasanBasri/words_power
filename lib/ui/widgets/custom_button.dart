@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:words_power/utils/custom_colors.dart';
+import 'package:words_power/utils/app_colors.dart';
 
 class CustomButton extends StatefulWidget {
   CustomButton({
@@ -10,8 +10,8 @@ class CustomButton extends StatefulWidget {
     double? borderRadius,
     VoidCallback? onClick,
   })  : title = title ?? 'TEST',
-        backgroundColor = backgroundColor ?? CustomColors.buttonBackground,
-        titleColor = titleColor ?? CustomColors.white,
+        backgroundColor = backgroundColor ?? AppColors.buttonBackground,
+        titleColor = titleColor ?? AppColors.white,
         borderRadius = borderRadius ?? 4.0,
         onClick = onClick ?? (() {});
   final Color? backgroundColor;

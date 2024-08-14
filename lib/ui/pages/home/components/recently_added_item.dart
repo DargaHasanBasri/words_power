@@ -29,7 +29,7 @@ class RecentlyAddedItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.25),
+              color: AppColors.black.withOpacity(0.25),
               blurRadius: 4,
               offset: Offset(2, 3),
             ),
@@ -46,9 +46,9 @@ class RecentlyAddedItem extends StatelessWidget {
                     padding: EdgeInsets.all(1),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.white,
+                      color: AppColors.white,
                       border: Border.all(
-                        color: Colors.white,
+                        color: AppColors.white,
                       ),
                     ),
                     child: CircleAvatar(
@@ -111,7 +111,7 @@ class RecentlyAddedItem extends StatelessWidget {
                                   Text(
                                     '10',
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: AppColors.white,
                                     ),
                                   ),
                                   SizedBox(width: 14),
@@ -120,7 +120,7 @@ class RecentlyAddedItem extends StatelessWidget {
                                   Text(
                                     '10',
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: AppColors.white,
                                     ),
                                   ),
                                   Spacer(),
@@ -129,7 +129,7 @@ class RecentlyAddedItem extends StatelessWidget {
                                   Text(
                                     '10',
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: AppColors.white,
                                     ),
                                   ),
                                   SizedBox(width: 14),
@@ -138,7 +138,7 @@ class RecentlyAddedItem extends StatelessWidget {
                                   Text(
                                     '10',
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: AppColors.white,
                                     ),
                                   ),
                                 ],

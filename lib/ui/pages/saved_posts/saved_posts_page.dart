@@ -97,7 +97,7 @@ class _SavedPostsPageState extends BaseStatefulState<SavedPostsPage> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       automaticallyImplyLeading: false,
       forceMaterialTransparency: true,
       elevation: 0,
@@ -117,7 +117,7 @@ class _SavedPostsPageState extends BaseStatefulState<SavedPostsPage> {
             icon: Image.asset(
               'images/ic_bookmark.png',
               width: 24,
-              color: Colors.black,
+              color: AppColors.black,
             ),
             onPressed: () {},
           ),

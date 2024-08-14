@@ -15,7 +15,7 @@ export 'package:words_power/ui/pages/home/components/recently_added_item.dart';
 export 'package:words_power/ui/widgets/custom_button.dart';
 export 'package:words_power/ui/widgets/custom_textform_field.dart';
 export 'package:words_power/ui/widgets/faded_widget.dart';
-export 'package:words_power/utils/custom_colors.dart';
+export 'package:words_power/utils/app_colors.dart';
 export 'package:words_power/utils/dialog_helper.dart';
 export 'package:words_power/utils/app_paddings.dart';
 export 'package:words_power/utils/utility.dart';

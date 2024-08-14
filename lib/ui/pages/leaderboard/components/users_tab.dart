@@ -46,7 +46,7 @@ class _UsersTabState extends BaseStatefulState<UsersTab> {
                 Text(
                   'Kullanıcı Ara',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: AppColors.black,
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                   ),
@@ -89,7 +89,7 @@ class _UsersTabState extends BaseStatefulState<UsersTab> {
                               borderRadius: BorderRadius.circular(12),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.black.withOpacity(0.25),
+                                  color: AppColors.black.withOpacity(0.25),
                                   blurRadius: 4,
                                   offset: Offset(0, 4),
                                 ),
@@ -126,7 +126,7 @@ class _UsersTabState extends BaseStatefulState<UsersTab> {
                                             Text(
                                               '${users[index].name}',
                                               style: TextStyle(
-                                                color: Colors.black,
+                                                color: AppColors.black,
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.w500,
                                               ),
@@ -136,7 +136,7 @@ class _UsersTabState extends BaseStatefulState<UsersTab> {
                                                 Text(
                                                   '${users[index].score}',
                                                   style: TextStyle(
-                                                    color: Colors.black,
+                                                    color: AppColors.black,
                                                     fontSize: 16,
                                                     fontWeight: FontWeight.w400,
                                                   ),
