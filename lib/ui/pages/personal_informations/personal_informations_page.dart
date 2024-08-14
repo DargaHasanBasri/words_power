@@ -39,7 +39,7 @@ class _PersonalInformationsPageState
                 clipBehavior: Clip.none,
                 children: [
                   Padding(
-                    padding: ProjectPadding.pagePaddingVerticalLarge,
+                    padding: AppPaddings.pagePaddingVerticalLarge,
                     child: _userInfoContainer(
                       vm.userModel?.name ?? 'NULL',
                       'UI/UX Designer',
@@ -56,7 +56,7 @@ class _PersonalInformationsPageState
                 valueListenable: vm.userNewModel,
                 builder: (_, __, ___) {
                   return Padding(
-                    padding: ProjectPadding.pagePaddingSymmetricXLarge,
+                    padding: AppPaddings.pagePaddingSymmetricXLarge,
                     child: _userInfo(),
                   );
                 },
@@ -194,7 +194,7 @@ class _PersonalInformationsPageState
         ],
       ),
       child: Padding(
-        padding: ProjectPadding.pagePaddingSymmetricXLarge,
+        padding: AppPaddings.pagePaddingSymmetricXLarge,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

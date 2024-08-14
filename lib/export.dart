@@ -17,7 +17,7 @@ export 'package:words_power/ui/widgets/custom_textform_field.dart';
 export 'package:words_power/ui/widgets/faded_widget.dart';
 export 'package:words_power/utils/custom_colors.dart';
 export 'package:words_power/utils/dialog_helper.dart';
-export 'package:words_power/utils/project_padding.dart';
+export 'package:words_power/utils/app_paddings.dart';
 export 'package:words_power/utils/utility.dart';
 
 export '../ui/pages/forgot_password/forgot_password_provider.dart';

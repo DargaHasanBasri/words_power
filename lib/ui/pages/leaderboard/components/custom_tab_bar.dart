@@ -39,7 +39,7 @@ class CustomTabBar extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Padding(
-                          padding: EdgeInsets.symmetric(vertical: 10),
+                          padding: AppPaddings.pagePaddingVerticalSmall,
                           child: Text(
                             'Leaderboard',
                             style: TextStyle(
@@ -77,7 +77,7 @@ class CustomTabBar extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Padding(
-                        padding: EdgeInsets.symmetric(vertical: 10),
+                        padding: AppPaddings.pagePaddingVerticalSmall,
                         child: Text(
                           'Activities',
                           style: TextStyle(
@@ -119,7 +119,7 @@ class CustomTabBar extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Padding(
-                          padding: EdgeInsets.symmetric(vertical: 10),
+                          padding: AppPaddings.pagePaddingVerticalSmall,
                           child: Text(
                             'Users',
                             style: TextStyle(

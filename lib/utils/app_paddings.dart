@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
-class ProjectPadding {
-  static const pagePaddingAllXLarge = EdgeInsets.all(20);
+final class AppPaddings {
+  AppPaddings._();
+
+  static const pagePaddingAll = EdgeInsets.all(20);
+
   static const pagePaddingAllMiddle = EdgeInsets.all(10);
 
-  // 24-24 de var bakılacak  20-30 ------- 20-20 --------- 16-16 ------- 24-20
   static const pagePaddingSymmetricXLarge = EdgeInsets.symmetric(
     vertical: 20,
     horizontal: 20,
@@ -18,9 +20,10 @@ class ProjectPadding {
     horizontal: 10,
   );
 
-  static const pagePaddingHorizontalXLarge = EdgeInsets.symmetric(
-    horizontal: 24,
+  static const pagePaddingHorizontal = EdgeInsets.symmetric(
+    horizontal: 20,
   );
+
   static const pagePaddingHorizontalLarge = EdgeInsets.symmetric(
     horizontal: 16,
   );
@@ -31,17 +34,16 @@ class ProjectPadding {
     horizontal: 8,
   );
 
-  static const pagePaddingVerticalXLarge = EdgeInsets.symmetric(
-    vertical: 24,
+  static const pagePaddingVertical = EdgeInsets.symmetric(
+    vertical: 20,
   );
+
   static const pagePaddingVerticalLarge = EdgeInsets.symmetric(
     vertical: 16,
   );
-  static const pagePaddingVerticalMiddle = EdgeInsets.symmetric(
-    vertical: 10,
-  );
+
   static const pagePaddingVerticalSmall = EdgeInsets.symmetric(
-    vertical: 8,
+    vertical: 10,
   );
 
   static const pagePaddingOnlyTopLeft = EdgeInsets.only(
