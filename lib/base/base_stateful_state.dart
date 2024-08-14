@@ -1,15 +1,13 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:words_power/base/api_base/repository.dart';
 import 'package:words_power/route/app_routes.dart';
-import 'package:words_power/services/authentication_service.dart';
 import 'package:words_power/services/localstorage_service.dart';
 import 'package:words_power/services/service_locator.dart';
-import 'package:words_power/utils/custom_colors.dart';
 import 'package:words_power/utils/firebase_storage_repository.dart';
-import 'package:words_power/utils/utility.dart';
+
+import '../export.dart';
 
 abstract class BaseStatefulState<T extends StatefulWidget> extends State<T> {
   Utility utility = Utility();
@@ -78,7 +76,7 @@ abstract class BaseStatefulState<T extends StatefulWidget> extends State<T> {
         builder: (BuildContext context) => Stack(
           children: <Widget>[
             Container(
-              color: Colors.black.withOpacity(0.4),
+              color: AppColors.black.withOpacity(0.4),
             ),
             Positioned(
               left: 0,
@@ -90,7 +88,7 @@ abstract class BaseStatefulState<T extends StatefulWidget> extends State<T> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CircularProgressIndicator(
-                    color: CustomColors.buttonBackground,
+                    color: AppColors.buttonBackground,
                   ),
                 ],
               ),

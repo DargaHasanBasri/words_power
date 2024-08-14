@@ -48,12 +48,12 @@ class _MainTabPageState extends BaseStatefulState<MainTabPage> {
           builder: (_, __, ___) {
             return Scaffold(
               extendBody: true,
-              backgroundColor: CustomColors.white,
+              backgroundColor: AppColors.white,
               floatingActionButton: SpeedDial(
                 backgroundColor: Color(0xffFA9884),
                 activeIcon: Icons.close,
                 icon: Icons.add,
-                overlayColor: Colors.black,
+                overlayColor: AppColors.black,
                 buttonSize: Size(70, 70),
                 overlayOpacity: 0.5,
                 childrenButtonSize: const Size(100, 60),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../export.dart';
+
 class FadedWidget extends StatelessWidget {
   FadedWidget({
     required this.child,
@@ -7,7 +9,7 @@ class FadedWidget extends StatelessWidget {
     this.stops = const [0.5, 0.8, 1],
     List<double> opacities = const [0.9, 0.3, 0],
   }) : colorsForStops = opacities
-            .map((double opacity) => Colors.black.withOpacity(opacity))
+            .map((double opacity) => AppColors.black.withOpacity(opacity))
             .toList();
   final Widget child;
   final List<double> stops;

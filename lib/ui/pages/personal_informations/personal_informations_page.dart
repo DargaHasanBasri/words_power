@@ -28,7 +28,7 @@ class _PersonalInformationsPageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColors.backgroundColor,
+      backgroundColor: AppColors.backgroundColor,
       appBar: _buildAppBar(),
       body: SingleChildScrollView(
         child: SafeArea(
@@ -123,7 +123,7 @@ class _PersonalInformationsPageState
               height: 120,
               width: 110,
               decoration: BoxDecoration(
-                color: CustomColors.white,
+                color: AppColors.white,
                 borderRadius: BorderRadius.circular(2),
                 image: vm.image.value != null
                     ? DecorationImage(
@@ -138,7 +138,7 @@ class _PersonalInformationsPageState
                       ),
                 boxShadow: [
                   BoxShadow(
-                    color: CustomColors.black,
+                    color: AppColors.black,
                     offset: const Offset(5, 5),
                     blurRadius: 3,
                   ),
@@ -181,13 +181,13 @@ class _PersonalInformationsPageState
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: CustomColors.backgroundColor,
+        color: AppColors.backgroundColor,
         borderRadius: const BorderRadius.only(
           bottomRight: Radius.circular(20),
         ),
         boxShadow: [
           BoxShadow(
-            color: CustomColors.black,
+            color: AppColors.black,
             offset: const Offset(5, 3),
             blurRadius: 3,
           ),
@@ -201,7 +201,7 @@ class _PersonalInformationsPageState
             Text(
               name ?? '',
               style: TextStyle(
-                color: CustomColors.white,
+                color: AppColors.white,
                 fontSize: 20,
                 fontWeight: FontWeight.w400,
               ),
@@ -209,7 +209,7 @@ class _PersonalInformationsPageState
             Text(
               job ?? '',
               style: TextStyle(
-                color: CustomColors.white.withOpacity(0.5),
+                color: AppColors.white.withOpacity(0.5),
                 fontSize: 18,
                 fontWeight: FontWeight.w300,
               ),
@@ -225,16 +225,16 @@ class _PersonalInformationsPageState
       leading: IconButton(
         icon: Image.asset(
           'images/ic_back.png',
-          color: CustomColors.whitePorcelain,
+          color: AppColors.whitePorcelain,
           height: 24,
         ),
         onPressed: appRoutes.popIfBackStackNotEmpty,
       ),
-      backgroundColor: CustomColors.backgroundColor,
+      backgroundColor: AppColors.backgroundColor,
       title: Text(
         'Kişisel Bilgilerim',
         style: TextStyle(
-          color: CustomColors.white,
+          color: AppColors.white,
         ),
       ),
       centerTitle: true,

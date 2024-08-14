@@ -22,7 +22,7 @@ class _HomePageState extends BaseStatefulState<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.backgroundColor,
       appBar: _buildAppBar(),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
@@ -97,7 +97,7 @@ class _HomePageState extends BaseStatefulState<HomePage> {
                                 padding: EdgeInsets.all(2),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: Colors.white,
+                                  color: AppColors.white,
                                   border: Border.all(
                                     color: Color(0xff648fd9),
                                     width: 2,
@@ -119,7 +119,7 @@ class _HomePageState extends BaseStatefulState<HomePage> {
                                   style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.black,
+                                    color: AppColors.black,
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                   maxLines: 1,
@@ -141,7 +141,7 @@ class _HomePageState extends BaseStatefulState<HomePage> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.backgroundColor,
       automaticallyImplyLeading: false,
       forceMaterialTransparency: true,
       elevation: 0,
@@ -159,7 +159,7 @@ class _HomePageState extends BaseStatefulState<HomePage> {
             child: Text(
               'Welcome, ${vm.userModel?.name?.toUpperCase() ?? "NULLUM"}',
               style: TextStyle(
-                color: Colors.black,
+                color: AppColors.black,
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
               ),

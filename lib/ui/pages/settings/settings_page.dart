@@ -22,7 +22,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColors.backgroundColor,
+      backgroundColor: AppColors.backgroundColor,
       body: Column(
         children: [
           AspectRatio(
@@ -30,7 +30,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
 
             /// Container yerine coloredBox önerildi
             child: ColoredBox(
-              color: CustomColors.backgroundColor,
+              color: AppColors.backgroundColor,
               child: Padding(
                 padding: const EdgeInsets.only(top: 20, left: 24),
                 child: _buildUserProfile(),
@@ -40,7 +40,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
           Expanded(
             child: Container(
               width: double.infinity,
-              color: CustomColors.whitePorcelain,
+              color: AppColors.whitePorcelain,
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20,
@@ -58,7 +58,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
   Widget _buildSettingsItems() {
     return Container(
       decoration: BoxDecoration(
-        color: CustomColors.blueCloudBurst.withOpacity(0.1),
+        color: AppColors.blueCloudBurst.withOpacity(0.1),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Padding(
@@ -126,7 +126,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
     return Row(
       children: [
         CircleAvatar(
-          backgroundColor: CustomColors.backgroundColor.withOpacity(0.5),
+          backgroundColor: AppColors.backgroundColor.withOpacity(0.5),
           radius: 56,
           child: CircleAvatar(
             radius: 54,
@@ -140,7 +140,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
           vm.userModel?.name ?? 'NULL',
           style: TextStyle(
             fontSize: 22,
-            color: CustomColors.white,
+            color: AppColors.white,
           ),
         ),
       ],

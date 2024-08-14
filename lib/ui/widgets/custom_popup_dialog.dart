@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:words_power/route/app_routes.dart';
 import 'package:words_power/services/service_locator.dart';
 import 'package:words_power/ui/widgets/custom_button.dart';
-import 'package:words_power/utils/custom_colors.dart';
+import 'package:words_power/utils/app_colors.dart';
 
 class CustomPopupDialog extends StatelessWidget {
   const CustomPopupDialog({super.key});
@@ -14,7 +14,7 @@ class CustomPopupDialog extends StatelessWidget {
         borderRadius: BorderRadius.circular(24),
       ),
       elevation: 0,
-      backgroundColor: CustomColors.buttonBackground,
+      backgroundColor: AppColors.buttonBackground,
       child: _buildContent(context),
     );
   }
@@ -33,7 +33,7 @@ class CustomPopupDialog extends StatelessWidget {
                 child: Text(
                   'GİZLİLİK POLİTİKASI',
                   style: TextStyle(
-                    color: CustomColors.greyTextColor,
+                    color: AppColors.greyTextColor,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                   ),
@@ -43,7 +43,7 @@ class CustomPopupDialog extends StatelessWidget {
               Text(
                 'Son güncellenme: 13/02/2024',
                 style: TextStyle(
-                  color: CustomColors.greyTextColor,
+                  color: AppColors.greyTextColor,
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                 ),
@@ -59,7 +59,7 @@ class CustomPopupDialog extends StatelessWidget {
                 'işlenen verilerinize ilişkin haklarınızın neler olduğu'
                 ' hususunda sizleri aydınlatmayı amaçlıyoruz.',
                 style: TextStyle(
-                  color: CustomColors.greyTextColor,
+                  color: AppColors.greyTextColor,
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                 ),
@@ -68,7 +68,7 @@ class CustomPopupDialog extends StatelessWidget {
               Text(
                 'KİŞİSEL VERİLERİNİZİN İŞLENME AMACI',
                 style: TextStyle(
-                  color: CustomColors.greyTextColor,
+                  color: AppColors.greyTextColor,
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
                 ),
@@ -89,7 +89,7 @@ class CustomPopupDialog extends StatelessWidget {
                 ' amacıyla, sözleşme ve hizmet süresince, amacına uygun ve'
                 ' ölçülü bir şekilde işlenecek ve güncellenecektir.',
                 style: TextStyle(
-                  color: CustomColors.greyTextColor,
+                  color: AppColors.greyTextColor,
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                 ),
@@ -99,7 +99,7 @@ class CustomPopupDialog extends StatelessWidget {
                 child: Text(
                   'KULLANIM ŞARTLARI',
                   style: TextStyle(
-                    color: CustomColors.greyTextColor,
+                    color: AppColors.greyTextColor,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                   ),
@@ -109,7 +109,7 @@ class CustomPopupDialog extends StatelessWidget {
               Text(
                 'Son güncellenme: 13/02/2024',
                 style: TextStyle(
-                  color: CustomColors.greyTextColor,
+                  color: AppColors.greyTextColor,
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                 ),
@@ -117,7 +117,7 @@ class CustomPopupDialog extends StatelessWidget {
               Text(
                 'Sevgili ziyaretçimiz, lütfen https://site.com web sitemizi ziyaret etmeden önce işbu kullanım koşulları sözleşmesini dikkatlice okuyunuz. Siteye erişiminiz tamamen bu sözleşmeyi kabulünüze ve bu sözleşme ile belirlenen şartlara uymanıza bağlıdır. Şayet bu sözleşmede yazan herhangi bir koşulu kabul etmiyorsanız, lütfen siteye erişiminizi sonlandırınız. Siteye erişiminizi sürdürdüğünüz takdirde, koşulsuz ve kısıtlamasız olarak, işbu sözleşme metninin tamamını kabul ettiğinizin, tarafımızca varsayılacağını lütfen unutmayınız.',
                 style: TextStyle(
-                  color: CustomColors.greyTextColor,
+                  color: AppColors.greyTextColor,
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                 ),
@@ -125,7 +125,7 @@ class CustomPopupDialog extends StatelessWidget {
               Text(
                 "https://site.com web sitesi Şirket Adı tarafından yönetilmekte olup, bundan sonra SİTE olarak anılacaktır. İşbu siteye ilişkin Kullanım Koşulları, yayınlanmakla yürürlüğe girer. Değişiklik yapma hakkı, tek taraflı olarak SİTE'ye aittir ve SİTE üzerinden güncel olarak paylaşılacak olan bu değişiklikleri, tüm kullanıcılarımız baştan kabul etmiş sayılır.",
                 style: TextStyle(
-                  color: CustomColors.greyTextColor,
+                  color: AppColors.greyTextColor,
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                 ),
@@ -135,7 +135,7 @@ class CustomPopupDialog extends StatelessWidget {
                 child: Text(
                   'HİZMET KAPSAMI',
                   style: TextStyle(
-                    color: CustomColors.greyTextColor,
+                    color: AppColors.greyTextColor,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                   ),
@@ -149,7 +149,7 @@ class CustomPopupDialog extends StatelessWidget {
                 " değişiklikler, SİTE'de yayınlanmakla yürürlüğe"
                 ' girmiş sayılacaktır.',
                 style: TextStyle(
-                  color: CustomColors.greyTextColor,
+                  color: AppColors.greyTextColor,
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                 ),
@@ -159,7 +159,7 @@ class CustomPopupDialog extends StatelessWidget {
                 child: Text(
                   'TELİF HAKLARI',
                   style: TextStyle(
-                    color: CustomColors.greyTextColor,
+                    color: AppColors.greyTextColor,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                   ),
@@ -174,7 +174,7 @@ class CustomPopupDialog extends StatelessWidget {
                 ' saklıdır. Yazılı izin olmaksızın site içeriğinin'
                 ' çoğaltılması veya kopyalanması kesinlikle yasaktır.',
                 style: TextStyle(
-                  color: CustomColors.greyTextColor,
+                  color: AppColors.greyTextColor,
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                 ),
@@ -184,7 +184,7 @@ class CustomPopupDialog extends StatelessWidget {
                 child: Text(
                   'GENEL HÜKÜMLER',
                   style: TextStyle(
-                    color: CustomColors.greyTextColor,
+                    color: AppColors.greyTextColor,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                   ),
@@ -194,7 +194,7 @@ class CustomPopupDialog extends StatelessWidget {
               Text(
                 "Kullanıcıların tamamı, SİTE'yi yalnızca hukuka uygun ve şahsi amaçlarla kullanacaklarını ve üçüncü kişinin haklarına tecavüz teşkil edecek nitelikteki herhangi bir faaliyette bulunmayacağını taahhüt eder. SİTE dâhilinde yaptıkları işlem ve eylemlerindeki, hukuki ve cezai sorumlulukları kendilerine aittir. İşbu iş ve eylemler sebebiyle, üçüncü kişilerin uğradıkları veya uğrayabilecekleri zararlardan dolayı SİTE'nin doğrudan ve/veya dolaylı hiçbir sorumluluğu yoktur.",
                 style: TextStyle(
-                  color: CustomColors.greyTextColor,
+                  color: AppColors.greyTextColor,
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                 ),
@@ -210,7 +210,7 @@ class CustomPopupDialog extends StatelessWidget {
                 ' herhangi bir garanti verilmemekte, hiçbir taahhütte'
                 ' bulunulmamaktadır.',
                 style: TextStyle(
-                  color: CustomColors.greyTextColor,
+                  color: AppColors.greyTextColor,
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                 ),
@@ -224,7 +224,7 @@ class CustomPopupDialog extends StatelessWidget {
                 ' olup, içerikleri ile ilgili hiçbir sorumluluk kabul'
                 ' etmemekteyiz.',
                 style: TextStyle(
-                  color: CustomColors.greyTextColor,
+                  color: AppColors.greyTextColor,
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                 ),
@@ -239,7 +239,7 @@ class CustomPopupDialog extends StatelessWidget {
                 ' kodlar veya materyallerin sebep olabileceği zararlardan'
                 ' dolayı sorumluluk kabul etmemekteyiz.',
                 style: TextStyle(
-                  color: CustomColors.greyTextColor,
+                  color: AppColors.greyTextColor,
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                 ),
@@ -252,7 +252,7 @@ class CustomPopupDialog extends StatelessWidget {
                 ' herhangi bir bölümüne olan erişiminizi önceden'
                 ' bildirmeksizin herhangi bir zamanda sonlandırabiliriz.',
                 style: TextStyle(
-                  color: CustomColors.greyTextColor,
+                  color: AppColors.greyTextColor,
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                 ),
@@ -262,7 +262,7 @@ class CustomPopupDialog extends StatelessWidget {
                 child: Text(
                   'İLETİŞİM',
                   style: TextStyle(
-                    color: CustomColors.greyTextColor,
+                    color: AppColors.greyTextColor,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                   ),
@@ -280,7 +280,7 @@ class CustomPopupDialog extends StatelessWidget {
                 ' adresi üzerinden iletişime geçmekten'
                 ' lütfen çekinmeyiniz.',
                 style: TextStyle(
-                  color: CustomColors.greyTextColor,
+                  color: AppColors.greyTextColor,
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                 ),
@@ -290,7 +290,7 @@ class CustomPopupDialog extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                 child: CustomButton(
                   title: 'Onaylıyorum',
-                  backgroundColor: CustomColors.backgroundColor,
+                  backgroundColor: AppColors.backgroundColor,
                   onClick: appRoutes.popIfBackStackNotEmpty,
                 ),
               ),

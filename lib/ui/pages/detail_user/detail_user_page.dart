@@ -24,7 +24,7 @@ class _DetailUserPageState extends BaseStatefulState<DetailUserPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       appBar: _buildAppBar(),
       body: Column(
         children: [
@@ -75,7 +75,7 @@ class _DetailUserPageState extends BaseStatefulState<DetailUserPage> {
                   'images/ic_save.png',
                   width: 24,
                   height: 24,
-                  color: Colors.black,
+                  color: AppColors.black,
                 ),
                 Container(
                   height: 30,
@@ -93,7 +93,7 @@ class _DetailUserPageState extends BaseStatefulState<DetailUserPage> {
                   'images/ic_save.png',
                   width: 24,
                   height: 24,
-                  color: Colors.black,
+                  color: AppColors.black,
                 ),
               ],
             ),
@@ -202,7 +202,7 @@ class _DetailUserPageState extends BaseStatefulState<DetailUserPage> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       automaticallyImplyLeading: false,
       forceMaterialTransparency: true,
       elevation: 0,

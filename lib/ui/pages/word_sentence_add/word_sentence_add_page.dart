@@ -27,7 +27,7 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       appBar: _buildAppBar(),
       body: SafeArea(
         child: Padding(
@@ -124,13 +124,13 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       forceMaterialTransparency: true,
       elevation: 0,
       leading: IconButton(
         icon: Image.asset(
           'images/ic_back.png',
-          color: CustomColors.black,
+          color: AppColors.black,
           height: 24,
         ),
         onPressed: appRoutes.popIfBackStackNotEmpty,
@@ -138,7 +138,7 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
       title: Text(
         'Add Word And Sentence',
         style: TextStyle(
-          color: CustomColors.black,
+          color: AppColors.black,
           fontSize: 20,
           fontWeight: FontWeight.w500,
         ),
@@ -165,7 +165,7 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
       child: Container(
         margin: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: CustomColors.white,
+          color: AppColors.white,
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
@@ -200,7 +200,7 @@ class _WordSentenceAddPageState extends BaseStatefulState<WordSentenceAddPage> {
                           child: Text(
                             'Add a picture that reminds you',
                             style: TextStyle(
-                              color: CustomColors.black,
+                              color: AppColors.black,
                               fontSize: 18,
                               fontWeight: FontWeight.w400,
                             ),

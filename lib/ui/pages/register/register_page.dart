@@ -22,7 +22,7 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColors.backgroundColor,
+      backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -114,14 +114,14 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
                           text: TextSpan(
                             text: 'Zaten hesabın var mı? ',
                             style: TextStyle(
-                              color: CustomColors.whitePorcelain,
+                              color: AppColors.whitePorcelain,
                               fontSize: 18,
                             ),
                             children: [
                               TextSpan(
                                 text: 'Giriş Yap',
                                 style: TextStyle(
-                                  color: CustomColors.buttonBackground,
+                                  color: AppColors.buttonBackground,
                                   fontSize: 20,
                                 ),
                                 recognizer: TapGestureRecognizer()
@@ -155,7 +155,7 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
       text: TextSpan(
         text: 'Devam ettiğinizde, ',
         style: TextStyle(
-          color: CustomColors.greyTextColor,
+          color: AppColors.greyTextColor,
           fontSize: 14,
           fontWeight: FontWeight.w400,
         ),
@@ -163,7 +163,7 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
           TextSpan(
             text: 'Gizlilik Sözleşmesi ve Kullanım Şartlarını',
             style: TextStyle(
-              color: CustomColors.buttonBackground,
+              color: AppColors.buttonBackground,
               fontSize: 16,
               fontWeight: FontWeight.w400,
               decoration: TextDecoration.underline,
@@ -177,7 +177,7 @@ class _RegisterPageState extends BaseStatefulState<RegisterPage> {
           TextSpan(
             text: ' kabul etmiş olacaksınız.',
             style: TextStyle(
-              color: CustomColors.greyTextColor,
+              color: AppColors.greyTextColor,
               fontSize: 14,
               fontWeight: FontWeight.w400,
             ),

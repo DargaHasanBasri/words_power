@@ -36,7 +36,7 @@ class _DetailPostPageState extends BaseStatefulState<DetailPostPage> {
               child: Container(
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: CustomColors.white,
+                  color: AppColors.white,
                   borderRadius: BorderRadius.circular(25),
                   image: DecorationImage(
                     image: AssetImage('images/bookmark_test.png'),
@@ -72,7 +72,7 @@ class _DetailPostPageState extends BaseStatefulState<DetailPostPage> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       automaticallyImplyLeading: false,
       forceMaterialTransparency: true,
       elevation: 0,
@@ -94,7 +94,7 @@ class _DetailPostPageState extends BaseStatefulState<DetailPostPage> {
             icon: Image.asset(
               'images/ic_bookmark.png',
               width: 24,
-              color: Colors.black,
+              color: AppColors.black,
             ),
             onPressed: () {},
           ),
@@ -153,7 +153,7 @@ class _DetailPostPageState extends BaseStatefulState<DetailPostPage> {
           icon: Image.asset(
             'images/ic_favorite.png',
             width: 24,
-            color: Colors.black,
+            color: AppColors.black,
           ),
           onPressed: () {},
         ),
@@ -163,7 +163,7 @@ class _DetailPostPageState extends BaseStatefulState<DetailPostPage> {
           icon: Image.asset(
             'images/ic_comment.png',
             width: 24,
-            color: Colors.black,
+            color: AppColors.black,
           ),
           onPressed: () {},
         ),

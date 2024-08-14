@@ -21,7 +21,7 @@ class WriteArea extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: CustomColors.whitePorcelain,
+        color: AppColors.whitePorcelain,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
           color: Colors.transparent,

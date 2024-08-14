@@ -25,7 +25,7 @@ class _UserInfoPageState extends BaseStatefulState<UserInfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       appBar: _buildAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -51,7 +51,7 @@ class _UserInfoPageState extends BaseStatefulState<UserInfoPage> {
                     'images/ic_save.png',
                     width: 24,
                     height: 24,
-                    color: Colors.black,
+                    color: AppColors.black,
                   ),
                   Container(
                     height: 30,
@@ -69,7 +69,7 @@ class _UserInfoPageState extends BaseStatefulState<UserInfoPage> {
                     'images/ic_save.png',
                     width: 24,
                     height: 24,
-                    color: Colors.black,
+                    color: AppColors.black,
                   ),
                 ],
               ),
@@ -227,7 +227,7 @@ class _UserInfoPageState extends BaseStatefulState<UserInfoPage> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       automaticallyImplyLeading: false,
       forceMaterialTransparency: true,
       elevation: 0,
