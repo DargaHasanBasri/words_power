@@ -72,9 +72,7 @@ class _LeaderBoardBoardTabState extends BaseStatefulState<LeaderBoardBoardTab> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 30,
-                              ),
+                              padding: AppPaddings.pagePaddingVertical,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
@@ -211,9 +209,7 @@ class _LeaderBoardBoardTabState extends BaseStatefulState<LeaderBoardBoardTab> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 30,
-                              ),
+                              padding: AppPaddings.pagePaddingVertical,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [

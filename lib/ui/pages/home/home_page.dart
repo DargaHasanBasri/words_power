@@ -34,7 +34,7 @@ class _HomePageState extends BaseStatefulState<HomePage> {
             ListView.separated(
               shrinkWrap: true,
               physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: AppPaddings.pagePaddingHorizontal,
               itemCount: 10,
               itemBuilder: (context, index) {
                 return RecentlyAddedItem(
@@ -79,7 +79,7 @@ class _HomePageState extends BaseStatefulState<HomePage> {
                   return Container(
                     height: 100,
                     child: ListView.separated(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      padding: AppPaddings.pagePaddingHorizontal,
                       scrollDirection: Axis.horizontal,
                       itemCount: users.length,
                       itemBuilder: (context, index) {
